@@ -1,0 +1,24 @@
+#bandeau-home {
+	display: block;
+	width: 100%;
+	height: 100%;
+	width: 100%;
+	height: calc(100vh - 7.5rem);
+	position: relative;
+
+	img {
+		display: block;
+		width: 100%;
+		height: 100%;
+		object-fit: contain;
+		object-fit-position: center;
+	}
+
+	blockquote {
+		position: absolute;
+		top: 20%;
+		left: 50%;
+		font-family: Butler, Times, sans-serif;
+		font-size: 4rem;
+	}
+}

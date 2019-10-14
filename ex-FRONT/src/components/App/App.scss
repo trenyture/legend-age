@@ -1,0 +1,16 @@
+@font-face {
+	font-family: 'Butler';
+	src: url('../fonts/Butler/Butler.woff2') format('woff2'),
+		url('../fonts/Butler/Butler.woff') format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+
+html {
+	font-size: 62.5%;
+	body {
+		font-size: 1.6rem;
+		font-family: 'Open Sans', sans-serif;
+		color: blue;
+	}
+}

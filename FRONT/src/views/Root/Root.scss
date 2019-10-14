@@ -1,0 +1,36 @@
+.root-container {
+	.product {
+		position: relative;
+		border: .1rem solid $orange;
+		border-left: none;
+		padding: 3rem 3rem 3rem 10rem; 
+		margin: 10rem 0 10rem 5rem;
+		width: 90%;
+		width: calc(100% - 5rem);
+		box-sizing: border-box;
+
+		h2 {
+			position: absolute;
+			top: 0; left: -5rem;
+			transform: translateY(-50%);
+			background-color: $white;
+			padding-right: .5rem;
+			display: inline-block;
+			font-size: 4rem;
+			font-family: 'Butler', Times, sans-serif;
+		}
+
+		img {
+			position: absolute;
+			top: 5rem; left: -5rem;
+			height:auto;
+			max-height: 100%;
+			max-width: 14rem;
+		}
+
+		p{
+			text-align: justify;
+			margin: 1rem 0;
+		}
+	}
+}
