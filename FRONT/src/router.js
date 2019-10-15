@@ -14,7 +14,6 @@ export default new Router({
 				pageTitle: 'Un baume mille couleurs',
 			}
 		},
-		/**************   ENFIN ON CRÉER LA PAGE D'ERREUR   **************/
 		{
 			path: '/product',
 			name: 'product',
@@ -23,6 +22,31 @@ export default new Router({
 				pageTitle: 'Soins des lèvres',
 			}
 		},
+		{
+			path: '/basket',
+			name: 'basket',
+			component: resolve => require(['./views/Basket/Basket.vue'], resolve),
+			meta: {
+				pageTitle: 'Mon panier',
+			}
+		},
+		{
+			path: '/account',
+			name: 'account',
+			component: resolve => require(['./views/Account/Account.vue'], resolve),
+			meta: {
+				pageTitle: 'Mon compte',
+			}
+		},
+		{
+			path: '/contact',
+			name: 'contact',
+			component: resolve => require(['./views/Contact/Contact.vue'], resolve),
+			meta: {
+				pageTitle: 'Demande de contact',
+			}
+		},
+		/**************   ENFIN ON CRÉER LA PAGE D'ERREUR   **************/
 		{
 			path: '/error',
 			name: 'errors',

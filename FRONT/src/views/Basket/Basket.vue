@@ -42,5 +42,5 @@
 	</main>
 </template>
 
-<script src="./Product.js"></script>
-<style lang="scss">@import "./Product.scss";</style>
+<script src="./Basket.js"></script>
+<style lang="scss">@import "./Basket.scss";</style>

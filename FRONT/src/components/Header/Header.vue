@@ -6,7 +6,7 @@
 					<router-link :to="{name: 'product'}">Produit</router-link>
 				</li>
 				<li>
-					<router-link :to="{name: 'root'}">Panier</router-link>
+					<router-link :to="{name: 'basket'}">Panier</router-link>
 				</li>
 				<li>
 					<router-link :to="{name: 'root'}">
@@ -14,10 +14,10 @@
 					</router-link>
 				</li>
 				<li>
-					<router-link :to="{name: 'root'}">Compte</router-link>
+					<router-link :to="{name: 'account'}">Compte</router-link>
 				</li>
 				<li>
-					<router-link :to="{name: 'root'}">Contact</router-link>
+					<router-link :to="{name: 'contact'}">Contact</router-link>
 				</li>
 			</ul>
 		</nav>

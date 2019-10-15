@@ -7,7 +7,7 @@ export default {
 	computed: {
 		...mapGetters({
 			basket: 'getBasket',
-		});
+		}),
 	},
 	watch: {
 	},
