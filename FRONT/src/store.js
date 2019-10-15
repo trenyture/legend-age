@@ -21,10 +21,10 @@ export default new Vuex.Store({
 	},
 	mutations: {
 		addBasketLine(state, basketLine) {
-			this.basket.push(basketLine);
+			state.basket.push(basketLine);
 		},
 		deleteBasketLine(state, index) {
-			this.basket.splice(index, 1);
+			state.basket.splice(index, 1);
 		},
 	},
 	actions: {

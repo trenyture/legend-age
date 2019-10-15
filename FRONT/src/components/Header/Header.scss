@@ -29,9 +29,11 @@
 					transition: color .3s;
 					text-decoration: none;
 
-					&:hover,
-					&.router-link-exact-active{
+					&:hover {
 						color:$black;
+					}
+					&.router-link-exact-active{
+						color:$orange;
 					}
 
 					h1 {

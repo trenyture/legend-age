@@ -1,0 +1,35 @@
+.modal{
+	display:flex;
+	position: fixed;
+	top:0;
+	left: 0;
+	width: 100vw;
+	height: 100vh;
+	background: rgba(0,0,0,0.5);
+	visibility: hidden;
+	pointer-events: none;
+	z-index: 10;
+	opacity: 0;
+	justify-content: center;
+	align-items: center;
+	transition: opacity .3s;
+
+	.modal-content{
+		position:relative;
+		max-height: calc(100vh - 20rem);
+		width: 80vw;
+		max-width: 70rem;
+		border:none;
+		background-color: background;
+		overflow: auto;
+		padding: 2.5rem;
+		box-sizing: border-box;
+		border-radius: .5rem;
+	}
+
+	&.actived{
+		visibility: visible;
+		pointer-events: all;
+		opacity:1;
+	}
+}

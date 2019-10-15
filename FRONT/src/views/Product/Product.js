@@ -1,9 +1,12 @@
+import Modal from "@/components/Modal/Modal.vue";
+
 export default {
-	components: {},
+	components: {Modal},
 	data() {
 		return {
 			quantity: 1,
 			byFour: false,
+			modalOpened: false,
 		};
 	},
 	computed: {
@@ -19,5 +22,11 @@ export default {
 			}
 		}
 	},
-	methods: {},
+	methods: {
+		buyProduct() {
+			this.$store.dispatch('addBasketLine', {quantity: this.quantity, byFour: this.byFour}).then(() => {
+				this.modalOpened = true;
+			});
+		}
+	},
 };

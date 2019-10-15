@@ -21,7 +21,7 @@
 					</span>
 				</label>
 				<p id="price"><span>{{ finalPrice }} €</span> Prix toutes taxes comprises (TTC)</p>
-				<button>Acheter</button>
+				<button @click="buyProduct">Acheter</button>
 			</div>
 		</article>
 		<section id="composition">
@@ -85,6 +85,33 @@
 				<li>Mettre le baume debout, logo vers le haut.</li>
 			</ul>
 		</section>
+		<Modal
+			id="added-modal"
+			:opened.sync="modalOpened"
+		>
+			<img alt="Produit - Legend Age" src="/assets/images/product.png">
+			<div>
+				<h3>Ce produit a été ajouté à votre panier !</h3>
+				<table>
+					<thead>
+						<tr>
+							<th>Soin des lèvres</th>
+							<th>Total</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>{{quantity}} {{byFour ? `lot${quantity > 1 ? 's' : ''} de 4 exemplaires` : `exemplaire${quantity > 1 ? 's' : ''}`}}</td>
+							<td>{{finalPrice}} €</td>
+						</tr>
+					</tbody>
+				</table>
+				<div class="buttons">
+					<button class="back" @click="modalOpened = false">Poursuivre mes achats</button>
+					<router-link :to="{name: 'basket'}">Voir le panier</router-link>
+				</div>
+			</div>
+		</Modal>
 	</main>
 </template>
 

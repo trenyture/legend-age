@@ -1,44 +1,60 @@
 <template>
 	<main class="basket-container">
-		<h2>Mon panier</h2>
-		<table>
-			<thead>
-				<tr>
-					<th>Quantité</th>
-					<th>Produit</th>
-					<th>Prix unitaire HT</th>
-					<th>Prix total HT</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<td>1</td>
-					<td>Lot de 4exemplaires</td>
-					<td>82,50 €</td>
-					<td>82,50 €</td>
-				</tr>
-				<tr>
-					<td>2</td>
-					<td>Unités</td>
-					<td>29,90 €</td>
-					<td>59,80 €</td>
-				</tr>
-			</tbody>
-			<tfoot>
-				<tr>
-					<td></td>
-					<td></td>
-					<td>TVA (20%)</td>
-					<td>28,46 €</td>
-				</tr>
-				<tr>
-					<td></td>
-					<td></td>
-					<td>TOTAL TTC</td>
-					<td>170,76 €</td>
-				</tr>
-			</tfoot>
-		</table>
+		<h2>Récapitulatif de votre commande</h2>
+		<template v-if="basketLines && basketLines.length > 0">
+			<table>
+				<thead>
+					<tr>
+						<th></th>
+						<th>Quantité</th>
+						<th>Prix unitaire HT</th>
+						<th>Prix total HT</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr v-for="(line, index) in basketLines">
+						<td>
+							<img alt="Produit - Legend Age" src="/assets/images/product.png">
+							<span>Legend Age - Soin des lèvres</span>			
+						</td>
+						<td>{{ line.quantity }} {{ line.byFour ? `lot${line.quantity > 1 ? 's' : ''} de 4 exemplaires` : `exemplaire${line.quantity > 1 ? 's' : ''}` }}</td>
+						<td>{{ line.byFour ? 99 : 29.90 }} €</td>
+						<td>{{ parseFloat(line.quantity * (line.byFour ? 99 : 29.90)).toFixed(2) }} €</td>
+						<td>
+							<button @click="$store.dispatch('deleteBasketLine', index)">‎✕</button>
+						</td>
+					</tr>
+				</tbody>
+				<tfoot>
+					<tr>
+						<td></td>
+						<td></td>
+						<td>TVA (20%)</td>
+						<td>28,46 €</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td></td>
+						<td></td>
+						<td>Livraison</td>
+						<td>Offerte !</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td></td>
+						<td></td>
+						<td>Total TTC</td>
+						<td>170,76 €</td>
+						<td></td>
+					</tr>
+				</tfoot>
+			</table>
+			<div class="buttons">
+				<router-link :to="{name: 'order'}">Commander</router-link>
+			</div>
+		</template>
+		<p v-else>Votre panier est vide, n'hésiter pas à faire une commande.</p>
 	</main>
 </template>
 

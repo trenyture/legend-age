@@ -3,13 +3,17 @@ import { mapGetters } from "vuex";
 export default {
 	components: {},
 	data() {
+		return {
+
+		};
 	},
 	computed: {
 		...mapGetters({
-			basket: 'getBasket',
+			basketLines: 'getBasket',
 		}),
 	},
 	watch: {
 	},
-	methods: {},
+	methods: {
+	},
 };
