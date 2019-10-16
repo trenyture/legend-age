@@ -7,6 +7,15 @@ $orange      : #FF7802;
 $lightOrange : #FD9927;
 
 
-$mobile  : 600px;
-$tablet  : 900px;
-$desktop : 1200px;
+$mobile  : 400px;
+$tablet  : 600px;
+$desktop : 800px;
+
+$colors : (
+	"white" : #FFFFFF,
+	"black" : #272727,
+	"gray" : #777777,
+	"lightGray" : #E2E2E2,
+	"orange" : #FF7802,
+	"lightOrange" : #FD9927,
+);

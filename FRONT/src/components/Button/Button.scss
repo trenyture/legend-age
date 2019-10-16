@@ -1,0 +1,73 @@
+.button {
+	text-decoration: none;
+	background: transparent;
+	cursor: pointer;
+	border: none;
+	display: inline-block;
+	text-align: center;
+	white-space: nowrap;
+	vertical-align: middle;
+	font-size: 1.6rem;
+	height: 3.75rem;
+	min-width: 3.75rem;
+	box-sizing: border-box;
+	border-radius: .25rem;
+	line-height: 3.75rem;
+	padding: 0 .75rem;
+	transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+
+	&:focus{
+		outline:none !important;
+	}
+
+	&:disabled {
+		opacity: 0.5;
+		pointer-events: none;
+	}
+
+	@each $key, $value in $colors {
+		&.button-#{$key} {
+			background-color: $value;
+			@if $key == "white" {
+				color: $black;
+			} @else {
+				color: $white;
+			}
+
+			&:hover {
+				background-color: #{lighten($value, 15%)};
+
+				&:active {
+					background-color: #{darken($value, 15%)};
+				}
+			}
+		}
+		&.button-outline-#{$key} {
+			border: .1rem solid;
+			color: $value;
+			@if $key == "white" {
+				color: $black;
+			}
+
+			&:hover {
+				@if $key == "white" {
+					color: $black;
+				} @else {
+					color: $white;
+				}
+				border-color: #{lighten($value, 15%)};
+				background-color: #{lighten($value, 15%)};
+
+				&:active {
+					@if $key == "white" {
+						color: $black;
+					} @else {
+						color: $white;
+					}
+					border-color: #{darken($value, 15%)};
+					background-color: #{darken($value, 15%)};
+				}
+			}
+		}
+	}
+}

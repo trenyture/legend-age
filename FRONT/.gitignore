@@ -119,4 +119,6 @@ dist/
 npm-debug.log
 yarn-error.log
 
+src/config.js
+
 # End of https://www.gitignore.io/api/vue,node,sass,vuejs
