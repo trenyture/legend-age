@@ -14,10 +14,10 @@
 					</router-link>
 				</li>
 				<li>
-					<router-link :to="{name: 'account'}">Compte</router-link>
+					<router-link :to="{name: 'contact'}">Contact</router-link>
 				</li>
 				<li>
-					<router-link :to="{name: 'contact'}">Contact</router-link>
+					<router-link :to="{name: 'account'}">Mon compte</router-link>
 				</li>
 			</ul>
 		</nav>

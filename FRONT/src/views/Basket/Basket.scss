@@ -70,5 +70,51 @@
 				}
 			}
 		}
+
+		&.impots {
+			margin-top: 5rem;
+			width: 30%;
+			margin-left: 60%;
+			tbody {
+				tr {
+					td {
+						border-color: $gray;
+						background-color: $lightGray;
+						padding-left: .5rem;
+						padding-right: .5rem;
+						&:nth-of-type(1) {
+							color: $gray;
+							font-weight: normal;
+						}
+						&:nth-last-of-type(1) {
+							color: $black;
+							font-weight: bold;
+							text-align: right;
+						}
+					}
+					&:nth-of-type(1) {
+						td {
+							border-top: .1rem solid $gray;
+						}
+					}
+					&:nth-last-of-type(1) {
+						td {
+							&:nth-last-of-type(1) {
+								color: $orange;
+								font-size: 1.6rem;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+	.buttons {
+		text-align: right;
+		.button {
+			width: 30%;
+			margin: 5rem 10% 0 0;
+		}
 	}
 }

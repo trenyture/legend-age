@@ -6,39 +6,43 @@
 		:name="name"
 		type="hidden">
 
-	<template v-if="type === 'checkbox' || type === 'radio'">
-		<div v-else class="input-form">
-			<span class="input-label">{{label}}</span>
-			<label
-				v-for="(choice, index) in choices"
-				:key="name + '-choice-' + index"
-				:value="choice.value"
-			>
-				<input
-					v-model="model"
-					:multiple="multiple"
-					:type="type"
-					:name="name"
-					:required="required"
-					:disabled="disabled"
-					:readonly="readonly"
-					:value="choice.value"> {{ choice.label || choice.value }}
-			</label>
+	<div v-else-if="type === 'checkbox' || type === 'radio'" class="input-form">
+		<span class="input-label">
+			{{label}}
+			<sup v-if="required">*</sup>
+		</span>
+		<label
+			v-for="(choice, index) in choices"
+			:key="name + '-choice-' + index"
+			:value="choice.value"
+		>
+			<input
+				v-model="model"
+				:multiple="multiple"
+				:type="type"
+				:name="name"
+				:required="required"
+				:disabled="disabled"
+				:readonly="readonly"
+				:value="choice.value"> {{ choice.label || choice.value }}
+		</label>
 
-			<!-- AIDE POUR REMPLIR L'INPUT -->
-			<small class="input-help" v-if="$slots.default"><slot></slot></small>
+		<!-- AIDE POUR REMPLIR L'INPUT -->
+		<small class="input-help" v-if="$slots.default"><slot></slot></small>
 
-			<!-- EN CAS D'ERREUR -->
-			<ul class="input-errors" v-if="this.errors && this.errors.length > 0">
-				<li v-for="(error, index) in this.errors" :key="'input-error-' + index">
-					{{ error }}
-				</li>
-			</ul>
-		</div>
-	</template>
+		<!-- EN CAS D'ERREUR -->
+		<ul class="input-errors" v-if="this.errors && this.errors.length > 0">
+			<li v-for="(error, index) in this.errors" :key="'input-error-' + index">
+				{{ error }}
+			</li>
+		</ul>
+	</div>
 
 	<label v-else class="input-form">
-		<span class="input-label">{{label}}</span>
+		<span class="input-label">
+			{{label}}
+			<sup v-if="required">*</sup>
+		</span>
 		<select
 			v-if="type === 'select'"
 			v-model="model"
@@ -56,6 +60,19 @@
 				:value="choice.value"
 			>{{ choice.label || choice.value }}</option>
 		</select>
+		<textarea
+			ref="input"
+			v-else-if="type == 'textarea'"
+			v-model="model"
+			:type="type"
+			:name="name"
+			:required="required"
+			:disabled="disabled"
+			:readonly="readonly"
+			:placeholder="placeholder"
+		>
+			{{value}}
+		</textarea>
 		<input
 			v-else
 			v-model="model"

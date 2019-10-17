@@ -9,19 +9,34 @@
 				<p><strong>Coloration Thermosensible</strong> : En fonction du PH et la température des lèvres, il colorie les lèvres naturellement.</p>
 				<p><strong><i>Excellente tenue !</i></strong></p>
 				<p><strong>Poids</strong> : 3.8 grammes</p>
-				<label>
-					<span>Quantité</span>				
-					<input :min="1" v-model="quantity" type="number" name="quantity" placeholder="Quantité">
-				</label>
-				<label class="four-check">
-					<input type="checkbox" v-model="byFour" name="lot">
-					<span>
-						Achat par lots de 4 unités
-						<small>(<b>-15%</b> de réduction)</small>
-					</span>
-				</label>
-				<p id="price"><span>{{ finalPrice }} €</span> Prix toutes taxes comprises (TTC)</p>
-				<button @click="buyProduct">Acheter</button>
+				<Form
+					:preventSend="true"
+					@formSent="buyProduct"
+				>
+					<Input
+						type="number"
+						label="Quantité"
+						name="quantity"
+						:min="1"
+						:value="quantity"
+						@change="quantity = $event"
+					/>
+					<Input
+						type="checkbox"
+						name="by-four"
+						:required="false"
+						:choices="[{
+							value: 1,
+							label: 'Achat par lots de 4 exemplaires',
+						}]"
+						@change="byFour = $event.length > 0"
+					>(<b>-15%</b> de réduction)</Input>
+					<p id="price"><span>{{ finalPrice }} €</span> Prix toutes taxes comprises (TTC)</p>
+					<Button
+						class="button-outline-orange"
+						type="submit"
+					>Acheter</button>
+				</Form>
 			</div>
 		</article>
 		<section id="composition">

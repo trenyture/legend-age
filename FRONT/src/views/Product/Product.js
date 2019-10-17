@@ -1,12 +1,16 @@
 import Modal from "@/components/Modal/Modal.vue";
+import Button from "@/components/Button/Button.vue";
+import Input from "@/components/Input/Input.vue";
+import Form from "@/components/Form/Form.vue";
 
 export default {
-	components: {Modal},
+	components: {Modal, Button, Input, Form},
 	data() {
 		return {
 			quantity: 1,
 			byFour: false,
 			modalOpened: false,
+			console,
 		};
 	},
 	computed: {

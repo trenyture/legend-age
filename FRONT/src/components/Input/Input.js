@@ -1,3 +1,5 @@
+import Autosize from "autosize";
+
 export default {
 	props: {
 		name: {
@@ -95,6 +97,29 @@ export default {
 		}
 	},
 	methods: {
+		makeItSpecial(){
+			if(this.instance === null) {
+				if (this.type == 'textarea') {
+					Autosize(this.$refs.input);
+					this.instance = true;
+				}
+			}
+		},
+		updateTheSpecial() {
+			if(this.instance !== null) {
+				if(this.type == 'textarea') {
+					Autosize.update(this.$refs.input);
+				}
+			}
+		},
+		removeTheSpecial() {
+			if(this.instance !== null) {
+				if (this.type == 'textarea') {
+					Autosize.destroy(this.$refs.input);
+					this.instance = null;
+				}
+			}
+		},
 		checkValidity() {
 			this.errors = [];
 			// On va regarder si l'input est requis et pas disabled
@@ -165,5 +190,15 @@ export default {
 				}
 			}
 		}
+	},
+	mounted() {
+		this.makeItSpecial();
+	},
+	updated() {
+		this.makeItSpecial();
+		this.updateTheSpecial();
+	},
+	beforeDestroy() {
+		this.removeTheSpecial();
 	},
 }

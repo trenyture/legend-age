@@ -1,7 +1,7 @@
 <template>
-	<div id="app">
+	<div id="app" :class="$router.currentRoute.name + '-page'" >
 		<Bandeau v-if="$router.currentRoute.name === 'root'" />
-		<Header :class="{'home-page' : $router.currentRoute.name === 'root'}" />
+		<Header />
 		<router-view id="app-content" />
 		<Footer/>
 	</div>

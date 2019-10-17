@@ -1,3 +1,46 @@
 .input-form {
-	
+	display: block;
+	width: 100%;
+	margin: 1rem 0;
+
+	.input-label {
+		display: block;
+		width: 100%;
+		color: $gray;
+		font-style: italic;
+	}
+
+	input:not([type="checkbox"]):not([type="radio"]),
+	select,
+	textarea {
+		color: $black;
+		width: 100%;
+		height: 3rem;
+		border:none;
+		border-bottom: .1rem solid;
+		border-color: $gray;
+		transition: border-color .3s;
+		padding: 0;
+		resize: none;
+		padding: .5rem;
+		box-sizing: border-box;
+		font-family: "Open Sans", Arial, sans-serif;
+		font-size: 1.4rem;
+		font-weight: normal;
+
+		&:focus {
+			border-color: $orange;
+		}
+
+		&::placeholder {
+			font-style:italic;
+			color: $gray;
+		}
+	}
+
+	ul.input-errors {
+		margin: .5rem 0 0 0;
+		color: $orange;
+	}
+
 }

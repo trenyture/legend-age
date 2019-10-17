@@ -9,8 +9,8 @@ export default({
 	dataType = "json",
 	success  = () => {},
 	always   = () => {},
-	fail     = (error) => {
-		error(error)
+	fail     = (err) => {
+		error(err);
 	},
 } = {}) => {
 

@@ -86,22 +86,8 @@
 		}
 
 		button {
-			display: block;
 			width:100%;
-			color: $orange;
-			background-color: $white;
-			border: none;
-			border-radius: 5rem;
-			padding: .5rem 0;
-			cursor: pointer;
-			border:.1rem solid $orange;
-			transition: color .3s, background-color .3s;
-			box-shadow: 0 .3rem .5rem $gray;
-
-			&:hover {
-				background-color: $orange;
-				color: $white;
-			}
+			box-shadow: 0 .3rem .5rem #{rgba($gray, .5)};
 		}
 	}
 

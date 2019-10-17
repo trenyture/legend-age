@@ -16,11 +16,11 @@
 
 	.modal-content{
 		position:relative;
-		max-height: calc(100vh - 20rem);
+		max-height: calc(100vh - 10rem);
 		width: 80vw;
 		max-width: 70rem;
 		border:none;
-		background-color: background;
+		background-color: $white;
 		overflow: auto;
 		padding: 2.5rem;
 		box-sizing: border-box;

@@ -1,12 +1,12 @@
-// import something from "@/";
+import Form from "@/components/Form/Form.vue";
+import Login from "./Login/Login.vue";
 
 export default {
-	components: {},
+	components: {Login},
 	props: {
 	},
 	data() {
-		return {
-		};
+		return {};
 	},
 	computed: {
 	},

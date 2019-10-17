@@ -26,7 +26,6 @@ export default {
 		},
 		action: {
 			type: String,
-			required: true,
 		},
 		method: {
 			type: String,
@@ -97,8 +96,10 @@ export default {
 				}
 			}
 			if(errors.length > 0) {
+				let error = new Error("Problème de formulaire");
+				error.details = errors;
+				this.$error(error);
 				this.isDisabled = false;
-				return alert("Problème de formulaire : " + errors.join(', '));
 			}
 			else {
 				if(this.preventSend) {

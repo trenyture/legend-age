@@ -1,0 +1,23 @@
+.contact-container{
+	h2 {
+		font-size: 2rem;
+		color: $orange;
+		font-style: italic;
+		margin-bottom: 3rem;
+	}
+	.explication {
+		font-size: 1.4rem;
+		span {
+			color: $orange;
+			font-weight: bold;
+		}
+	}
+	form {
+		width: 100%;
+		max-width: 60rem;
+		margin: 3rem auto 0 auto;
+		.buttons{
+			text-align: right;
+		}
+	}
+}
