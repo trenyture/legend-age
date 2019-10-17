@@ -1,6 +1,6 @@
 <template>
 	<main class="account-container">
-		<Login v-if="!isLogged"  />
+		<Login v-if="!isLoggedIn"  />
 	</main>
 </template>
 

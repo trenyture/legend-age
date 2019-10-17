@@ -1,0 +1,61 @@
+.login {
+	display: flex;
+	margin: 0 -5rem;
+
+	h2{
+		font-size: 1.8rem;
+		font-style: italic;
+		color: $orange;
+	}
+
+	.buttons {
+		text-align: right;
+		padding-top: 2rem;
+	}
+
+	#login,
+	#new-user {
+		flex: 0 0 60%;
+		padding: 0 5rem;
+		box-sizing:border-box;
+
+		a {
+			color: $gray;
+
+			&:hover {
+				color: $orange;
+			}
+		}
+		
+	}
+	#login {
+		flex: 0 0 40%;
+	}
+
+	#new-user {
+		.input-form {
+			width: 50%;
+			display: inline-block;
+			vertical-align: top;
+			padding-right: 1rem;
+			box-sizing: border-box;
+			&:nth-of-type(2n + 1){
+			}
+			&:nth-of-type(2n) {
+				padding-right: 0;
+				padding-left: 1rem;
+			}
+			&:nth-of-type(3) {
+				width: 60%;
+			}
+			&:nth-of-type(4) {
+				width: 40%;
+			}
+		}
+	}
+	#forgotten-password-modal {
+		.modal-content {
+			max-width: 50rem;
+		}
+	}
+}

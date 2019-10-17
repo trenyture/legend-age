@@ -1,4 +1,3 @@
-import Form from "@/components/Form/Form.vue";
 import Login from "./Login/Login.vue";
 
 export default {
@@ -9,6 +8,9 @@ export default {
 		return {};
 	},
 	computed: {
+		isLoggedIn() {
+			return false;
+		},
 	},
 	watch: {
 	},

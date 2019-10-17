@@ -1,13 +1,15 @@
-import Vue    from 'vue'
-import App    from './components/App/App.vue'
-import config from './config'
-import router from './router'
-import store  from './store'
-import alert  from './alert';
-import ajax  from './ajax';
-import error  from './error';
+import Vue        from 'vue'
+import { Plugin } from 'vue-fragment'
+import App        from './components/App/App.vue'
+import config     from './config'
+import router     from './router'
+import store      from './store'
+import alert      from './alert';
+import ajax       from './ajax';
+import error      from './error';
 
 Vue.config.productionTip = false
+Vue.use(Plugin)
 
 Vue.prototype.$alert = alert;
 Vue.prototype.$ajax  = ajax;
