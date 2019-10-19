@@ -16,7 +16,7 @@ class Validator
 	}
 
 	private function emptyString(string $value) {
-		return strlen($value) < 1 || preg_replace('/\s+/', '', $value);
+		return (strlen(preg_replace('/\s+/', '', $value)) < 1);
 	}
 
 	/**

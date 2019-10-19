@@ -1,5 +1,8 @@
 <?php
 
+$validator = new Validator();
+$emailManager = new EmailManager();
+
 class EmailController {
 
 	public function contact() {
@@ -8,7 +11,6 @@ class EmailController {
 			die();
 		}
 
-		$validator = new Validator();
 		$validator->isEmpty($_POST['name'], "Le nom");
 		$validator->isEmail($_POST['email'], "L'email");
 		$validator->isEmpty($_POST['subject'], "Le sujet");
@@ -18,8 +20,9 @@ class EmailController {
 		if($errors !== false) {
 			http_response_code(400);
 			echo json_encode(["details" => $errors]);
-			die();	
+			die();
 		}
+
 
 		echo json_encode($_POST);
 		die();
