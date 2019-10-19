@@ -1,5 +1,5 @@
 <?php
-
+	header("Access-Control-Allow-Origin: *");
 	try {
 		/*ON CHARGE NOTRE CONFIGURATION*/
 		$config = json_decode(file_get_contents(dirname(dirname(__FILE__)).'/config.json'), true);

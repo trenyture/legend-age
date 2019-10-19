@@ -18,8 +18,10 @@
 	});
 	/*Please!*/
 
+	Router::post('/contact', 'EmailController@contact');
+
 	Router::error(function(Request $request, \Exception $exception) {
-		http_error_code(404);
+		http_response_code(404);
 		die();
 	});
 
