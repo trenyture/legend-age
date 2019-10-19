@@ -1,7 +1,5 @@
 <?php
 
-$validator = new Validator();
-$emailManager = new EmailManager();
 
 class EmailController {
 
@@ -11,6 +9,7 @@ class EmailController {
 			die();
 		}
 
+		$validator = new Validator();
 		$validator->isEmpty($_POST['name'], "Le nom");
 		$validator->isEmail($_POST['email'], "L'email");
 		$validator->isEmpty($_POST['subject'], "Le sujet");
@@ -23,6 +22,8 @@ class EmailController {
 			die();
 		}
 
+		$emailManager = new EmailManager();
+		
 
 		echo json_encode($_POST);
 		die();
