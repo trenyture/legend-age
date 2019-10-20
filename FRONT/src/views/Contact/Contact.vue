@@ -5,6 +5,8 @@
 		<Form
 			action="/contact"
 			method="POST"
+			:disabled="disabled"
+			@formSent="formSent"
 		>
 			<Input
 				label="Votre nom"

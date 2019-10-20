@@ -13,10 +13,14 @@ export default new Vuex.Store({
 	plugins: [vuexLocalStorage.plugin],
 	state: {
 		basket : [],
+		contactFormSent: false,
 	},
 	getters: {
 		getBasket(state) {
 			return state.basket;
+		},
+		contactFormSent(state) {
+			return state.contactFormSent;
 		}
 	},
 	mutations: {
@@ -25,6 +29,9 @@ export default new Vuex.Store({
 		},
 		deleteBasketLine(state, index) {
 			state.basket.splice(index, 1);
+		},
+		contactFormSent(state, value) {
+			state.contactFormSent = value;
 		},
 	},
 	actions: {
@@ -39,6 +46,12 @@ export default new Vuex.Store({
 				context.commit('deleteBasketLine', payload);
 				resolve();
 			});
+		},
+		contactFormSent(context, payload) {
+			return new Promise((resolve, reject) => {
+				context.commit('contactFormSent', payload);
+				resolve();
+			});	
 		},
 	}
 })
