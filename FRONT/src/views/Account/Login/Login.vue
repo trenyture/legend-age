@@ -4,6 +4,7 @@
 			id="login"
 			action="/authenticate"
 			method="POST"
+			@formSent="loginFormSent"
 		>
 			<h2>Vous avez déjà un compte ?</h2>
 			<Input
@@ -32,12 +33,13 @@
 			action="/user"
 			method="POST"
 			:preventSend="strongPassword != true || samePasswords != true"
+			@formSent="signInFormSent"
 		>
 			<h2>Vous souhaitez créer gratuitement un compte ?</h2>
 			<Input
 				type="text"
 				label="Votre nom"
-				name="lastame"
+				name="lastname"
 			/>
 			<Input
 				type="text"

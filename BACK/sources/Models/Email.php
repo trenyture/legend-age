@@ -6,8 +6,7 @@ class Email extends Model{
 	private $alias;
 	private $recipient;
 	private $subject;
-	private $template;
-	private $datas;
+	private $message;
 	private $error;
 	private $sentDate;
 	private $fkEmailStatus;
@@ -35,12 +34,8 @@ class Email extends Model{
 		return $this->subject;
 	}
 
-	public function getTemplate() {
-		return $this->template;
-	}
-
-	public function getDatas() {
-		return $this->datas;
+	public function getMessage() {
+		return $this->message;
 	}
 
 	public function getError() {
@@ -78,12 +73,8 @@ class Email extends Model{
 		$this->subject = $subject;
 	}
 
-	public function setTemplate($template) {
-		$this->template = $template;
-	}
-
-	public function setDatas($datas) {
-		$this->datas = $datas;
+	public function setMessage($message) {
+		$this->message = $message;
 	}
 
 	public function setError($error) {

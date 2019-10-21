@@ -15,7 +15,7 @@ class Validator
 		$this->response = [];
 	}
 
-	private function emptyString(string $value) {
+	public function emptyString(string $value) {
 		return (strlen(preg_replace('/\s+/', '', $value)) < 1);
 	}
 

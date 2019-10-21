@@ -1,8 +1,9 @@
 <?php
 	header("Access-Control-Allow-Origin: *");
 	try {
+		define('ROOT', dirname(dirname(__FILE__)));
 		/*ON CHARGE NOTRE CONFIGURATION*/
-		$config = json_decode(file_get_contents(dirname(dirname(__FILE__)).'/config.json'), true);
+		$config = json_decode(file_get_contents(ROOT.'/config.json'), true);
 		
 		if($config['env'] != "prod"){
 			/* On affiche les erreurs PHP pour l'environnement de dev */
@@ -17,6 +18,7 @@
 		define('DB_NAME', $config['bdd']);
 		define('DB_USER', $config['user']);
 		define('DB_PWD', $config['pass']);
+		define('EMAIL_ACCOUNT', $config['email']);
 		define('ENV', $config['env']);
 	} catch (Exception $e) {
 		var_dump($e);

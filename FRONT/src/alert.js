@@ -42,8 +42,8 @@ function swalObject(obj) {
 		showCancelButton:   (typeof obj.cancel             !== "undefined") ? true                   :  false,
 		showCloseButton:    (typeof obj.showCloseButton    !== "undefined") ? obj.showCloseButton    :  true,
 		timer:              (typeof obj.timer              !== "undefined") ? obj.timer              : null,
-		confirmButtonClass: 'btn btn-primary',
-		cancelButtonClass:  'btn btn-outline-secondary',
+		confirmButtonClass: 'button button-orange',
+		cancelButtonClass:  'button button-outline-orange',
 		buttonsStyling:     false,
 		reverseButtons:     true,
 	}

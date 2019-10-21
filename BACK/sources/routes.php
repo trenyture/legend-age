@@ -12,12 +12,19 @@
 
 	/*Apply your routes here*/
 	Router::group(['prefix' => '/login'], function () {
-	    Router::post('/', 'LoginController@signin');
-	    Router::put('/', 'LoginController@newPassword');
-	    Router::delete('/', 'LoginController@logout');
+		Router::post('/', 'LoginController@signin');
+		Router::put('/', 'LoginController@newPassword');
+		Router::delete('/', 'LoginController@logout');
 	});
+	
+	Router::group(['prefix' => '/user'], function () {
+		Router::get('/{userId?}', 'UserController@retrieve')->where(['userId' => '[0-9]+']);
+		Router::post('/', 'UserController@insert');
+		Router::put('/{userId}', 'UserController@update')->where(['userId' => '[0-9]+']);
+		Router::delete('/{userId}', 'UserController@delete')->where(['userId' => '[0-9]+']);
+	});
+	
 	/*Please!*/
-
 	Router::post('/contact', 'EmailController@contact');
 
 	Router::error(function(Request $request, \Exception $exception) {

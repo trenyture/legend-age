@@ -1,6 +1,6 @@
-DROP DATABASE beaume_dev;
-CREATE DATABASE beaume_dev CHARACTER SET UTF8mb4 COLLATE utf8mb4_bin;
-USE beaume_dev;
+DROP DATABASE beaume;
+CREATE DATABASE beaume CHARACTER SET UTF8mb4 COLLATE utf8mb4_bin;
+USE beaume;
 SET NAMES utf8mb4;
 
 /*
@@ -124,11 +124,10 @@ CREATE TABLE email_pool(
 	alias VARCHAR(90) NULL,
 	recipient VARCHAR(90) NOT NULL,
 	subject VARCHAR(78) NOT NULL,
-	template VARCHAR(50) NOT NULL,
-	datas JSON NULL CHECK (JSON_VALID(datas)),
+	message TEXT NOT NULL,
 	error TEXT NULL,
 	sent_date TIMESTAMP NULL,
-	fk_email_status INT UNSIGNED NOT NULL,
+	fk_email_status INT UNSIGNED NOT NULL DEFAULT 1,
 	PRIMARY KEY (id),
 	INDEX sent_date_idx (sent_date),
 	FOREIGN KEY (fk_email_status)
@@ -163,7 +162,7 @@ CREATE TABLE at_command_user(
  */
 INSERT INTO email_status (label)
 VALUES
-	("En cours d'envoi"),
+	("En cours"),
 	("Envoyé"),
 	("Erreur");
 

@@ -22,10 +22,20 @@ class EmailController {
 			die();
 		}
 
+		$helpers = new Helpers();
 		$emailManager = new EmailManager();
-		
 
-		echo json_encode($_POST);
+		$email = new Email([
+			'sender' => $_POST['email'],
+			'recipient' => EMAIL_ACCOUNT,
+			'subject' => 'Contact : ' . $_POST['subject'],
+			'message' => $helpers->renderTemplate(ROOT.'/emails/contact.php', $_POST),
+			'fkEmailStatus' => 1
+		]);
+
+		$resp = $emailManager->set($email);
+
+		echo json_encode($resp);
 		die();
 	}
 

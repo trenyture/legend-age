@@ -28,5 +28,16 @@ export default {
 	watch: {
 	},
 	methods: {
+		loginFormSent(r) {
+			console.log(r);
+		},
+		signInFormSent(r) {
+			this.$alert.swal({
+				type: 'success',
+				title: 'Email envoyé',
+				message: "Vous allez bientôt revevoir un email pour finaliser votre inscription",
+				confirm: "Ok",
+			});
+		},
 	},
 }
