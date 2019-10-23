@@ -24,7 +24,6 @@ export default new Vuex.Store({
 		},
 		contactFormSent(state) {
 			let d = new Date();
-			return false;
 			return (state.contactFormSent.expires && d.getTime() < state.contactFormSent.expires) ? state.contactFormSent.value : false;
 		}
 	},

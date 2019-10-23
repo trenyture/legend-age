@@ -20,6 +20,7 @@
 		define('DB_PWD', $config['pass']);
 		define('EMAIL_ACCOUNT', $config['email']);
 		define('ENV', $config['env']);
+		define('STRIPE_PRIVATE_KEY', $config['stripePrivateKey']);
 	} catch (Exception $e) {
 		var_dump($e);
 		die();

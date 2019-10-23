@@ -27,7 +27,41 @@ class OrderController {
 
 		/**
 		 * 1 - On va créer l'adresse
+		 */
+		$addressManager = new AddressManager();
+		$address = new Address([
+			'recipient'   => $_POST['recipient'],
+			'email'       => $_POST['email'],
+			'phoneNumber' => $_POST['phone_number'],
+			'street'      => $_POST['street'],
+			'postcode'    => $_POST['postcode'],
+			'city'        => $_POST['city'],
+			'fkCountry'   => $_POST['fk_country']
+		]);
+		$addressId = $addressManager->set($address);
+
+
+		/**
 		 * 2 - Puis la commande
+		 */
+		$commandManager = new CommandManager();
+		$command = new Command([
+			"totalPriceBeforeTax" => $_POST[],
+			"totalPriceWithTax"   => $_POST[],
+			"taxAmount"           => $_POST[],
+			"treatedDate"         => $_POST[],
+			"sentDate"            => $_POST[],
+			"archivedDate"        => $_POST[],
+			"fkAddress"           => $addressId
+		]);
+		$commandId = $CommandManager->set($command);
+
+		return;
+
+		\Stripe\Stripe::setApiKey(STRIPE_PRIVATE_KEY);
+
+		return;
+		/* 
 		 * 3 - Puis les lignes de commande
 		 * 4 - Enfin on va utiliser Stripe
 		 */

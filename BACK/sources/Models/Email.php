@@ -1,15 +1,15 @@
 <?php
 
 class Email extends Model{
-	private $id;
-	private $sender;
-	private $alias;
-	private $recipient;
-	private $subject;
-	private $message;
-	private $error;
-	private $sentDate;
-	private $fkEmailStatus;
+	private $id            = null;
+	private $sender        = null;
+	private $alias         = null;
+	private $recipient     = null;
+	private $subject       = null;
+	private $message       = null;
+	private $error         = null;
+	private $sentDate      = null;
+	private $fkEmailStatus = null;
 
 	/**
 	 * GETTERS

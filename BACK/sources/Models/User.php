@@ -2,16 +2,16 @@
 
 class User extends Model{
 
-	private $id = null;
-	private $email = null;
-	private $firstname = null;
-	private $lastname = null;
-	private $birthDate = null;
+	private $id            = null;
+	private $email         = null;
+	private $firstname     = null;
+	private $lastname      = null;
+	private $birthDate     = null;
 	private $activationKey = null;
-	private $createdDate = null;
-	private $archivedDate = null;
-	private $newsletter = null;
-	private $isAdmin = null;
+	private $createdDate   = null;
+	private $archivedDate  = null;
+	private $newsletter    = null;
+	private $isAdmin       = null;
 
 	/****************************
 	***   GETTERS FUNCTIONS   ***

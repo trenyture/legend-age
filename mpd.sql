@@ -70,39 +70,42 @@ CREATE TABLE address(
  */
 CREATE TABLE command (
 	id INT UNSIGNED AUTO_INCREMENT NOT NULL,
-	creation_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-	payment_date TIMESTAMP NULL,
+	created_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	payed_date TIMESTAMP NULL,
 	total_price_before_tax DECIMAL(15, 2) UNSIGNED NOT NULL DEFAULT 0,
 	total_price_with_tax DECIMAL(15, 2) UNSIGNED NOT NULL DEFAULT 0,
 	tax_amount DECIMAL(15, 2) UNSIGNED NOT NULL DEFAULT 0,
 	treated_date TIMESTAMP NULL,
 	sent_date TIMESTAMP NULL,
-	archiving_date TIMESTAMP NULL,
+	archived_date TIMESTAMP NULL,
+	fk_address INT UNSIGNED NOT NULL,
 	PRIMARY KEY (id),
-	INDEX creation_date_idx (creation_date),
-	INDEX payment_date_idx (payment_date),
-	INDEX archiving_date_idx (archiving_date),
+	INDEX created_date_idx (created_date),
+	INDEX payed_date_idx (payed_date),
+	INDEX archived_date_idx (archived_date),
 	INDEX treated_date_idx (treated_date),
-	INDEX sent_date_idx (sent_date)
+	INDEX sent_date_idx (sent_date),
+	FOREIGN KEY (fk_address)
+		REFERENCES address(id)
 );
 
 CREATE TABLE product (
 	id INT UNSIGNED AUTO_INCREMENT NOT NULL,
-	creation_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	created_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
 	label VARCHAR(80) NOT NULL,
 	unit_price FLOAT(9,2) UNSIGNED NOT NULL DEFAULT 0,
 	PRIMARY KEY (id),
-	INDEX creation_date_idx (creation_date)
+	INDEX created_date_idx (created_date)
 );
 
 CREATE TABLE command_line (
 	id INT UNSIGNED AUTO_INCREMENT NOT NULL,
-	creation_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	created_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
 	ordered_quantity INT UNSIGNED NOT NULL,
 	fk_command INT UNSIGNED NOT NULL,
 	fk_product INT UNSIGNED NOT NULL,
 	PRIMARY KEY (id),
-	INDEX creation_date_idx (creation_date),
+	INDEX created_date_idx (created_date),
 	FOREIGN KEY (fk_command)
 		REFERENCES command(id),
 	FOREIGN KEY (fk_product)

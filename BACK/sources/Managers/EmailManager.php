@@ -51,16 +51,21 @@ class EmailManager extends Manager {
 				fk_email_status = VALUES(fk_email_status);
 		";
 		$q = $this->db->prepare($sql);
-		$q->bindValue(':id', $email->getId());
-		$q->bindValue(':sender', $email->getSender());
-		$q->bindValue(':alias', $email->getAlias());
-		$q->bindValue(':recipient', $email->getRecipient());
-		$q->bindValue(':subject', $email->getSubject());
-		$q->bindValue(':message', $email->getMessage());
-		$q->bindValue(':error', $email->getError());
-		$q->bindValue(':sentDate', $email->getSentDate());
+		$q->bindValue(':id',            $email->getId());
+		$q->bindValue(':sender',        $email->getSender());
+		$q->bindValue(':alias',         $email->getAlias());
+		$q->bindValue(':recipient',     $email->getRecipient());
+		$q->bindValue(':subject',       $email->getSubject());
+		$q->bindValue(':message',       $email->getMessage());
+		$q->bindValue(':error',         $email->getError());
+		$q->bindValue(':sentDate',      $email->getSentDate());
 		$q->bindValue(':fkEmailStatus', $email->getFkEmailStatus());
-		return $q->execute();
+		if(!$q->execute()) {
+			var_dump($q->debugDumpParams());
+			http_response_code(400);
+			die();
+		}
+		return is_null($email->getId()) ? $this->db->lastInsertId() : $email->getId();
 	}
 
 	public function del($id = null, $fkEmailStatus = null) {

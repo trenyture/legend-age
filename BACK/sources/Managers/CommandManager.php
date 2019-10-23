@@ -5,8 +5,9 @@ class CommandManager extends Manager {
 	public function get($id = null) {
 		$sql = "
 			SELECT *
-			FROM country
+			FROM command
 			WHERE 1
+			AND command.archived_date IS NULL
 			".(!is_null($id) ? "AND country.id = :id" : "")."
 		";
 		$q = $this->db->prepare($sql);
@@ -23,43 +24,46 @@ class CommandManager extends Manager {
 		$sql = "
 			INSERT INTO command (
 				id,
-				creation_date,
-				payment_date,
+				created_date,
+				payed_date,
 				total_price_before_tax,
 				total_price_with_tax,
 				tax_amount,
 				treated_date,
 				sent_date,
-				archiving_date
+				archived_date,
+				fk_address
 			) VALUES (
 				:id,
-				:creationDate,
-				:paymentDate
+				:createdDate,
+				:payedDate
 				:totalPriceBeforeTax
 				:totalPriceWithTax
 				:taxAmount
 				:treatedDate
 				:sentDate
-				:archivingDate
+				:archivedDate,
+				:fkAddress
 			) ON DUPLICATE KEY UPDATE
-				payment_date           = VALUES( payment_date ),
+				payed_date             = VALUES( payed_date ),
 				total_price_before_tax = VALUES( total_price_before_tax ),
 				total_price_with_tax   = VALUES( total_price_with_tax ),
 				tax_amount             = VALUES( tax_amount ),
 				treated_date           = VALUES( treated_date ),
 				sent_date              = VALUES( sent_date ),
-				archiving_date         = VALUES( archiving_date )
+				fk_address             = VALUES( fk_address );
 		";
 		$q = $this->db->prepare($sql);
 		$q->bindValue(":id",                  $command->getId());
-		$q->bindValue(":creationDate",        $command->getCreationDate());
-		$q->bindValue(":paymentDate",         $command->getPaymentDate());
+		$q->bindValue(":createdDate",         $command->getCreatedDate());
+		$q->bindValue(":payedDate",           $command->getPayedDate());
 		$q->bindValue(":totalPriceBeforeTax", $command->getTotalPriceBeforeTax());
 		$q->bindValue(":totalPriceWithTax",   $command->getTotalPriceWithTax());
 		$q->bindValue(":taxAmount",           $command->getTaxAmount());
 		$q->bindValue(":treatedDate",         $command->getTreatedDate());
 		$q->bindValue(":sentDate",            $command->getSentDate());
-		$q->bindValue(":archivingDate",       $command->getArchivingDate());
+		$q->bindValue(":archivedDate",        $command->getArchivedDate());
+		$q->bindValue(":fkAddress",           $command->getFkAddress());
 
 		if(!$q->execute()) {
 			var_dump($q->debugDumpParams());
@@ -69,11 +73,10 @@ class CommandManager extends Manager {
 		return is_null($command->getId()) ? $this->db->lastInsertId() : $command->getId();
 	}
 
-	public function del($id = null) {
-		if(is_null($id)) return false;
+	public function del($id) {
 		$sql = "
 			UPDATE command
-			SET command.archiving_date = NOW()
+			SET command.archived_date = NOW()
 			WHERE command.id = :id
 		";
 		$q = $this->db->prepare($sql);

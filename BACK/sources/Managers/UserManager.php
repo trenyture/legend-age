@@ -67,24 +67,23 @@ class UserManager extends Manager {
 				is_admin       = VALUES( is_admin );
 		";
 		$q = $this->db->prepare($sql);
-		$q->bindValue(":id", $user->getId());
-		$q->bindValue(":email", $user->getEmail());
-		$q->bindValue(":firstname", $user->getFirstname());
-		$q->bindValue(":lastname", $user->getLastname());
-		$q->bindValue(":birthDate", $user->getBirthDate());
+		$q->bindValue(":id",            $user->getId());
+		$q->bindValue(":email",         $user->getEmail());
+		$q->bindValue(":firstname",     $user->getFirstname());
+		$q->bindValue(":lastname",      $user->getLastname());
+		$q->bindValue(":birthDate",     $user->getBirthDate());
 		$q->bindValue(":activationKey", $user->getActivationKey());
-		$q->bindValue(":createdDate", $user->getCreatedDate());
-		$q->bindValue(":archivedDate", $user->getArchivedDate());
-		$q->bindValue(":newsletter", $user->getNewsletter());
-		$q->bindValue(":isAdmin", $user->getIsAdmin());
+		$q->bindValue(":createdDate",   $user->getCreatedDate());
+		$q->bindValue(":archivedDate",  $user->getArchivedDate());
+		$q->bindValue(":newsletter",    $user->getNewsletter());
+		$q->bindValue(":isAdmin",       $user->getIsAdmin());
 
 		if(!$q->execute()) {
-			var_dump($q->debugDumpParams());
 			http_response_code(400);
 			echo true;
 			die();
 		}
-		return $this->db->lastInsertId();
+		return is_null($user->getId()) ? $this->db->lastInsertId() : $user->getId();
 	}
 
 	public function del($id = null, $email = null) {
@@ -93,11 +92,11 @@ class UserManager extends Manager {
 		$sql = "
 			DELETE FROM user
 			WHERE 1
-			".(!is_null($id) ? "AND user.id = :id" : "")."
+			".(!is_null($id)    ? "AND user.id = :id"       : "")."
 			".(!is_null($email) ? "AND user.email = :email" : "")."
 		";
 		$q = $this->db->prepare($sql);
-		if(!is_null($id)) $q->bindValue(':id', $id);
+		if(!is_null($id))    $q->bindValue(':id', $id);
 		if(!is_null($email)) $q->bindValue(':email', $email);
 		return $q->execute();
 	}
