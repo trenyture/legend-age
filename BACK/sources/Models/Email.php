@@ -14,7 +14,7 @@ class Email extends Model{
 	/**
 	 * GETTERS
 	 */
-	public function getID() {
+	public function getId() {
 		return $this->id;
 	}
 
@@ -53,7 +53,7 @@ class Email extends Model{
 	/**
 	 * SETTERS
 	 */
-	public function setID($id) {
+	public function setId($id) {
 		$this->id = $id;
 	}
 

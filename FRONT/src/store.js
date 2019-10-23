@@ -13,14 +13,19 @@ export default new Vuex.Store({
 	plugins: [vuexLocalStorage.plugin],
 	state: {
 		basket : [],
-		contactFormSent: false,
+		contactFormSent: {
+			value: false,
+			expires: null,
+		},
 	},
 	getters: {
 		getBasket(state) {
 			return state.basket;
 		},
 		contactFormSent(state) {
-			return state.contactFormSent;
+			let d = new Date();
+			return false;
+			return (state.contactFormSent.expires && d.getTime() < state.contactFormSent.expires) ? state.contactFormSent.value : false;
 		}
 	},
 	mutations: {
@@ -31,7 +36,12 @@ export default new Vuex.Store({
 			state.basket.splice(index, 1);
 		},
 		contactFormSent(state, value) {
-			state.contactFormSent = value;
+			let d = new Date();
+			d.setHours(d.getHours() + 2);
+			state.contactFormSent = {
+				value: value,
+				expires: d.getTime(),
+			};
 		},
 	},
 	actions: {

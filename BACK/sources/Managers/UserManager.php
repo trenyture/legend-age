@@ -67,7 +67,7 @@ class UserManager extends Manager {
 				is_admin       = VALUES( is_admin );
 		";
 		$q = $this->db->prepare($sql);
-		$q->bindValue(":id", $user->getID());
+		$q->bindValue(":id", $user->getId());
 		$q->bindValue(":email", $user->getEmail());
 		$q->bindValue(":firstname", $user->getFirstname());
 		$q->bindValue(":lastname", $user->getLastname());
@@ -81,6 +81,7 @@ class UserManager extends Manager {
 		if(!$q->execute()) {
 			var_dump($q->debugDumpParams());
 			http_response_code(400);
+			echo true;
 			die();
 		}
 		return $this->db->lastInsertId();

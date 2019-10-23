@@ -16,7 +16,7 @@ class User extends Model{
 	/****************************
 	***   GETTERS FUNCTIONS   ***
 	****************************/
-	public function getID() {
+	public function getId() {
 		return $this->id;
 	}
 
@@ -59,7 +59,7 @@ class User extends Model{
 	/****************************
 	***   SETTERS FUNCTIONS   ***
 	****************************/
-	public function setID($id) {
+	public function setId($id) {
 		$this->id = $id;
 	}
 

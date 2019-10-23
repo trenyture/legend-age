@@ -103,7 +103,7 @@ export default {
 			}
 			else {
 				if(this.preventSend) {
-					this.$emit('formSent');
+					this.$emit('formSent', fd);
 					this.isDisabled = false;
 				}
 				else {

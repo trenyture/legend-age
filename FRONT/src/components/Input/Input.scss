@@ -19,6 +19,7 @@
 		border:none;
 		border-bottom: .1rem solid;
 		border-color: $gray;
+		background-color: transparent;
 		transition: border-color .3s;
 		padding: 0;
 		resize: none;
@@ -43,4 +44,12 @@
 		color: $orange;
 	}
 
+}
+
+:disabled {
+	input,
+	select,
+	textarea {
+		background-color: $lightGray !important;
+	}
 }

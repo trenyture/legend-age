@@ -21,7 +21,8 @@ Vue.prototype.$error = error;
 Vue.mixin({
 	data() {
 		return {
-			apiUrl : config.apiUrl,
+			apiUrl          : config.apiUrl,
+			stripePublicKey : config.stripePublicKey,
 		}
 	},
 });

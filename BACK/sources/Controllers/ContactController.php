@@ -1,11 +1,12 @@
 <?php
 
 
-class EmailController {
+class ContactController {
 
 	public function contact() {
 		if(!isset($_POST) || count($_POST) == 0) {
 			http_response_code(400);
+			echo true;
 			die();
 		}
 

@@ -31,6 +31,14 @@ export default new Router({
 			}
 		},
 		{
+			path: '/order',
+			name: 'order',
+			component: resolve => require(['./views/Order/Order.vue'], resolve),
+			meta: {
+				pageTitle: 'Paiement',
+			}
+		},
+		{
 			path: '/account',
 			name: 'account',
 			component: resolve => require(['./views/Account/Account.vue'], resolve),

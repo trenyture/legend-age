@@ -16,7 +16,7 @@ class Validator
 	}
 
 	public function emptyString(string $value) {
-		return (strlen(preg_replace('/\s+/', '', $value)) < 1);
+		return isset($value) && (strlen(preg_replace('/\s+/', '', $value)) < 1);
 	}
 
 	/**
@@ -26,11 +26,7 @@ class Validator
 	 */
 	public function isEmpty(string $qqch, string $name = '')
 	{
-		if (is_string($qqch) || is_int($qqch)){
-			if($this->emptyString($qqch)){
-				array_push($this->response, $name . ' doit être renseigné');
-			}
-		} else if (count($qqch) < 1) {
+		if($this->emptyString($qqch)){
 			array_push($this->response, $name . ' doit être renseigné');
 		}
 	}
@@ -62,6 +58,25 @@ class Validator
 
 		} else if (!is_null($passwordVerify) && $password !== $passwordVerify) {
 			array_push($this->response, 'Les mots de passe ne correspondent pas');
+		}
+	}
+
+	public function isPhone(string $qqch, string $name = '') {
+		if($this->emptyString($qqch)){
+			array_push($this->response, $name . ' doit être renseigné');
+		} else {
+			$s = strlen(preg_replace('/[^\d]+/', '', $value));
+			if($s < 8 && $s > 15) {
+				array_push($this->response, $name . ' est invalide');
+			}
+		}
+	}
+
+	public function isPostCode(string $qqch, string $name = '') {
+		if($this->emptyString($qqch)){
+			array_push($this->response, $name . ' doit être renseigné');
+		} else if(strlen(preg_replace('/[^\d]+/', '', $value)) < 5) {
+			array_push($this->response, $name . ' est invalide');
 		}
 	}
 

@@ -51,7 +51,7 @@ class EmailManager extends Manager {
 				fk_email_status = VALUES(fk_email_status);
 		";
 		$q = $this->db->prepare($sql);
-		$q->bindValue(':id', $email->getID());
+		$q->bindValue(':id', $email->getId());
 		$q->bindValue(':sender', $email->getSender());
 		$q->bindValue(':alias', $email->getAlias());
 		$q->bindValue(':recipient', $email->getRecipient());

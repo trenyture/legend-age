@@ -48,7 +48,7 @@ CREATE TABLE country(
 CREATE TABLE address(
 	id INT UNSIGNED NOT NULL AUTO_INCREMENT,
 	label VARCHAR(90) NULL,
-	recipient VARCHAR(80) NOT NULL,
+	recipient VARCHAR(180) NOT NULL,
 	street VARCHAR(100) NOT NULL,
 	complement VARCHAR(100) NULL,
 	delivery_instructions TEXT NULL COMMENT 'Commentaire pour la livraison',
@@ -157,9 +157,16 @@ CREATE TABLE at_command_user(
 		REFERENCES user(id)
 );
 
+
 /*
  * INSERTIONS
  */
+
+INSERT INTO product(label,unit_price)
+VALUES
+	("Beaume à lèvres", 29.90),
+	("Lot de 4 beaumes", 99.00);
+
 INSERT INTO email_status (label)
 VALUES
 	("En cours"),

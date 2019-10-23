@@ -1,9 +1,10 @@
 <?php
 
-class UserController {
+class CommandController {
 
-	public function retrieve($userId = null) {
-		echo true;
+	public function retrieve($commandId = null) {
+		$commandManager = new commandManager();
+		echo json_encode($commandManager->get($commandId));
 		die();
 	}
 
@@ -31,9 +32,9 @@ class UserController {
 
 		$_POST["email"] = strtolower($_POST["email"]);
 
-		$userManager = new UserManager();
+		$commandManager = new commandManager();
 
-		$yetExists = $userManager->get(null, $_POST["email"]);
+		$yetExists = $commandManager->get(null, $_POST["email"]);
 		if(count($yetExists) > 0) {
 			http_response_code(400);
 			echo json_encode(["details" => "Un utilisateur ayant cet email existe déjà"]);
@@ -43,14 +44,14 @@ class UserController {
 		$helpers = new Helpers();
 		$_POST['activation-key'] = $helpers->uuid();
 
-		$user = new User([
+		$command = new command([
 			"email"         => $_POST["email"],
 			"firstname"     => $_POST["firstname"],
 			"lastname"      => $_POST["lastname"],
 			"birthDate"     => $_POST["birth-date"],
 			"activationKey" => $_POST['activation-key'],
 		]);
-		$resp = $userManager->set($user);
+		$resp = $commandManager->set($command);
 
 		var_dump($resp);
 		die();
@@ -69,14 +70,14 @@ class UserController {
 		die();
 	}
 
-	public function update($userId) {
+	public function update($commandId) {
 		/* Les données PUT arrivent du flux */
 		$_PUT = fopen("php://input", "r");
 		echo json_encode(true);
 		die();
 	}
 
-	public function delete($userId) {
+	public function delete($commandId) {
 		echo json_encode(true);
 		die();
 	}

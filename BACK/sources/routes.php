@@ -24,11 +24,27 @@
 		Router::delete('/{userId}', 'UserController@delete')->where(['userId' => '[0-9]+']);
 	});
 	
+	Router::group(['prefix' => '/command'], function () {
+		Router::get('/{commandId?}', 'CommandController@retrieve')->where(['commandId' => '[0-9]+']);
+		Router::post('/', 'CommandController@insert');
+		Router::put('/{commandId}', 'CommandController@update')->where(['commandId' => '[0-9]+']);
+		Router::delete('/{commandId}', 'CommandController@delete')->where(['commandId' => '[0-9]+']);
+	});
+
+	Router::group(['prefix' => '/order'], function () {
+		Router::post('/', 'OrderController@create');
+		Router::put('/{orderId}', 'OrderController@update');
+	});
+
+	Router::get('/country', 'CountryController@retrieve');
+
+	Router::post('/contact', 'ContactController@contact');
+	
 	/*Please!*/
-	Router::post('/contact', 'EmailController@contact');
 
 	Router::error(function(Request $request, \Exception $exception) {
 		http_response_code(404);
+		echo false;
 		die();
 	});
 

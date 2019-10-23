@@ -29,7 +29,7 @@ export default {
 			else {
 				this.$store.dispatch('contactFormSent', true).then(() => {
 					this.$alert.swal({
-						type: "succès",
+						type: "success",
 						title: "Merci",
 						message: "Votre message a bien été envoyé, nous le traiterons dans les plus brefs délais."
 					});

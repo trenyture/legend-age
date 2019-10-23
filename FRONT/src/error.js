@@ -19,8 +19,9 @@ function showError(err) {
 export default(error) => {
 	//Fetch
 	if(error instanceof Response) {
-		error.json().then(err => {
-			showError(err);
+		error.json().then(e => {
+			if(!e.message) e.message = error.statusText;
+			showError(e);
 		});
 	}
 	//NORMALLY
