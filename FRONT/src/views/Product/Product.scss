@@ -5,6 +5,8 @@
 
 		img {
 			flex: 0 0 40%;
+			max-width: 40%;
+			height: auto;
 		}
 
 		& > div {
@@ -211,6 +213,7 @@
 
 			&>img {
 				flex: 0 0 15rem;
+				max-width: 15rem;
 				height: auto;
 				object-fit: contain;
 				object-position: center;

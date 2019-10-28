@@ -1,5 +1,9 @@
 <template>
 	<main class="root-container">
+		<video controls>
+			<source src="/assets/videos/video-accueil.mp4" type="video/mp4">
+			Désolé mais votre navigateur ne supporte pas les vidéos
+		</video>
 		<section class="product">
 			<h2>Le produit</h2>
 			<img src="/assets/images/beaume.png" alt="Beaume - Soin des lèvres">
