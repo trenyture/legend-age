@@ -2,7 +2,7 @@
 	"host": "localhost",
 	"bdd": "beaume",
 	"user": "root",
-	"pass": "",
+	"pass": "", // LucyJoy2020
 	"env": "dev",
 	"email": "contact@soins-des-levres.fr",
 	"stripePrivateKey": "sk_test_L20gK7dr0KCo6FfeTm5d9u90Be7K2DIcSr"
