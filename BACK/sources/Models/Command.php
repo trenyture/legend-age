@@ -14,6 +14,9 @@ class Command extends Model{
 	private $fkAddress           = null;
 
 
+	public function getId() {
+		return $this->id;
+	}
 	public function getCreatedDate() {
 		return $this->createdDate;
 	}

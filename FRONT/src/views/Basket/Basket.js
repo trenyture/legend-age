@@ -27,5 +27,9 @@ export default {
 	watch: {
 	},
 	methods: {
+		order() {
+			window.fbq('track', 'InitiateCheckout');
+			this.$router.push({name: 'order'});
+		}
 	},
 };

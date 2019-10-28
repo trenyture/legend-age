@@ -8,11 +8,13 @@ class AddressManager extends Manager {
 			FROM address
 			WHERE 1
 			AND address.archived_date IS NULL
-			".(!is_null($id) ? "AND country.id = :id" : "")."
+			".(!is_null($id) ? "AND address.id = :id" : "")."
 		";
 		$q = $this->db->prepare($sql);
 		if(!is_null($id)) $q->bindValue(':id', $id);
-		$q->execute();
+		if(!$q->execute()){
+			throw new Exception("Problème lors de la récupération en base de donnée", 500);
+		}
 		$addresses = [];
 		while ($donnees = $q->fetch(PDO::FETCH_ASSOC)){
 			$addresses[] = $donnees;
@@ -35,7 +37,7 @@ class AddressManager extends Manager {
 				created_date,
 				archived_date,
 				fk_country
-			) VALUES 
+			) VALUES (
 				:id,
 				:label,
 				:recipient,
@@ -56,7 +58,7 @@ class AddressManager extends Manager {
 				delivery_instructions = VALUES( delivery_instructions ),
 				postcode              = VALUES( postcode ),
 				city                  = VALUES( city ),
-				phone_number          = VALUES( phone_number )
+				phone_number          = VALUES( phone_number ),
 				fk_country            = VALUES( fk_country );
 		";
 		$q = $this->db->prepare($sql);
@@ -75,9 +77,7 @@ class AddressManager extends Manager {
 		$q->bindValue(":fkCountry", $address->getFkCountry());
 
 		if(!$q->execute()) {
-			http_response_code(400);
-			echo true;
-			die();
+			throw new Exception("Problème lors de la sauvegarde de l'adresse", 500);
 		}
 		return is_null($address->getId()) ? $this->db->lastInsertId() : $address->getId();
 	}
@@ -91,9 +91,7 @@ class AddressManager extends Manager {
 		$q = $this->db->prepare($sql);
 		$q->bindValue(':id', $id);
 		if(!$q->execute()) {
-			http_response_code(400);
-			echo true;
-			die();
+			throw new Exception("Problème lors de la suppression de l'adresse", 500);
 		}
 		return true;
 	}

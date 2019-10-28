@@ -28,6 +28,7 @@ export default {
 	},
 	methods: {
 		buyProduct() {
+			window.fbq('track', 'AddToCart');
 			this.$store.dispatch('addBasketLine', {quantity: this.quantity, byFour: this.byFour}).then(() => {
 				this.modalOpened = true;
 			});

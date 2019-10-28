@@ -8,16 +8,18 @@ class CommandManager extends Manager {
 			FROM command
 			WHERE 1
 			AND command.archived_date IS NULL
-			".(!is_null($id) ? "AND country.id = :id" : "")."
+			".(!is_null($id) ? "AND command.id = :id" : "")."
 		";
 		$q = $this->db->prepare($sql);
 		if(!is_null($id)) $q->bindValue(':id', $id);
-		$q->execute();
-		$countries = [];
-		while ($donnees = $q->fetch(PDO::FETCH_ASSOC)){
-			$countries[] = $donnees;
+		if(!$q->execute()) {
+			throw new Exception("Problème lors de la récupération en base de donnée", 500);
 		}
-		return $countries;
+		$datas = [];
+		while ($donnees = $q->fetch(PDO::FETCH_ASSOC)){
+			$datas[] = $donnees;
+		}
+		return $datas;
 	}
 
 	public function set(Command $command) {
@@ -36,12 +38,12 @@ class CommandManager extends Manager {
 			) VALUES (
 				:id,
 				:createdDate,
-				:payedDate
-				:totalPriceBeforeTax
-				:totalPriceWithTax
-				:taxAmount
-				:treatedDate
-				:sentDate
+				:payedDate,
+				:totalPriceBeforeTax,
+				:totalPriceWithTax,
+				:taxAmount,
+				:treatedDate,
+				:sentDate,
 				:archivedDate,
 				:fkAddress
 			) ON DUPLICATE KEY UPDATE
@@ -66,9 +68,7 @@ class CommandManager extends Manager {
 		$q->bindValue(":fkAddress",           $command->getFkAddress());
 
 		if(!$q->execute()) {
-			var_dump($q->debugDumpParams());
-			http_response_code(400);
-			die();
+			throw new Exception("Problème lors de la sauvegarde de la commande", 400);
 		}
 		return is_null($command->getId()) ? $this->db->lastInsertId() : $command->getId();
 	}
@@ -81,6 +81,9 @@ class CommandManager extends Manager {
 		";
 		$q = $this->db->prepare($sql);
 		$q->bindValue(':id', $id);
-		return $q->execute();
+		if(!$q->execute) {
+			throw new Exception("Problème lors de la suppression de la commande", 400);
+		}
+		return true;
 	}
 }

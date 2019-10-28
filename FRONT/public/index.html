@@ -1,19 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <link rel="icon" href="<%= BASE_URL %>favicon.ico">
-    <title>Un baume mille couleurs - Legend Age</title>
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="/assets/styles/reset.css">
-    <script src="https://js.stripe.com/v3/"></script>
-  </head>
-  <body>
-    <noscript>
-      <strong>Vous devez activer JAVASCRIPT afin de naviguer correctement sur le site web</strong>
-    </noscript>
-    <div id="app"></div>
-  </body>
-</html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0">
+	<link rel="icon" href="<%= BASE_URL %>favicon.ico">
+	<title>Un baume mille couleurs - Legend Age</title>
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="/assets/styles/reset.css">
+	<script src="https://js.stripe.com/v3/"></script>
+	<!-- Facebook Pixel Code -->
+	<script>
+		!function(f,b,e,v,n,t,s)
+		{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+			n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+			if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+			n.queue=[];t=b.createElement(e);t.async=!0;
+			t.src=v;s=b.getElementsByTagName(e)[0];
+			s.parentNode.insertBefore(t,s)}(window,document,'script', 'https://connect.facebook.net/en_US/fbevents.js');
+			fbq('init', '404475623582599'); 
+			fbq('track', 'PageView');
+		</script>
+		<noscript>
+			<img height="1" width="1" src="https://www.facebook.com/tr?id=404475623582599&ev=PageView&noscript=1"/>
+		</noscript>
+		<!-- End Facebook Pixel Code -->
+	</head>
+	<body>
+		<noscript>
+			<strong>Vous devez activer JAVASCRIPT afin de naviguer correctement sur le site web</strong>
+		</noscript>
+		<div id="app"></div>
+	</body>
+	</html>

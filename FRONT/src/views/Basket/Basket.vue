@@ -45,10 +45,10 @@
 				</tbody>
 			</table>
 			<div class="buttons">
-				<router-link :class="'button button-outline-orange'" :to="{name: 'order'}">Commander</router-link>
+				<Button :class="'button button-outline-orange'" @click="order">Commander</Button>
 			</div>
 		</template>
-		<p v-else>Votre panier est vide, n'hésiter pas à faire une commande.</p>
+		<p v-else>Votre panier est vide, n'hésiter pas à ajouter des produits au panier.</p>
 	</main>
 </template>
 

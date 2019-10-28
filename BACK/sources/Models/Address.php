@@ -31,7 +31,7 @@ class Address extends Model{
 		return $this->complement;
 	}
 	public function getDeliveryInstructions() {
-		return $this->delivery_instructions;
+		return $this->deliveryInstructions;
 	}
 	public function getPostcode() {
 		return $this->postcode;
@@ -40,16 +40,16 @@ class Address extends Model{
 		return $this->city;
 	}
 	public function getPhoneNumber() {
-		return $this->phone_number;
+		return $this->phoneNumber;
 	}
 	public function getCreatedDate() {
-		return $this->created_date;
+		return $this->createdDate;
 	}
 	public function getArchivedDate() {
-		return $this->archived_date;
+		return $this->archivedDate;
 	}
 	public function getFkCountry() {
-		return $this->fk_country;
+		return $this->fkCountry;
 	}
 
 	public function setId($id) {

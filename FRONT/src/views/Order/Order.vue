@@ -70,7 +70,10 @@
 				:required="false"
 			/>
 			<div class="buttons">
-				<router-link class="button button-outline-gray" :to="{name: 'basket'}">Retour</router-link>
+				<Button
+					type="submit"
+					class="button-outline-orange"
+				>Payer avec paypal</Button>
 				<Button
 					type="submit"
 					class="button-orange"

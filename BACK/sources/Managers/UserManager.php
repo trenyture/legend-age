@@ -22,7 +22,9 @@ class UserManager extends Manager {
 		$q = $this->db->prepare($sql);
 		if(!is_null($id))    $q->bindValue(':id', $id);
 		if(!is_null($email)) $q->bindValue(':email', $email);
-		$q->execute();
+		if(!$q->execute()) {
+			throw new Exception("Problème lors de la récupération de l'utilisateur", 400);
+		}
 		$users = [];
 		while ($donnees = $q->fetch(PDO::FETCH_ASSOC)){
 			$users[] = $donnees;
@@ -77,11 +79,8 @@ class UserManager extends Manager {
 		$q->bindValue(":archivedDate",  $user->getArchivedDate());
 		$q->bindValue(":newsletter",    $user->getNewsletter());
 		$q->bindValue(":isAdmin",       $user->getIsAdmin());
-
 		if(!$q->execute()) {
-			http_response_code(400);
-			echo true;
-			die();
+			throw new Exception("Problème lors de la sauvegarde de l'utilisateur", 400);
 		}
 		return is_null($user->getId()) ? $this->db->lastInsertId() : $user->getId();
 	}
@@ -98,6 +97,9 @@ class UserManager extends Manager {
 		$q = $this->db->prepare($sql);
 		if(!is_null($id))    $q->bindValue(':id', $id);
 		if(!is_null($email)) $q->bindValue(':email', $email);
-		return $q->execute();
+		if(!$q->execute()) {
+			throw new Exception("Problème lors de la sauvegarde de l'utilisateur", 400);
+		}
+		return true;
 	}
 }

@@ -11,11 +11,13 @@ class CountryManager extends Manager {
 		";
 		$q = $this->db->prepare($sql);
 		if(!is_null($id)) $q->bindValue(':id', $id);
-		$q->execute();
-		$countries = [];
-		while ($donnees = $q->fetch(PDO::FETCH_ASSOC)){
-			$countries[] = $donnees;
+		if(!$q->execute()) {
+			throw new Exception("Problème lors de la récupération en base de donnée", 500);
 		}
-		return $countries;
+		$datas = [];
+		while ($donnees = $q->fetch(PDO::FETCH_ASSOC)){
+			$datas[] = $donnees;
+		}
+		return $datas;
 	}
 }

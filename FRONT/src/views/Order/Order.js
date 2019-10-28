@@ -15,7 +15,8 @@ export default {
 	},
 	computed: {
 		isReady() {
-			return this.countries !== null;
+			return this.countries !== null	
+				&& !this.$route.params.stripeId;
 		},
 		...mapGetters({
 			basketLines: 'getBasket',
@@ -50,16 +51,19 @@ export default {
 		},
 		formSent(form) {
 			this.disableForm = true;
-			for (var i = 0, len = this.basketLines.length; i < this.basketLines; i++) {
+			for (var i = 0, len = this.basketLines.length; i < len; i++) {
 				form.append('ordered_quantity[]', this.basketLines[i].quantity);
 				form.append('fk_product[]', this.basketLines[i].byFour ? 2 : 1);
 			}
+
 			this.$ajax({
 				url: '/order',
 				method: 'POST',
 				data: form,
 				success: r => {
-					console.log(r);
+					Stripe(this.stripePublicKey).redirectToCheckout({
+						sessionId: r.stripe_id,
+					});
 				},
 				fail: e => {
 					this.disableForm = false;
@@ -67,21 +71,43 @@ export default {
 				}
 			});
 			return;
-
-			Stripe(this.stripePublicKey).redirectToCheckout({
-			  // Make the id field from the Checkout Session creation API response
-			  // available to this file, so you can provide it as parameter here
-			  // instead of the {{CHECKOUT_SESSION_ID}} placeholder.
-			  sessionId: '{{CHECKOUT_SESSION_ID}}'
-			}).then(function (result) {
-			  // If `redirectToCheckout` fails due to a browser or network
-			  // error, display the localized error message to your customer
-			  // using `result.error.message`.
+		}
+	},
+	beforeMount(){
+		if(this.$route.params.stripeId) {
+			let fd = new FormData();
+			fd.append('session_id', this.$route.params.stripeId);
+			this.$ajax({
+				url: '/order/test',
+				method: 'POST',
+				data: fd,
+				success: r => {
+					// this.$store.dispatch()
+					// this.$alert.swal({
+					// 	type: 'success',
+					// 	title: 'Merci',
+					// 	message: "Votre commande a bien été enregistrée et nous la traiterons dans les plus brefs délais.",
+					// 	callback() {
+					// 		router.push({name: 'basket'});
+					// 	}
+					// });
+				},
+				fail: e => {
+					var router = this.$router;
+					this.$alert.swal({
+						type: 'error',
+						title: 'Erreur',
+						message: "Il y a eu un problème lors du paiement de la commande",
+						callback() {
+							router.push({name: 'basket'});
+						}
+					});
+				}
 			});
 		}
 	},
 	mounted() {
-		console.log(this.basketLines);
 		if(this.basketLines === null || this.basketLines.length < 1) this.$router.push({name: 'root'});
+
 	}
 }

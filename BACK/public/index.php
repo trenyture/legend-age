@@ -1,5 +1,7 @@
 <?php
 	header("Access-Control-Allow-Origin: *");
+	header('Access-Control-Allow-Methods: GET, POST, PUT, POST, HEAD, OPTIONS');
+	
 	try {
 		define('ROOT', dirname(dirname(__FILE__)));
 		/*ON CHARGE NOTRE CONFIGURATION*/
@@ -21,12 +23,14 @@
 		define('EMAIL_ACCOUNT', $config['email']);
 		define('ENV', $config['env']);
 		define('STRIPE_PRIVATE_KEY', $config['stripePrivateKey']);
+		define('FRONT_URL', $config['frontUrl']);
+		/* On inclut l'autoloader de nos dépendances, classes et controller */
+		require_once __DIR__.'/../autoloader.php';
+
 	} catch (Exception $e) {
 		var_dump($e);
 		die();
 	}
 
-	/* On inclut l'autoloader de nos dépendances, classes et controller */
-	require_once __DIR__.'/../autoloader.php';
 
 ?>

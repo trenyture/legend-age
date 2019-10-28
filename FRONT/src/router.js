@@ -31,7 +31,7 @@ export default new Router({
 			}
 		},
 		{
-			path: '/order',
+			path: '/order/:stripeId?',
 			name: 'order',
 			component: resolve => require(['./views/Order/Order.vue'], resolve),
 			meta: {

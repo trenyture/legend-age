@@ -33,7 +33,7 @@
 
 	Router::group(['prefix' => '/order'], function () {
 		Router::post('/', 'OrderController@create');
-		Router::put('/{orderId}', 'OrderController@update');
+		Router::post('/test', 'OrderController@update');
 	});
 
 	Router::get('/country', 'CountryController@retrieve');
@@ -43,8 +43,12 @@
 	/*Please!*/
 
 	Router::error(function(Request $request, \Exception $exception) {
-		http_response_code(404);
-		echo false;
+		http_response_code($exception->getCode());
+		$resp = ["details" => [$exception->getMessage()]];
+		if(ENV != "prod") {
+			$resp["stack"] = $exception->getTraceAsString();
+		}
+		echo json_encode($resp);
 		die();
 	});
 

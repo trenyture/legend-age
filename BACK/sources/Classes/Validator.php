@@ -65,7 +65,7 @@ class Validator
 		if($this->emptyString($qqch)){
 			array_push($this->response, $name . ' doit être renseigné');
 		} else {
-			$s = strlen(preg_replace('/[^\d]+/', '', $value));
+			$s = strlen(preg_replace('/[^\d]+/', '', $qqch));
 			if($s < 8 && $s > 15) {
 				array_push($this->response, $name . ' est invalide');
 			}
@@ -75,7 +75,7 @@ class Validator
 	public function isPostCode(string $qqch, string $name = '') {
 		if($this->emptyString($qqch)){
 			array_push($this->response, $name . ' doit être renseigné');
-		} else if(strlen(preg_replace('/[^\d]+/', '', $value)) < 5) {
+		} else if(strlen(preg_replace('/[^\d]+/', '', $qqch)) < 5) {
 			array_push($this->response, $name . ' est invalide');
 		}
 	}

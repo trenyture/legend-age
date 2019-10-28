@@ -20,7 +20,14 @@ class EmailManager extends Manager {
 		$q = $this->db->prepare($sql);
 		if(!is_null($id)) $q->bindValue(':id', $id);
 		if(!is_null($fkEmailStatus)) $q->bindValue(':fkEmailStatus', $fkEmailStatus);
-		return $q->execute();
+		if(!$q->execute()) {
+			throw new Exception("Problème lors de la récupération en base de donnée", 500);
+		}
+		$datas = [];
+		while ($donnees = $q->fetch(PDO::FETCH_ASSOC)){
+			$datas[] = $donnees;
+		}
+		return $datas;
 	}
 
 	public function set(Email $email) {
@@ -61,9 +68,7 @@ class EmailManager extends Manager {
 		$q->bindValue(':sentDate',      $email->getSentDate());
 		$q->bindValue(':fkEmailStatus', $email->getFkEmailStatus());
 		if(!$q->execute()) {
-			var_dump($q->debugDumpParams());
-			http_response_code(400);
-			die();
+			throw new Exception("Problème lors de la sauvegarde de l'email", 400);
 		}
 		return is_null($email->getId()) ? $this->db->lastInsertId() : $email->getId();
 	}
@@ -78,8 +83,11 @@ class EmailManager extends Manager {
 			".(!is_null($fkEmailStatus) ? "AND email_pool.fk_email_status = :fkEmailStatus" : "")."
 		";
 		$q = $this->db->prepare($sql);
-		if(!is_null($id)) $q->bindValue(':id', $id);
+		if(!is_null($id))            $q->bindValue(':id', $id);
 		if(!is_null($fkEmailStatus)) $q->bindValue(':fkEmailStatus', $fkEmailStatus);
-		return $q->execute();
+		if(!$q->execute()) {
+			throw new Exception("Problème lors de la suppression de l'email", 400);
+		}
+		return true;
 	}
 }
