@@ -70,10 +70,10 @@
 				:required="false"
 			/>
 			<div class="buttons">
-				<Button
+				<!-- <Button
 					type="submit"
 					class="button-outline-orange"
-				>Payer avec paypal</Button>
+				>Payer avec paypal</Button> -->
 				<Button
 					type="submit"
 					class="button-orange"

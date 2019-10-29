@@ -220,8 +220,8 @@
 
 	#added-modal {
 		.modal-content {
-			display: flex;
-			@media all and (max-width: #{$tablet - 1px}) {
+			@media all and (min-width: $tablet) {
+				display: flex;
 				flex-wrap: wrap;
 			}
 
@@ -273,10 +273,18 @@
 				}
 
 				.buttons {
-					display: flex;
-					justify-content: space-between;
+					text-align: center;
+					@media all and (min-width: $tablet) {
+						text-align: left;
+						display: flex;
+						justify-content: space-between;
+					}
 
 					a, button {
+						@media all and (max-width: #{$tablet - 1px}) {
+							display: inline-block;
+							margin-top: 1rem;
+						}
 						width: 18rem;
 						text-align: center;
 						background-color: $orange;

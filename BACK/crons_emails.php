@@ -8,10 +8,10 @@
 	header("Access-Control-Allow-Origin: *");
 
 	try {
-		define('ROOT', getcwd());
+		define('ROOT', dirname(__FILE__));
 		/*ON CHARGE NOTRE CONFIGURATION*/
 		$config = json_decode(file_get_contents(ROOT.'/config.json'), true);
-		
+
 		if($config['env'] != "prod"){
 			/* On affiche les erreurs PHP pour l'environnement de dev */
 			ini_set('display_errors', 1);
@@ -20,7 +20,6 @@
 		}
 
 		/* On initialise les variables de session */
-		session_start();
 		define('DB_HOST', $config['host']);
 		define('DB_NAME', $config['bdd']);
 		define('DB_USER', $config['user']);
@@ -49,41 +48,42 @@
 	);
 
 	// On commence notre CRON : 
+	$emailManager = new EmailManager();
+	$emails = $emailManager->get(null, 1);
 
-	// Instantiation and passing `true` enables exceptions
-	$mail = new PHPMailer(true);
+	if(count($emails) > 0) {
+		$max = count($emails) > 5 ? 5 : count($emails);
+		for ($i=0; $i < $max; $i++) {
+			$mail = new Email([
+				'id' => $emails[$i]['id'],
+				'sender' => $emails[$i]['sender'],
+				'alias' => $emails[$i]['alias'],
+				'recipient' => $emails[$i]['recipient'],
+				'subject' => $emails[$i]['subject'],
+				'message' => $emails[$i]['message'],
+				'error' => $emails[$i]['error'],
+				'sentDate' => $emails[$i]['sent_date'],
+				'fkEmailStatus' => $emails[$i]['fk_email_status'],
+			]);
 
-	try {
-	    //Server settings
-	    $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      // Enable verbose debug output
-	    $mail->isSMTP();                                            // Send using SMTP
-	    $mail->Host       = 'smtp.gmail.com';                    // Set the SMTP server to send through
-	    $mail->SMTPAuth   = true;                                   // Enable SMTP authentication
-	    $mail->Username   = 'user@example.com';                     // SMTP username
-	    $mail->Password   = 'secret';                               // SMTP password
-	    $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;         // Enable TLS encryption; `PHPMailer::ENCRYPTION_SMTPS` also accepted
-	    $mail->Port       = 587;                                    // TCP port to connect to
+			$headers = 'From: ' . $mail->getSender() . "\r\n";
+			$headers .= 'Reply-To: '. $mail->getSender() . "\r\n";
+			$headers .= 'MIME-Version: 1.0' . "\r\n";
+			$headers .= 'Content-Type: text/html; charset=ISO-8859-1' . "\r\n";
+			$headers .= 'X-Mailer: PHP/' . phpversion();
 
-	    //Recipients
-	    $mail->setFrom('from@example.com', 'Mailer');
-	    $mail->addAddress('joe@example.net', 'Joe User');     // Add a recipient
-	    $mail->addAddress('ellen@example.com');               // Name is optional
-	    $mail->addReplyTo('info@example.com', 'Information');
-	    $mail->addCC('cc@example.com');
-	    $mail->addBCC('bcc@example.com');
-
-	    // Attachments
-	    $mail->addAttachment('/var/tmp/file.tar.gz');         // Add attachments
-	    $mail->addAttachment('/tmp/image.jpg', 'new.jpg');    // Optional name
-
-	    // Content
-	    $mail->isHTML(true);                                  // Set email format to HTML
-	    $mail->Subject = 'Here is the subject';
-	    $mail->Body    = 'This is the HTML message body <b>in bold!</b>';
-	    $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
-
-	    $mail->send();
-	    echo 'Message has been sent';
-	} catch (Exception $e) {
-	    echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+			if(mail(
+				$mail->getRecipient(),
+				$mail->getSubject(),
+				$mail->getMessage(),
+				$headers
+			)) {
+				$mail->setSentDate(date('Y-m-d H:i:s'));
+				$mail->setFkEmailStatus(2);
+			} else {
+				$mail->setFkEmailStatus(3);
+				$mail->setError(error_get_last()['message']);
+			}
+			$emailManager->set($mail);
+		}
 	}

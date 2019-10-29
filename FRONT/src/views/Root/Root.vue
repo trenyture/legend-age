@@ -7,8 +7,11 @@
 		<section class="product">
 			<h2>Le produit</h2>
 			<img src="/assets/images/beaume.png" alt="Beaume - Soin des lèvres">
-			<p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum ut lacus eu diam eleifend vehicula eu in ex. Donec odio odio, blandit vitae cursus id, fermentum nec enim. Quisque nec dapibus eros. Cras posuere convallis libero a venenatis. Vestibulum et mauris at lorem vehicula varius. Donec quis dolor ac nisi lacinia euismod. Curabitur pulvinar magna libero, et commodo ligula feugiat sit amet. Cras porttitor gravida maximus. Cras feugiat massa ut velit lacinia mollis. Quisque egestas enim eu dolor interdum finibus. Sed lobortis suscipit enim, non tincidunt lacus. Nullam ultricies suscipit purus, sed posuere dolor congue et. Quisque sit amet neque vel nibh tincidunt semper in eu sapien. Mauris arcu est, tempus nec ornare elementum, ultrices non lorem. Phasellus convallis luctus mi, at accumsan tellus pretium sit amet.</p>
-			<p>Cras sed odio sed risus ullamcorper fermentum. Aenean nisi libero, convallis sed posuere at, vehicula quis justo. Praesent finibus eros vel leo congue, tempus scelerisque ante posuere. Nullam a felis sit amet risus vestibulum pharetra ut sit amet lorem. Integer maximus auctor massa sit amet molestie. Phasellus nec felis aliquam, laoreet urna ut, sodales ex. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam vitae neque nec tortor faucibus dignissim eu sed sem. Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>
+			<p>De nos jours, les baumes à lèvres sont devenus un produit cosmétique nécessaire pour la plupart des femmes. Cependant, beaucoup des baumes sur le marché contiennent des colorants artificiels, et des produits chimiques tel que la paraffine.</p>
+			<p>Sur du long terme, ce type de produits peuvent provoquer, des gerçures, le vieillissement prématuré des lèvres, un empoisonnement au mercure ou au plomb, rendre les lèvres ternes ou les décolorées etc...</p>
+			<p>L’élément le plus important à prendre en compte lorsque l'on utilise un baume à lèvres est que les ingrédients doivent être naturels et bons pour la santé.</p>
+			<p>Grâce à ces différents ingrédients actifs naturels, le baume à lèvres Legend Age est un baume sain avec un véritable de effet de régénération de la peau et de protection contre les UV.</p>
+			<p>C’est un produit cosmétique pour les lèvres qui a reçu diverses récompenses de l’industrie de la beauté, de la mode ainsi que par les administrations gouvernementales des pays ou il est commercialisé.</p>
 		</section>
 	</main>
 </template>

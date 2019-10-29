@@ -4,8 +4,15 @@ class CommandManager extends Manager {
 
 	public function get($id = null) {
 		$sql = "
-			SELECT *
+			SELECT
+				country.label AS country,
+				address.*,
+				command.*
 			FROM command
+			INNER JOIN address
+				ON address.id = command.fk_address
+			INNER JOIN country
+				ON country.id = address.fk_country
 			WHERE 1
 			AND command.archived_date IS NULL
 			".(!is_null($id) ? "AND command.id = :id" : "")."

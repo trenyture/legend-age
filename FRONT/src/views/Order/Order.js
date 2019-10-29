@@ -82,15 +82,17 @@ export default {
 				method: 'POST',
 				data: fd,
 				success: r => {
-					// this.$store.dispatch()
-					// this.$alert.swal({
-					// 	type: 'success',
-					// 	title: 'Merci',
-					// 	message: "Votre commande a bien été enregistrée et nous la traiterons dans les plus brefs délais.",
-					// 	callback() {
-					// 		router.push({name: 'basket'});
-					// 	}
-					// });
+					var router = this.$router;
+					this.$store.dispatch('deleteAllBasketLine').then(() => {
+						this.$alert.swal({
+							type: 'success',
+							title: 'Merci',
+							message: "Votre commande a bien été enregistrée et nous la traiterons dans les plus brefs délais.",
+							callback() {
+								router.push({name: 'basket'});
+							}
+						});
+					})
 				},
 				fail: e => {
 					var router = this.$router;

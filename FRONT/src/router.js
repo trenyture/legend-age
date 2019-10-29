@@ -54,6 +54,14 @@ export default new Router({
 				pageTitle: 'Demande de contact',
 			}
 		},
+		{
+			path: '/conditions',
+			name: 'cgv',
+			component: resolve => require(['./views/CGV/CGV.vue'], resolve),
+			meta: {
+				pageTitle: 'Conditions générales de vente',
+			}
+		},
 		/**************   ENFIN ON CRÉER LA PAGE D'ERREUR   **************/
 		{
 			path: '/error',

@@ -34,6 +34,9 @@ export default new Vuex.Store({
 		deleteBasketLine(state, index) {
 			state.basket.splice(index, 1);
 		},
+		deleteAllBasketLine(state) {
+			state.basket = [];
+		},
 		contactFormSent(state, value) {
 			let d = new Date();
 			d.setHours(d.getHours() + 2);
@@ -53,6 +56,12 @@ export default new Vuex.Store({
 		deleteBasketLine(context, payload) {
 			return new Promise((resolve, reject) => {
 				context.commit('deleteBasketLine', payload);
+				resolve();
+			});
+		},
+		deleteAllBasketLine(context) {
+			return new Promise((resolve, reject) => {
+				context.commit('deleteAllBasketLine');
 				resolve();
 			});
 		},

@@ -1,9 +1,10 @@
 import { mapGetters } from "vuex";
 
 import Button from "@/components/Button/Button.vue";
+import Input from "@/components/Input/Input.vue";
 
 export default {
-	components: {},
+	components: {Input, Button},
 	data() {
 		return {
 
@@ -28,6 +29,14 @@ export default {
 	},
 	methods: {
 		order() {
+			if(!this.$refs.checkbox.model[0] || this.$refs.checkbox.model[0] != 1){
+				return this.$alert.swal({
+					type: "error",
+					title: "Attention",
+					message: "Vous devez accepter les conditions générales avant de continuer",
+					timer: 2000,
+				});
+			}
 			window.fbq('track', 'InitiateCheckout');
 			this.$router.push({name: 'order'});
 		}

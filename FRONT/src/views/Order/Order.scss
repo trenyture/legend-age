@@ -13,14 +13,22 @@
 	.city {
 		.input-form {
 			display: inline-block;
-			width:75%;
+			width:65%;
 			vertical-align: top;
 			box-sizing:border-box;
 			padding-left: 2rem;
 
+			@media all and (min-width: $tablet) {
+				width:75%;
+			}
+
 			&:nth-of-type(1) {
 				padding-left: 0;
-				width: 25%;
+				width:35%;
+
+				@media all and (min-width: $tablet) {
+					width: 25%;
+				}
 			}
 		}
 	}

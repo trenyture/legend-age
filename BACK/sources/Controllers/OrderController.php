@@ -151,13 +151,13 @@ class OrderController {
 		$stripe = \Stripe\Checkout\Session::retrieve($_POST['session_id']);
 
 		if(count($stripe) == 0) throw new Exception("Something went wrong", 500);
-		
+
 		/**
 		 * 1 - On met à jour la date de paiement
 		 */
 		$commandManager = new CommandManager();
 		$commandDatas = $commandManager->get($stripe["client_reference_id"]);
-		if(count($command) == 0) throw new Exception("Something went wrong", 500);
+		if(count($commandDatas) == 0) throw new Exception("Something went wrong", 500);
 		$command = new Command([
 			"id"                  => $commandDatas[0]['id'],
 			"totalPriceBeforeTax" => $commandDatas[0]['total_price_before_tax'],
@@ -168,6 +168,10 @@ class OrderController {
 		]);
 		$commandId = $commandManager->set($command);
 
+		//On va aussi chercher les lignes de commandes pour les mails
+		$commandLineManager = new CommandLineManager();
+		$commandDatas[0]["commandLines"] = $commandLineManager->get(null, $stripe["client_reference_id"]);
+		$commandDatas[0]["email"] = $stripe['customer_email'];
 		/**
 		 * 2 - On met a jour les stocks (todo)
 		 */
@@ -181,13 +185,25 @@ class OrderController {
 
 		$email = new Email([
 			'sender' => EMAIL_ACCOUNT,
-			'recipient' => $_POST['email'],
+			'recipient' => $commandDatas[0]["email"],
 			'subject' => 'Votre achat sur www.soins-des-levres.fr',
-			'message' => $helpers->renderTemplate(ROOT.'/emails/orderpaid.php', $commandDatas[0]),
+			'message' => $helpers->renderTemplate(ROOT.'/emails/orderPaid.php', $commandDatas[0]),
 			'fkEmailStatus' => 1
 		]);
 
 		$resp = $emailManager->set($email);
+
+		$email = new Email([
+			'sender' => $commandDatas[0]["email"],
+			'recipient' => EMAIL_ACCOUNT,
+			'subject' => 'Nouvel achat sur www.soins-des-levres.fr',
+			'message' => $helpers->renderTemplate(ROOT.'/emails/orderReceived.php', $commandDatas[0]),
+			'fkEmailStatus' => 1
+		]);
+
+		$resp = $emailManager->set($email);
+
+		
 
 		echo json_encode($resp);
 		die();

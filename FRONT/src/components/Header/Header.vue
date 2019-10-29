@@ -16,8 +16,11 @@
 				<li>
 					<router-link :to="{name: 'contact'}">Contact</router-link>
 				</li>
-				<li>
+				<li v-if="false">
 					<router-link :to="{name: 'account'}">Mon compte</router-link>
+				</li>
+				<li>
+					<router-link :to="{name: 'cgv'}">CGV</router-link>
 				</li>
 			</ul>
 		</nav>
