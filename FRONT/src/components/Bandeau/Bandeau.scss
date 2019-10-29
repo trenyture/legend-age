@@ -3,8 +3,12 @@
 	width: 100%;
 	height: 100%;
 	width: 100%;
-	height: calc(100vh - 7.5rem);
+	height: calc(100vh - 12rem);
 	position: relative;
+
+	@media all and (min-width: $tablet) {
+		height: calc(100vh - 7.5rem);
+	}
 
 	img {
 		display: block;
@@ -19,6 +23,12 @@
 		top: 20%;
 		left: 50%;
 		font-family: Butler, Times, sans-serif;
-		font-size: 4rem;
+		font-size: 2rem;
+		@media all and (min-width: $mobile) {
+			font-size: 3rem;
+		}
+		@media all and (min-width: $tablet) {
+			font-size: 4rem;
+		}
 	}
 }

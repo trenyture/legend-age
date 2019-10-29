@@ -2,15 +2,23 @@
 	article {
 		display: flex;
 		align-items: flex-start;
+		@media all and (max-width: #{$tablet - 1px}) {
+			flex-wrap: wrap;
+		}
 
 		img {
-			flex: 0 0 40%;
-			max-width: 40%;
 			height: auto;
+			flex: 0 0 100%;
+			max-width: 100%;
+
+			@media all and (min-width: $tablet) {
+				flex: 0 0 40%;
+				max-width: 40%;
+			}
 		}
 
 		& > div {
-			max-width: 50rem; 
+			max-width: 50rem;
 		}
 
 		h2 {
@@ -111,7 +119,7 @@
 				margin: 0 -1rem;
 
 				li{
-					flex: 0 0 calc(50% - 2rem);
+					flex: 0 0 calc(100% - 2rem);
 					position: relative;
 					display: flex;
 					height: 26rem;
@@ -120,6 +128,9 @@
 					box-sizing: border-box;
 					flex-direction: column;
 					justify-content: flex-end;
+					@media all and (min-width: $tablet) {
+						flex: 0 0 calc(50% - 2rem);
+					}
 
 					&:not(#ingredients) {
 						color: $white;
@@ -210,6 +221,9 @@
 	#added-modal {
 		.modal-content {
 			display: flex;
+			@media all and (max-width: #{$tablet - 1px}) {
+				flex-wrap: wrap;
+			}
 
 			&>img {
 				flex: 0 0 15rem;
