@@ -8,7 +8,7 @@
 				<li>
 					<router-link :to="{name: 'basket'}">Panier</router-link>
 				</li>
-				<li>
+				<li class="logo-item">
 					<router-link :to="{name: 'root'}">
 						<h1>Legend Age - Un baume mille couleurs</h1>
 					</router-link>

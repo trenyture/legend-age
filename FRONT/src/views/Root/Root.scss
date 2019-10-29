@@ -6,11 +6,15 @@
 		position: relative;
 		border: .1rem solid $orange;
 		border-left: none;
-		padding: 3rem 3rem 3rem 10rem; 
+		padding: 3rem;
 		margin: 10rem 0 10rem 5rem;
 		width: 90%;
 		width: calc(100% - 5rem);
 		box-sizing: border-box;
+
+		@media all and (min-width: $tablet) {
+			padding: 3rem 3rem 3rem 10rem; 
+		}
 
 		h2 {
 			position: absolute;
@@ -28,7 +32,10 @@
 			top: 5rem; left: -5rem;
 			height:auto;
 			max-height: 100%;
-			max-width: 14rem;
+			max-width: 5rem;
+			@media all and (min-width: $tablet) {
+				max-width: 14rem;
+			}
 		}
 
 		p{
