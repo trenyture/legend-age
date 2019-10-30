@@ -1,7 +1,10 @@
 <template>
 	<main class="root-container">
-		<video oncontextmenu="return false;" controls preload="metadata">
-			<source src="/assets/videos/video-accueil.mp4" type="video/mp4">
+		<video id="video" oncontextmenu="return false;" controls preload="metadata">
+			<source src="/assets/videos/video-accueil-desktop.mp4" type="video/mp4" media="all and (min-width: 800px)">
+			<source src="/assets/videos/video-accueil-desktop.webm" type="video/webm" media="all and (min-width: 800px)">
+			<source src="/assets/videos/video-accueil-mobile.mp4" type="video/mp4" media="all and (max-width: 799px)">
+			<source src="/assets/videos/video-accueil-mobile.webm" type="video/webm" media="all and (max-width: 799px)">
 			Désolé mais votre navigateur ne supporte pas les vidéos
 		</video>
 		<section class="product">

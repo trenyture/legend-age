@@ -22,8 +22,8 @@
 								</div>
 							</td>
 							<td>{{ line.quantity }} {{ line.byFour ? `lot${line.quantity > 1 ? 's' : ''} de 4 exemplaires` : `exemplaire${line.quantity > 1 ? 's' : ''}` }}</td>
-							<td>{{ parseFloat((line.byFour ? 99 : 29.90)/1.2).toFixed(2) }} €</td>
-							<td>{{ parseFloat((line.quantity * (line.byFour ? 99 : 29.90) / 1.2)).toFixed(2) }} €</td>
+							<td>{{ parseFloat((line.byFour ? 99 : 29)/1.2).toFixed(2) }} €</td>
+							<td>{{ parseFloat((line.quantity * (line.byFour ? 99 : 29) / 1.2)).toFixed(2) }} €</td>
 							<td>
 								<button @click="$store.dispatch('deleteBasketLine', index)">‎✕</button>
 							</td>
@@ -62,7 +62,7 @@
 				<Button :class="'button button-outline-orange'" @click="order">Commander</Button>
 			</div>
 		</template>
-		<p v-else>Votre panier est vide, n'hésiter pas à ajouter des produits au panier.</p>
+		<p v-else>Votre panier est vide, n'hésitez pas à ajouter des produits au panier.</p>
 	</main>
 </template>
 

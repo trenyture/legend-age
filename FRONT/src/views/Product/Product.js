@@ -15,7 +15,7 @@ export default {
 	},
 	computed: {
 		finalPrice() {
-			let unitPrice = this.byFour == true ? 99 : 29.90;
+			let unitPrice = this.byFour == true ? 99 : 29;
 			return parseFloat(this.quantity * unitPrice).toFixed(2);
 		}
 	},

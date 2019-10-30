@@ -6,5 +6,20 @@ export default {
 	},
 	computed: {},
 	watch: {},
-	methods: {},
+	methods: {
+		scrollToVideo() {
+			let wHeight = window.innerHeight,
+			animation = 150,
+			start = window.pageYOffset,
+			frames = (wHeight - start) / animation,
+			interval = window.setInterval(() => {
+				start += frames;
+				if(start >= wHeight) {
+					start = wHeight;
+					window.clearInterval(interval);
+				}
+				window.scrollTo(0, start);
+			}, 1);
+		}
+	},
 };

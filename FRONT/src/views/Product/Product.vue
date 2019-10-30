@@ -33,7 +33,7 @@
 					>(<b>-15%</b> de réduction)</Input>
 					<p id="price"><span>{{ finalPrice }} €</span> Prix toutes taxes comprises (TTC)</p>
 					<Button
-						class="button-outline-orange"
+						class="button-orange"
 						type="submit"
 					>Acheter</button>
 				</Form>

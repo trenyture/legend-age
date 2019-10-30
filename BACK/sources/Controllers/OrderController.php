@@ -37,7 +37,7 @@ class OrderController {
 					($_POST['fk_product'][$i] == 2
 						? ' lot'.($_POST['ordered_quantity'][$i] > 1 ? 's' : '').' de 4 exemplaires'
 						: ' exemplaire'.($_POST['ordered_quantity'][$i] > 1 ? 's' : '')). ' du beaume magique Legend Age' ;
-				$amount = $_POST['ordered_quantity'][$i] * ($_POST['fk_product'][$i] == 2 ? 99.00 : 29.90);
+				$amount = $_POST['ordered_quantity'][$i] * ($_POST['fk_product'][$i] == 2 ? 99.00 : 29.00);
 				$totalPriceWithTax += $amount;
 				$totalPriceBeforeTax += $amount / 1.2;
 				$taxAmount += $amount * 0.2;
@@ -184,7 +184,7 @@ class OrderController {
 		$emailManager = new EmailManager();
 
 		$email = new Email([
-			'sender' => EMAIL_ACCOUNT,
+			'sender' => 'Soins Des Levres <' . EMAIL_ACCOUNT . '>',
 			'recipient' => $commandDatas[0]["email"],
 			'subject' => 'Votre achat sur www.soins-des-levres.fr',
 			'message' => $helpers->renderTemplate(ROOT.'/emails/orderPaid.php', $commandDatas[0]),
@@ -195,7 +195,7 @@ class OrderController {
 
 		$email = new Email([
 			'sender' => $commandDatas[0]["email"],
-			'recipient' => EMAIL_ACCOUNT,
+			'recipient' => 'Soins Des Levres <' . EMAIL_ACCOUNT . '>',
 			'subject' => 'Nouvel achat sur www.soins-des-levres.fr',
 			'message' => $helpers->renderTemplate(ROOT.'/emails/orderReceived.php', $commandDatas[0]),
 			'fkEmailStatus' => 1

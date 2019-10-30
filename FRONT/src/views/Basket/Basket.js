@@ -16,12 +16,12 @@ export default {
 		}),
 		tvaPrice() {
 			return this.basketLines.reduce((r,e) => {
-				return r + e.quantity * (0.2 * (e.byFour == true ? 99 : 29.90));
+				return r + e.quantity * (0.2 * (e.byFour == true ? 99 : 29));
 			}, 0);
 		},
 		totalPrice() {
 			return this.basketLines.reduce((r,e) => {
-				return r + e.quantity * (e.byFour == true ? 99 : 29.90);
+				return r + e.quantity * (e.byFour == true ? 99 : 29);
 			}, 0);
 		},
 	},

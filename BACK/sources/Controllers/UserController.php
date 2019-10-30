@@ -57,7 +57,7 @@ class UserController {
 
 		$emailManager = new EmailManager();
 		$email = new Email([
-			'sender'        => EMAIL_ACCOUNT,
+			'sender'        => 'Soins Des Levres <' . EMAIL_ACCOUNT . '>',
 			'recipient'     => $_POST['email'],
 			'subject'       => "Soins Des Lèvres : Création de votre compte",
 			'message'       => $helpers->renderTemplate(ROOT.'/emails/newAccount.php', $_POST),

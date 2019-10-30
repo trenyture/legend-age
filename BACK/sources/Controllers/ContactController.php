@@ -28,7 +28,7 @@ class ContactController {
 
 		$email = new Email([
 			'sender' => $_POST['email'],
-			'recipient' => EMAIL_ACCOUNT,
+			'recipient' => 'Soins Des Levres <' . EMAIL_ACCOUNT . '>',
 			'subject' => 'Contact : ' . $_POST['subject'],
 			'message' => $helpers->renderTemplate(ROOT.'/emails/contact.php', $_POST),
 			'fkEmailStatus' => 1

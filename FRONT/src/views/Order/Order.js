@@ -23,7 +23,7 @@ export default {
 		}),
 		totalPrice() {
 			return this.basketLines.reduce((r,e) => {
-				return r + e.quantity * (e.byFour == true ? 99 : 29.90);
+				return r + e.quantity * (e.byFour == true ? 99 : 29);
 			}, 0);
 		},
 	},

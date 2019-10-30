@@ -178,7 +178,7 @@ CREATE TABLE IF NOT EXISTS at_command_user(
 
 INSERT INTO product(label,unit_price)
 VALUES
-	("Beaume à lèvres", 29.90),
+	("Beaume à lèvres", 29.00),
 	("Lot de 4 beaumes", 99.00);
 
 INSERT INTO email_status (label)
