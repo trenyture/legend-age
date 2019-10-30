@@ -1,6 +1,6 @@
 <template>
 	<main class="root-container">
-		<video oncontextmenu="return false;" controls>
+		<video oncontextmenu="return false;" controls preload="metadata">
 			<source src="/assets/videos/video-accueil.mp4" type="video/mp4">
 			Désolé mais votre navigateur ne supporte pas les vidéos
 		</video>
