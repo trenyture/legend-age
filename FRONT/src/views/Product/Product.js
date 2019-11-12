@@ -10,12 +10,18 @@ export default {
 			quantity: 1,
 			byFour: false,
 			modalOpened: false,
-			console,
 		};
 	},
 	computed: {
 		finalPrice() {
-			let unitPrice = this.byFour == true ? 99 : 29.90;
+			let unitPrice = this.byFour == true ? 99 : 29;
+			if(this.isPromo) {
+				unitPrice = unitPrice - this.isPromo
+			}
+			return parseFloat(this.quantity * unitPrice).toFixed(2);
+		},
+		normalPrice() {
+			let unitPrice = this.byFour == true ? 99 : 29;
 			return parseFloat(this.quantity * unitPrice).toFixed(2);
 		}
 	},

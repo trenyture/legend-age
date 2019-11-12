@@ -23,6 +23,7 @@ Vue.mixin({
 		return {
 			apiUrl          : config.apiUrl,
 			stripePublicKey : config.stripePublicKey,
+			isPromo         : 4.01,
 		}
 	},
 });

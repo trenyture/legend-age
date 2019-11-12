@@ -6,10 +6,8 @@ class EmailManager extends Manager {
 		$sql = "
 			SELECT
 				email_pool.*,
-				JSON_OBJECT(
-					'id', email_status.id,
-					'label', email_status.label
-				) AS status
+				email_status.id AS status_id,
+				email_status.label AS status_label
 			FROM email_pool
 			LEFT JOIN email_status
 				ON email_status.id = email_pool.fk_email_status

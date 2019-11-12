@@ -22,6 +22,7 @@
 						@change="quantity = $event"
 					/>
 					<Input
+						v-if="false"
 						type="checkbox"
 						name="by-four"
 						:required="false"
@@ -29,11 +30,15 @@
 							value: 1,
 							label: 'Achat par lots de 4 exemplaires',
 						}]"
-						@change="byFour = $event.length > 0"
-					>(<b>-15%</b> de réduction)</Input>
-					<p id="price"><span>{{ finalPrice }} €</span> Prix toutes taxes comprises (TTC)</p>
+						@change="byFour = $event.length > 0">
+						(<b>-15%</b> de réduction)
+					</Input>
+					<p :id="promo !== null ? 'normal-price' : 'price'"><span>{{ promo !== null ? normalPrice : finalPrice }} €</span> {{promo !== null ? '' : 'Prix toutes taxes comprises (TTC)'}}</p>
+					<template v-if="promo !== null">
+						<p id="price">Promotion de Noël : <span>{{ finalPrice }} €</span> Prix toutes taxes comprises (TTC)</p>
+					</template>
 					<Button
-						class="button-outline-orange"
+						class="button-orange"
 						type="submit"
 					>Acheter</button>
 				</Form>

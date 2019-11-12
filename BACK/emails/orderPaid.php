@@ -20,7 +20,7 @@
 				</thead>
 				<tbody>
 					<?php foreach ($datas['commandLines'] as $cmdLine): ?>
-						<?php $price = $cmdLine["fk_product"] == 2 ? 99 : 29.90; ?> 
+						<?php $price = $cmdLine["fk_product"] == 2 ? 99 : (!is_null(PROMO) ? 29 - PROMO : 29); ?> 
 						<tr>
 							<td>
 								<?php

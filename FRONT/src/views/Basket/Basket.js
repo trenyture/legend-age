@@ -7,7 +7,6 @@ export default {
 	components: {Input, Button},
 	data() {
 		return {
-
 		};
 	},
 	computed: {
@@ -16,13 +15,18 @@ export default {
 		}),
 		tvaPrice() {
 			return this.basketLines.reduce((r,e) => {
-				return r + e.quantity * (0.2 * (e.byFour == true ? 99 : 29.90));
+				return r + e.quantity * (0.2 * (e.byFour == true ? 99 : 29));
+			}, 0);
+		},
+		promoPrice() {
+			return this.basketLines.reduce((r,e) => {
+				return r + e.quantity * (e.byFour == true ? 0 : this.isPromo);
 			}, 0);
 		},
 		totalPrice() {
 			return this.basketLines.reduce((r,e) => {
-				return r + e.quantity * (e.byFour == true ? 99 : 29.90);
-			}, 0);
+				return r + e.quantity * (e.byFour == true ? 99 : 29);
+			}, 0) - (this.isPromo || 0);
 		},
 	},
 	watch: {

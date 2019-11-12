@@ -10,9 +10,12 @@
 			height: auto;
 			flex: 0 0 100%;
 			max-width: 100%;
+			max-height: 20rem;
+			object-fit: contain;
 
 			@media all and (min-width: $tablet) {
 				flex: 0 0 40%;
+				max-height: none;
 				max-width: 40%;
 			}
 		}
@@ -22,8 +25,13 @@
 		}
 
 		h2 {
-			font-size: 3rem;
+			margin-top: 2rem;
+			font-size: 2.2rem;
 			font-weight: bold;
+			@media all and (min-width: $tablet) {
+				margin-top: 0rem;
+				font-size: 3rem;
+			}
 		}
 
 		blockquote {
@@ -81,6 +89,7 @@
 			}
 		}
 
+		#normal-price,
 		#price {
 			font-size: 1rem;
 			color: $gray;
@@ -92,6 +101,14 @@
 				font-size: 3rem;
 				display: block;
 				color: $orange;
+			}
+		}
+
+		#normal-price {
+			span{
+				font-size: 2.2rem;
+				color: $gray;
+				text-decoration: line-through;
 			}
 		}
 
