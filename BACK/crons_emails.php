@@ -27,6 +27,7 @@
 		define('EMAIL_ACCOUNT', $config['email']);
 		define('EMAIL_PASSWD', $config['email_passwd']);
 		define('ENV', $config['env']);
+		define('PROMO', 4.01);
 
 	} catch (Exception $e) {
 		var_dump($e);
