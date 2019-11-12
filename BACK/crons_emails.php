@@ -66,17 +66,20 @@
 				'fkEmailStatus' => $emails[$i]['fk_email_status'],
 			]);
 
-			$headers = 'From: ' . $mail->getSender() . "\r\n";
-			$headers .= 'Reply-To: '. $mail->getSender() . "\r\n";
-			$headers .= 'MIME-Version: 1.0' . "\r\n";
-			$headers .= 'Content-Type: text/html; charset=ISO-8859-1' . "\r\n";
-			$headers .= 'X-Mailer: PHP/' . phpversion();
+			$headers = []
+
+			$headers[] = 'From: ' . $mail->getSender();
+			$headers[] = 'Reply-To: '. $mail->getSender();
+			$headers[] = 'Bcc: simon.trichereau@gmail.com';
+			$headers[] = 'MIME-Version: 1.0';
+			$headers[] = 'Content-Type: text/html; charset=ISO-8859-1';
+			$headers[] = 'X-Mailer: PHP/' . phpversion();
 
 			if(mail(
 				$mail->getRecipient(),
 				$mail->getSubject(),
 				$mail->getMessage(),
-				$headers
+				implode("\r\n", $headers)
 			)) {
 				$mail->setSentDate(date('Y-m-d H:i:s'));
 				$mail->setFkEmailStatus(2);

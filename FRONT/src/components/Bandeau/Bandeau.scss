@@ -20,10 +20,11 @@
 
 	blockquote {
 		position: absolute;
-		top: 20%;
+		top: 50%;
 		left: 50%;
 		font-family: Butler, Times, sans-serif;
 		font-size: 2rem;
+		transform: translate(5%, -150%);
 		@media all and (min-width: $mobile) {
 			font-size: 3rem;
 		}
