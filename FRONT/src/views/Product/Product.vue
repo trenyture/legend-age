@@ -35,14 +35,15 @@
 					</Input>
 					<p id="price">
 						<template v-if="isPromo !== null">
-							<span>{{ finalPrice }} €</span>
 							<span id="normal-price">{{ normalPrice }} €</span>
+							<span>{{ finalPrice }} €</span>
 							<span id="promo">Promotion de Noël</span>
 						</template>
 						<template v-else>
 							<span>{{ normalPrice }} €</span>
 						</template>
-						<br>Prix toutes taxes comprises (TTC)
+						<!-- Prix toutes taxes comprises (TTC) -->
+						<br>Livraison offerte
 					</p>
 					<Button
 						class="button-orange"
