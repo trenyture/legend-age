@@ -89,7 +89,6 @@
 			}
 		}
 
-		#normal-price,
 		#price {
 			font-size: 1rem;
 			color: $gray;
@@ -99,16 +98,23 @@
 			span {
 				font-style: normal;
 				font-size: 3rem;
-				display: block;
+				display: inline-block;
 				color: $orange;
-			}
-		}
+				margin-right: 1rem;
+				vertical-align: middle;
 
-		#normal-price {
-			span{
-				font-size: 2.2rem;
-				color: $gray;
-				text-decoration: line-through;
+				&#normal-price {
+					color: $black;
+					text-decoration: line-through;
+					font-size: 2rem;
+				}
+
+				&#promo {
+					color: $white;
+					background: #960707;
+					padding: .5rem;
+					font-size: 1.6rem;
+				}
 			}
 		}
 

@@ -27,6 +27,7 @@ export default {
 				});
 			}
 			else {
+				window.fbq('track', 'Contact');
 				this.$store.dispatch('contactFormSent', true).then(() => {
 					this.$alert.swal({
 						type: "success",

@@ -33,10 +33,17 @@
 						@change="byFour = $event.length > 0">
 						(<b>-15%</b> de réduction)
 					</Input>
-					<p :id="promo !== null ? 'normal-price' : 'price'"><span>{{ promo !== null ? normalPrice : finalPrice }} €</span> {{promo !== null ? '' : 'Prix toutes taxes comprises (TTC)'}}</p>
-					<template v-if="promo !== null">
-						<p id="price">Promotion de Noël : <span>{{ finalPrice }} €</span> Prix toutes taxes comprises (TTC)</p>
-					</template>
+					<p id="price">
+						<template v-if="isPromo !== null">
+							<span>{{ finalPrice }} €</span>
+							<span id="normal-price">{{ normalPrice }} €</span>
+							<span id="promo">Promotion de Noël</span>
+						</template>
+						<template v-else>
+							<span>{{ normalPrice }} €</span>
+						</template>
+						<br>Prix toutes taxes comprises (TTC)
+					</p>
 					<Button
 						class="button-orange"
 						type="submit"

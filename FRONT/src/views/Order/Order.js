@@ -74,6 +74,11 @@ export default {
 		}
 	},
 	beforeMount(){
+	},
+	mounted() {
+		if(this.basketLines === null || this.basketLines.length < 1) this.$router.push({name: 'root'});
+
+		// Dans le cas d'un retour de STRIPE
 		if(this.$route.params.stripeId) {
 			let fd = new FormData();
 			fd.append('session_id', this.$route.params.stripeId);
@@ -82,6 +87,7 @@ export default {
 				method: 'POST',
 				data: fd,
 				success: r => {
+					window.fbq('track', 'Purchase', {value: this.totalPrice, currency: 'EUR'});
 					var router = this.$router;
 					this.$store.dispatch('deleteAllBasketLine').then(() => {
 						this.$alert.swal({
@@ -107,9 +113,5 @@ export default {
 				}
 			});
 		}
-	},
-	mounted() {
-		if(this.basketLines === null || this.basketLines.length < 1) this.$router.push({name: 'root'});
-
 	}
 }
