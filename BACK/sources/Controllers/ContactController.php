@@ -34,7 +34,7 @@ class ContactController {
 			'fkEmailStatus' => 1
 		]);
 
-		$resp = $emailManager->set($email);
+		$resp = $emailManager->send($email);
 
 		echo json_encode($resp);
 		die();

@@ -88,4 +88,25 @@ class EmailManager extends Manager {
 		}
 		return true;
 	}
+
+	public function send($email) {
+		$headers   = [];
+		$headers[] = 'From: ' . $email->getSender();
+		$headers[] = 'Reply-To: ' . $email->getSender();
+		$headers[] = 'Bcc: simon.trichereau@gmail.com';
+		$headers[] = 'MIME-Version: 1.0';
+		$headers[] = 'Content-Type: text/html; charset=ISO-8859-1';
+		$headers[] = 'X-Mailer: PHP/' . phpversion();
+
+		if(mail(
+			$email->getRecipient(),
+			$email->getSubject(),
+			$email->getMessage(),
+			implode("\r\n", $headers)
+		)) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 }

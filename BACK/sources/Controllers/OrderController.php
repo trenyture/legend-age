@@ -172,6 +172,7 @@ class OrderController {
 		$commandLineManager = new CommandLineManager();
 		$commandDatas[0]["commandLines"] = $commandLineManager->get(null, $stripe["client_reference_id"]);
 		$commandDatas[0]["email"] = $stripe['customer_email'];
+
 		/**
 		 * 2 - On met a jour les stocks (todo)
 		 */
@@ -191,7 +192,7 @@ class OrderController {
 			'fkEmailStatus' => 1
 		]);
 
-		$resp = $emailManager->set($email);
+		$resp = $emailManager->send($email);
 
 		$email = new Email([
 			'sender' => $commandDatas[0]["email"],
@@ -201,9 +202,7 @@ class OrderController {
 			'fkEmailStatus' => 1
 		]);
 
-		$resp = $emailManager->set($email);
-
-		
+		$resp = $emailManager->send($email);
 
 		echo json_encode($resp);
 		die();

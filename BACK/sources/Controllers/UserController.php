@@ -63,7 +63,7 @@ class UserController {
 			'message'       => $helpers->renderTemplate(ROOT.'/emails/newAccount.php', $_POST),
 			'fkEmailStatus' => 1
 		]);
-		$emailManager->set($email);
+		$emailManager->send($email);
 
 		echo json_encode($resp);
 		die();

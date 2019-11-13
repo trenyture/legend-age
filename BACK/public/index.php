@@ -25,6 +25,7 @@
 		define('STRIPE_PRIVATE_KEY', $config['stripePrivateKey']);
 		define('FRONT_URL', $config['frontUrl']);
 		define('PROMO', 4.01);
+
 		/* On inclut l'autoloader de nos dépendances, classes et controller */
 		require_once __DIR__.'/../autoloader.php';
 
