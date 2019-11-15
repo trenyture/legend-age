@@ -108,6 +108,8 @@ class OrderController {
 					'line_items' => $commandLines,
 					'success_url' => FRONT_URL . 'order/{CHECKOUT_SESSION_ID}',
 					'cancel_url' => FRONT_URL . 'basket',
+					'billing_address_collection' => 'auto',
+					'locale' => 'fr',
 				]);
 			} catch(\Stripe\Exception\CardException $e) {
 				throw $e;

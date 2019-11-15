@@ -5,10 +5,12 @@
 			<div>
 				<h2>Soin des lèvres</h2>
 				<blockquote>Un baume à lèvre, mille couleurs !</blockquote>
-				<p>Grâce à sa formule riche en <strong>cire d'abeille, vitamine E, huiles végétales et extrait des fraises des bois</strong>, ce baume <strong>prévient le dessèchement et gercement, hydrate et répare instantanément les lèvres, régénère la peau</strong>.</p>
-				<p><strong>Coloration Thermosensible</strong> : En fonction du PH et la température des lèvres, il colorie les lèvres naturellement.</p>
-				<p><strong><i>Excellente tenue !</i></strong></p>
-				<p><strong>Poids</strong> : 3.8 grammes</p>
+				<div class="infos">
+					<p>Grâce à sa formule riche en <strong>cire d'abeille, vitamine E, huiles végétales et extrait des fraises des bois</strong>, ce baume <strong>prévient le dessèchement et gercement, hydrate et répare instantanément les lèvres, régénère la peau</strong>.</p>
+					<p><strong>Coloration Thermosensible</strong> : En fonction du PH et la température des lèvres, il colorie les lèvres naturellement.</p>
+					<p><strong><i>Excellente tenue !</i></strong></p>
+					<p><strong>Poids</strong> : 3.8 grammes</p>
+				</div>
 				<Form
 					:preventSend="true"
 					@formSent="buyProduct"

@@ -41,13 +41,16 @@
 			margin: 1.5rem 0;
 		}
 
-		p {
-			margin-bottom: 1.5rem;
+		div.infos {
 			display: none;
-
 			@media all and (min-width: $tablet) {
 				display: block;
 			}
+		}
+
+		p {
+			margin-bottom: 1.5rem;
+
 
 			strong {
 				font-weight: bold;
@@ -99,6 +102,11 @@
 			color: $gray;
 			font-style: italic;
 			line-height: 1;
+			text-align: center;
+
+			@media all and (min-width: $tablet) {
+				text-align: left;
+			}
 
 			span {
 				font-style: normal;
