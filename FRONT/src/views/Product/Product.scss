@@ -21,7 +21,7 @@
 		}
 
 		& > div {
-			max-width: 50rem;
+			width: 100%;
 		}
 
 		h2 {
@@ -43,6 +43,11 @@
 
 		p {
 			margin-bottom: 1.5rem;
+			display: none;
+
+			@media all and (min-width: $tablet) {
+				display: block;
+			}
 
 			strong {
 				font-weight: bold;
@@ -161,6 +166,9 @@
 					}
 
 					&#ingredients {
+						@media all and (max-width: $tablet - 1px) {
+							height: auto;
+						}
 						justify-content: center;
 						h4 {
 							color: $lightOrange;

@@ -13,6 +13,18 @@
 					:preventSend="true"
 					@formSent="buyProduct"
 				>
+					<p id="price">
+						<template v-if="isPromo !== null">
+							<span id="normal-price">{{ normalPrice }} €</span>
+							<span>{{ finalPrice }} €</span>
+							<span id="promo">Promotion de Noël</span>
+						</template>
+						<template v-else>
+							<span>{{ normalPrice }} €</span>
+						</template>
+						<!-- Prix toutes taxes comprises (TTC) -->
+						<br>Livraison offerte
+					</p>
 					<Input
 						type="number"
 						label="Quantité"
@@ -33,22 +45,10 @@
 						@change="byFour = $event.length > 0">
 						(<b>-15%</b> de réduction)
 					</Input>
-					<p id="price">
-						<template v-if="isPromo !== null">
-							<span id="normal-price">{{ normalPrice }} €</span>
-							<span>{{ finalPrice }} €</span>
-							<span id="promo">Promotion de Noël</span>
-						</template>
-						<template v-else>
-							<span>{{ normalPrice }} €</span>
-						</template>
-						<!-- Prix toutes taxes comprises (TTC) -->
-						<br>Livraison offerte
-					</p>
 					<Button
 						class="button-orange"
 						type="submit"
-					>Acheter</button>
+					>Ajouter au panier</button>
 				</Form>
 			</div>
 		</article>
