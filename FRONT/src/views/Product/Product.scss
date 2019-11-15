@@ -41,10 +41,13 @@
 			margin: 1.5rem 0;
 		}
 
-		div.infos {
-			display: none;
+		div.content-datas {
+			display: flex;
+			flex-direction: column-reverse;
+			
 			@media all and (min-width: $tablet) {
 				display: block;
+				flex-direction: column;
 			}
 		}
 
@@ -127,6 +130,11 @@
 					background: #960707;
 					padding: .5rem;
 					font-size: 1.6rem;
+					@media all and (max-width: $tablet - 1px) {
+						display: block;
+						width: 18rem;
+						margin: 1rem auto 0 auto;
+					}
 				}
 			}
 		}
@@ -148,6 +156,10 @@
 		}
 
 		&#composition {
+			@media all and (max-width: $tablet - 1px) {
+				margin-bottom: 1rem;
+			}
+
 			ul{
 				display: flex;
 				flex-direction: row;
@@ -176,6 +188,7 @@
 					&#ingredients {
 						@media all and (max-width: $tablet - 1px) {
 							height: auto;
+							padding: 0;
 						}
 						justify-content: center;
 						h4 {

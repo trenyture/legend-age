@@ -5,53 +5,55 @@
 			<div>
 				<h2>Soin des lèvres</h2>
 				<blockquote>Un baume à lèvre, mille couleurs !</blockquote>
-				<div class="infos">
-					<p>Grâce à sa formule riche en <strong>cire d'abeille, vitamine E, huiles végétales et extrait des fraises des bois</strong>, ce baume <strong>prévient le dessèchement et gercement, hydrate et répare instantanément les lèvres, régénère la peau</strong>.</p>
-					<p><strong>Coloration Thermosensible</strong> : En fonction du PH et la température des lèvres, il colorie les lèvres naturellement.</p>
-					<p><strong><i>Excellente tenue !</i></strong></p>
-					<p><strong>Poids</strong> : 3.8 grammes</p>
+				<div class="content-datas">
+					<div class="infos">
+						<p>Grâce à sa formule riche en <strong>cire d'abeille, vitamine E, huiles végétales et extrait des fraises des bois</strong>, ce baume <strong>prévient le dessèchement et gercement, hydrate et répare instantanément les lèvres, régénère la peau</strong>.</p>
+						<p><strong>Coloration Thermosensible</strong> : En fonction du PH et la température des lèvres, il colorie les lèvres naturellement.</p>
+						<p><strong><i>Excellente tenue !</i></strong></p>
+						<p><strong>Poids</strong> : 3.8 grammes</p>
+					</div>
+					<Form
+						:preventSend="true"
+						@formSent="buyProduct"
+					>
+						<p id="price">
+							<template v-if="isPromo !== null">
+								<span id="normal-price">{{ normalPrice }} €</span>
+								<span>{{ finalPrice }} €</span>
+								<span id="promo">Promotion de Noël</span>
+							</template>
+							<template v-else>
+								<span>{{ normalPrice }} €</span>
+							</template>
+							<!-- Prix toutes taxes comprises (TTC) -->
+							<br>Livraison offerte
+						</p>
+						<Input
+							type="number"
+							label="Quantité"
+							name="quantity"
+							:min="1"
+							:value="quantity"
+							@change="quantity = $event"
+						/>
+						<Input
+							v-if="false"
+							type="checkbox"
+							name="by-four"
+							:required="false"
+							:choices="[{
+								value: 1,
+								label: 'Achat par lots de 4 exemplaires',
+							}]"
+							@change="byFour = $event.length > 0">
+							(<b>-15%</b> de réduction)
+						</Input>
+						<Button
+							class="button-orange"
+							type="submit"
+						>Ajouter au panier</button>
+					</Form>
 				</div>
-				<Form
-					:preventSend="true"
-					@formSent="buyProduct"
-				>
-					<p id="price">
-						<template v-if="isPromo !== null">
-							<span id="normal-price">{{ normalPrice }} €</span>
-							<span>{{ finalPrice }} €</span>
-							<span id="promo">Promotion de Noël</span>
-						</template>
-						<template v-else>
-							<span>{{ normalPrice }} €</span>
-						</template>
-						<!-- Prix toutes taxes comprises (TTC) -->
-						<br>Livraison offerte
-					</p>
-					<Input
-						type="number"
-						label="Quantité"
-						name="quantity"
-						:min="1"
-						:value="quantity"
-						@change="quantity = $event"
-					/>
-					<Input
-						v-if="false"
-						type="checkbox"
-						name="by-four"
-						:required="false"
-						:choices="[{
-							value: 1,
-							label: 'Achat par lots de 4 exemplaires',
-						}]"
-						@change="byFour = $event.length > 0">
-						(<b>-15%</b> de réduction)
-					</Input>
-					<Button
-						class="button-orange"
-						type="submit"
-					>Ajouter au panier</button>
-				</Form>
 			</div>
 		</article>
 		<section id="composition">
