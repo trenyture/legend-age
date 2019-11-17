@@ -31,6 +31,11 @@
 		Router::post('/test', 'OrderController@update');
 	});
 
+	Router::group(['prefix' => '/payment'], function () {
+		Router::post('/', 'PaymentController@create');
+		Router::post('/confirmed', 'PaymentController@update');
+	});
+
 	Router::get('/country', 'CountryController@retrieve');
 
 	Router::post('/contact', 'ContactController@contact');

@@ -18,7 +18,7 @@
 							<td>
 								<div>
 									<img alt="Produit - Legend Age" src="/assets/images/product.png">
-									<span>Legend Age - Soin des lèvres</span>			
+									<span>Legend Age - Soin des lèvres</span>
 								</div>
 							</td>
 							<td>{{ line.quantity }} {{ line.byFour ? `lot${line.quantity > 1 ? 's' : ''} de 4 exemplaires` : `exemplaire${line.quantity > 1 ? 's' : ''}` }}</td>
@@ -63,7 +63,7 @@
 				:choices="[{value:1, label: 'J\'ai lu et j\'accepte les conditions générales de vente'}]"
 			></Input>
 			<div class="buttons">
-				<Button :class="'button button-outline-orange'" @click="order">Commander</Button>
+				<Button :class="'button button-outline-orange'" @click="order">Passer au Paiement</Button>
 			</div>
 		</template>
 		<p v-else>Votre panier est vide, n'hésitez pas à ajouter des produits au panier.</p>

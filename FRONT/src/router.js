@@ -31,11 +31,19 @@ export default new Router({
 			}
 		},
 		{
-			path: '/order/:stripeId?',
+			path: '/order/',
 			name: 'order',
 			component: resolve => require(['./views/Order/Order.vue'], resolve),
 			meta: {
 				pageTitle: 'Paiement',
+			}
+		},
+		{
+			path: '/order/confirmed/:type(\\paypal|stripe)/:orderId',
+			name: 'confirmed',
+			component: resolve => require(['./views/Order/Confirmed.vue'], resolve),
+			meta: {
+				pageTitle: 'Achat confirmé',
 			}
 		},
 		{

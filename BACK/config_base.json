@@ -6,5 +6,7 @@
 	"env": "dev",
 	"email": "contact@soins-des-levres.fr",
 	"email_passwd": "azerty",
-	"stripePrivateKey": "sk_test_L20gK7dr0KCo6FfeTm5d9u90Be7K2DIcSr"
+	"stripePrivateKey": "sk_test_L20gK7dr0KCo6FfeTm5d9u90Be7K2DIcSr",
+	"paypalPrivateKey": "GoSouVCCJELCVv5UU3_JCKkMzmUsprKQ7DY5jaNUZT2CXF9grOCYFeooALrsNohDNfRbfcRdz1ACzqjz",
+	"paypalClientId": "jhC0Yq_jmn0I9FTkRrA4E-vmLYaHCJiWEDDPWlcsXv_Dui1VmAVK3vxt52qHujX5DudaJSSv_TEUWuom"
 }

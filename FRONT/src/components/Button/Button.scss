@@ -8,12 +8,10 @@
 	white-space: nowrap;
 	vertical-align: middle;
 	font-size: 1.4rem;
-	height: 2rem;
 	min-width: 3.75rem;
 	box-sizing: border-box;
 	border-radius: 5rem;
-	line-height: 3.75rem;
-	padding: 0 5rem;
+	padding: 1rem 5rem;
 	transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
 
 	&:focus{

@@ -8,16 +8,9 @@ export default {
 	components: {Form, Input, Button},
 	data() {
 		return {
-			countries: null,
-			cities: [],
-			disableForm: false,
 		};
 	},
 	computed: {
-		isReady() {
-			return this.countries !== null	
-				&& !this.$route.params.stripeId;
-		},
 		...mapGetters({
 			basketLines: 'getBasket',
 		}),
@@ -28,36 +21,17 @@ export default {
 		},
 	},
 	watch: {
-		isReady: {
-			immediate:true,
-			handler(n, o) {
-				if(typeof o === "undefined") {
-					this.loadCountries();
-				}
-			}
-		}
 	},
 	methods: {
-		loadCountries() {
-			this.$ajax({
-				url: '/country',
-				success: r => this.countries = r,
-			});
-		},
-		loadCities(event){
-			this.cities = null;
-			fetch('https://geo.api.gouv.fr/communes?codePostal='+event+'&fields=nom,code,codesPostaux,codeDepartement,codeRegion,population&format=json&geometry=centre')
-			.then(response => response.json().then(r => this.cities = r));
-		},
-		formSent(form) {
-			this.disableForm = true;
-			for (var i = 0, len = this.basketLines.length; i < len; i++) {
+		goWithStripe() {
+			let form = new FormData();
+			for(var i = 0, len = this.basketLines.length; i < len; i++) {
 				form.append('ordered_quantity[]', this.basketLines[i].quantity);
 				form.append('fk_product[]', this.basketLines[i].byFour ? 2 : 1);
 			}
 
 			this.$ajax({
-				url: '/order',
+				url: '/payment',
 				method: 'POST',
 				data: form,
 				success: r => {
@@ -65,53 +39,29 @@ export default {
 						sessionId: r.stripe_id,
 					});
 				},
-				fail: e => {
-					this.disableForm = false;
-					this.$error(e);
-				}
 			});
-			return;
-		}
-	},
-	beforeMount(){
+		},
 	},
 	mounted() {
-		if(this.basketLines === null || this.basketLines.length < 1) this.$router.push({name: 'root'});
-
-		// Dans le cas d'un retour de STRIPE
-		if(this.$route.params.stripeId) {
-			let fd = new FormData();
-			fd.append('session_id', this.$route.params.stripeId);
-			this.$ajax({
-				url: '/order/test',
-				method: 'POST',
-				data: fd,
-				success: r => {
-					window.fbq('track', 'Purchase', {value: this.totalPrice, currency: 'EUR'});
-					var router = this.$router;
-					this.$store.dispatch('deleteAllBasketLine').then(() => {
-						this.$alert.swal({
-							type: 'success',
-							title: 'Merci',
-							message: "Votre commande a bien été enregistrée et nous la traiterons dans les plus brefs délais.",
-							callback() {
-								router.push({name: 'basket'});
+		if(this.$refs.paypalButtons) {
+			paypal.Buttons({
+				createOrder: (data, actions) => {
+					return actions.order.create({
+						purchase_units: [{
+							amount: {
+								value: this.totalPrice.toFixed(2),
+								currency_code: 'EUR'
 							}
-						});
-					})
-				},
-				fail: e => {
-					var router = this.$router;
-					this.$alert.swal({
-						type: 'error',
-						title: 'Erreur',
-						message: "Il y a eu un problème lors du paiement de la commande",
-						callback() {
-							router.push({name: 'basket'});
-						}
+						}]
 					});
-				}
-			});
+				},
+				onApprove: (data, actions) => {
+					return actions.order.capture().then((details) => {
+						this.$router.push({name: "confirmed", params: { type: "paypal", orderId: data.orderID }});
+					});
+				},
+			}).render('#paypal-buttons');
 		}
+
 	}
 }

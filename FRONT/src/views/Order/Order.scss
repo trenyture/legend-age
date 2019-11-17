@@ -10,34 +10,37 @@
 		font-size: 1.6rem;
 		color: $orange;
 	}
-	.city {
-		.input-form {
-			display: inline-block;
-			width:65%;
-			vertical-align: top;
-			box-sizing:border-box;
-			padding-left: 2rem;
+	#stripe-button,
+	#paypal-buttons {
+		display: block;
+		width: 100%;
+		max-width: 40rem;
+		margin: 2rem auto;
+	}
+	.or {
+		display: block;
+		margin: 2rem auto;
+		width: 5rem;
+		text-align: center;
+		position: relative;
 
-			@media all and (min-width: $tablet) {
-				width:75%;
-			}
+		&:after,
+		&:before {
+			content: '';
+			height: .1rem;
+			width: 15rem;
+			position: absolute;
+			top: 50%;
+			left: 100%;
+			background: $lightGray;
+		}
 
-			&:nth-of-type(1) {
-				padding-left: 0;
-				width:35%;
-
-				@media all and (min-width: $tablet) {
-					width: 25%;
-				}
-			}
+		&:before {
+			left: auto;
+			right: 100%;
 		}
 	}
-	.buttons {
-		margin-top: 3rem;
-		text-align: right;
-
-		.button {
-			margin-left: 1rem;
-		}
+	.center {
+		text-align: center;
 	}
 }

@@ -25,8 +25,8 @@ export default {
 		},
 		totalPrice() {
 			return this.basketLines.reduce((r,e) => {
-				return r + e.quantity * (e.byFour == true ? 99 : 29);
-			}, 0) - (this.isPromo || 0);
+				return r + e.quantity * (e.byFour == true ? 99 : (this.isPromo ? 29 - this.isPromo : 29));
+			}, 0);
 		},
 	},
 	watch: {
@@ -43,6 +43,6 @@ export default {
 			}
 			window.fbq('track', 'InitiateCheckout');
 			this.$router.push({name: 'order'});
-		}
+		},
 	},
 };
