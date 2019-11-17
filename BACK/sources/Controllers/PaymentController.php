@@ -47,6 +47,7 @@ class PaymentController {
 				'success_url' => FRONT_URL . 'order/confirmed/stripe/{CHECKOUT_SESSION_ID}',
 				'cancel_url' => FRONT_URL . 'basket',
 				'locale' => 'fr',
+				'billing_address_collection' => 'required',
 			]);
 		} catch(\Stripe\Exception\CardException $e) {
 			throw $e;
