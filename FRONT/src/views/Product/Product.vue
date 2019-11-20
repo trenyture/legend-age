@@ -56,6 +56,10 @@
 				</div>
 			</div>
 		</article>
+		<picture id="avant-apres">
+			<source srcset="/assets/images/avant-apres.png" type="image/png" media="(min-width: 600px)">
+			<img alt="Avant Après - Legend Age" src="/assets/images/avant-apres-mobile.png">
+		</picture>
 		<section id="composition">
 			<h3>Composition</h3>
 			<ul>

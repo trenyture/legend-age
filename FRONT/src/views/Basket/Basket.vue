@@ -39,8 +39,8 @@
 							<td>{{ tvaPrice.toFixed(2) }} €</td>
 						</tr>
 						<tr>
-							<td>Livraison</td>
-							<td>Offerte !</td>
+							<td>Livraison<br><small style="font-size: 0.8em;">Envoi suivi sous papier bulle</small></td>
+							<td><s>2.16 €</s><br>Offert !</td>
 						</tr>
 						<tr v-if="isPromo">
 							<td>Promotion de Noël</td>

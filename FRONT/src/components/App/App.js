@@ -24,4 +24,10 @@ export default {
 		}
 	},
 	methods: {},
+	mounted() {
+		var script = document.createElement('script');
+		script.type = 'text/javascript';
+		script.src = 'https://www.paypal.com/sdk/js?client-id=' + this.paypalPublicKey + '&currency=EUR';
+		document.getElementsByTagName('head')[0].appendChild(script);
+	}
 };

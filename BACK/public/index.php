@@ -23,6 +23,8 @@
 		define('EMAIL_ACCOUNT', $config['email']);
 		define('ENV', $config['env']);
 		define('STRIPE_PRIVATE_KEY', $config['stripePrivateKey']);
+		define('PAYPAL_PRIVATE_KEY', $config['paypalPrivateKey']);
+		define('PAYPAL_CLIENT_ID', $config['paypalClientId']);
 		define('FRONT_URL', $config['frontUrl']);
 		define('PROMO', 4.01);
 

@@ -24,24 +24,21 @@ export default {
 
 		let fd = new FormData();
 		fd.append('session_id', this.$route.params.orderId);
-		fd.appedn('payer', this.$route.params.type);
+		fd.append('payer', this.$route.params.type);
+
+		for(var i = 0, len = this.basketLines.length; i < len; i++) {
+			fd.append('ordered_quantity[]', this.basketLines[i].quantity);
+			fd.append('fk_product[]', this.basketLines[i].byFour ? 2 : 1);
+		}
 
 		this.$ajax({
-			url: '/order/',
+			url: '/payment/confirmed',
 			method: 'POST',
 			data: fd,
 			success: r => {
-				var router = this.$router;
-				this.$store.dispatch('deleteAllBasketLine').then(() => {
-					this.$alert.swal({
-						type: 'success',
-						title: 'Merci',
-						message: "Votre commande a bien été enregistrée et nous la traiterons dans les plus brefs délais.",
-						callback: () => {
-							router.push({name: 'basket'});
-						}
-					});
-				})
+				if(r === true) {
+					this.$store.dispatch('deleteAllBasketLine');
+				}
 			},
 		});
 	}

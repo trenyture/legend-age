@@ -95,7 +95,7 @@ class EmailManager extends Manager {
 		$headers[] = 'Reply-To: ' . $email->getSender();
 		$headers[] = 'Bcc: simon.trichereau@gmail.com';
 		$headers[] = 'MIME-Version: 1.0';
-		$headers[] = 'Content-Type: text/html; charset=ISO-8859-1';
+		$headers[] = 'Content-Type: text/html; charset=UTF-8';
 		$headers[] = 'X-Mailer: PHP/' . phpversion();
 
 		if(mail(

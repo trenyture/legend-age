@@ -28,9 +28,11 @@
 			margin-top: 2rem;
 			font-size: 2.2rem;
 			font-weight: bold;
+			text-align: center;
 			@media all and (min-width: $tablet) {
 				margin-top: 0rem;
 				font-size: 3rem;
+				text-align: left;
 			}
 		}
 
@@ -39,6 +41,10 @@
 			font-size: 1.4rem;
 			font-style: italic;
 			margin: 1.5rem 0;
+			text-align: center;
+			@media all and (min-width: $tablet) {
+				text-align: left;
+			}
 		}
 
 		div.content-datas {
@@ -142,6 +148,16 @@
 		button {
 			width:100%;
 			box-shadow: 0 .3rem .5rem #{rgba($gray, .5)};
+		}
+	}
+
+	#avant-apres {
+		display: block;
+		width: 100%;
+		height: auto;
+		img {
+			width: 100%;
+			height: auto;
 		}
 	}
 

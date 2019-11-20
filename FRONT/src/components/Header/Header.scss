@@ -76,7 +76,9 @@
 	nav#mobile {
 		position: relative;
 		display: flex;
+		align-items: center;
 		justify-content: space-between;
+		padding: 0 1rem;
 		@media all and (min-width: $tablet) {
 			display: none;
 		}
@@ -92,15 +94,23 @@
 			margin:0 auto 0 1rem;
 		}
 
-		a#burger {
+		a#burger,
+		.to-basket {
+			color: $black;
+			text-decoration: none;
 			font-size: 3rem;
 			margin-right: 1rem;
+
+			&:hover,
+			&:focus {
+				color: $gray;
+			}
 		}
 
 		ul {
 			position: absolute;
 			top: 7rem;
-			right:0;
+			left:0;
 			width: 100%;
 			max-width: 20rem;
 			box-shadow: 0 .5rem .6rem #00000029;

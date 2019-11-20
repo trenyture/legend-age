@@ -23,13 +23,14 @@ Vue.mixin({
 		return {
 			apiUrl          : config.apiUrl,
 			stripePublicKey : config.stripePublicKey,
+			paypalPublicKey : config.paypalPublicKey,
 			isPromo         : 4.01,
 		}
 	},
 });
 
 new Vue({
-  router,
-  store,
-  render: h => h(App)
+	router,
+	store,
+	render: h => h(App)
 }).$mount('#app');
