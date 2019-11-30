@@ -8,6 +8,8 @@ export default {
 	components: {Form, Input, Button},
 	data() {
 		return {
+			now: new Date(),
+			isBlackFriday: false,
 		};
 	},
 	computed: {
@@ -15,9 +17,13 @@ export default {
 			basketLines: 'getBasket',
 		}),
 		totalPrice() {
-			return this.basketLines.reduce((r,e) => {
+			let tt = this.basketLines.reduce((r,e) => {
 				return r + e.quantity * (e.byFour == true ? 99 : (29 - (this.isPromo || 0)));
 			}, 0);
+			if(this.isBlackFriday) {
+				tt += 2.5;
+			}
+			return tt;
 		},
 	},
 	watch: {
@@ -42,6 +48,12 @@ export default {
 			});
 		},
 	},
+	beforeMount() {
+		if(this.now >= new Date('2019-11-28 20:00:00') && this.now < new Date('2019-12-02 00:00:00')) {
+			this.isBlackFriday = true;
+			this.isPromo = 9.01;
+		}
+	},
 	mounted() {
 		if(this.$refs.paypalButtons) {
 			paypal.Buttons({
@@ -62,6 +74,12 @@ export default {
 				},
 			}).render('#paypal-buttons');
 		}
-
+	},
+	updated() {
+		if(this.now >= new Date('2019-11-28 20:00:00') && this.now < new Date('2019-12-02 00:00:00')) {
+			this.isBlackFriday = true;
+			this.isPromo = 9.01;
+		}
 	}
+
 }

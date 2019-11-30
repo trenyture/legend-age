@@ -7,6 +7,8 @@ export default {
 	components: {Input, Button},
 	data() {
 		return {
+			now : new Date(),
+			isBlackFriday: false,
 		};
 	},
 	computed: {
@@ -24,9 +26,13 @@ export default {
 			}, 0);
 		},
 		totalPrice() {
-			return this.basketLines.reduce((r,e) => {
+			let tt = this.basketLines.reduce((r,e) => {
 				return r + e.quantity * (e.byFour == true ? 99 : (this.isPromo ? 29 - this.isPromo : 29));
 			}, 0);
+			if(this.isBlackFriday) {
+				tt += 2.5;
+			}
+			return tt;
 		},
 	},
 	watch: {
@@ -45,4 +51,16 @@ export default {
 			this.$router.push({name: 'order'});
 		},
 	},
+	beforeMount() {
+		if(this.now >= new Date('2019-11-28 20:00:00') && this.now < new Date('2019-12-02 00:00:00')) {
+			this.isBlackFriday = true;
+			this.isPromo = 9.01;
+		}
+	},
+	updated() {
+		if(this.now >= new Date('2019-11-28 20:00:00') && this.now < new Date('2019-12-02 00:00:00')) {
+			this.isBlackFriday = true;
+			this.isPromo = 9.01;
+		}
+	}
 };

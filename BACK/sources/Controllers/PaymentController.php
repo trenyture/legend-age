@@ -23,7 +23,7 @@ class PaymentController {
 				$item['description'] = $_POST['ordered_quantity'][$i] .
 					($_POST['fk_product'][$i] == 2
 						? ' lot'.($_POST['ordered_quantity'][$i] > 1 ? 's' : '').' de 4 exemplaires'
-						: ' exemplaire'.($_POST['ordered_quantity'][$i] > 1 ? 's' : '')). ' du beaume magique Legend Age' ;
+						: ' exemplaire'.($_POST['ordered_quantity'][$i] > 1 ? 's' : '')). ' du beaume Legend Age' ;
 				$unitPrice = $_POST['fk_product'][$i] == 2 ? 99.00 : 29.00;
 				if(!is_null(PROMO) && $_POST['fk_product'][$i] == 1) {
 					$unitPrice = $unitPrice - PROMO;
@@ -39,6 +39,14 @@ class PaymentController {
 
 		if(count($commandLines) == 0) {
 			throw new Exception("Vous devez commander des produits", 401);
+		}
+
+		if(ISBLACKFRIDAY) {
+			$commandLines[]['quantity'] = 1;
+			$commandLines[]['name'] = "Livraison";
+			$commandLines[]['currency'] = "eur";
+			$commandLines[]['description'] = "Envoi suivi sous papier bulle";
+			$commandLines[]['amount'] = 2.50;
 		}
 
 		try {
@@ -148,6 +156,9 @@ class PaymentController {
 				array_push($order["commandLines"], $item);
 				$order["total_price_with_tax"] += $_POST['ordered_quantity'][$i] * ($_POST['fk_product'][$i] == 2 ? 99.00 : (!is_null(PROMO) ? 29.00 - PROMO : 29.00));
 			}
+		}
+		if(ISBLACKFRIDAY) {
+			$order["total_price_with_tax"] += 2.50;
 		}
 
 		/**

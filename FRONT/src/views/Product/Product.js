@@ -10,6 +10,10 @@ export default {
 			quantity: 1,
 			byFour: false,
 			modalOpened: false,
+			activeSlide: 0,
+
+			now: new Date(),
+			isBlackFriday: false,
 		};
 	},
 	computed: {
@@ -40,4 +44,17 @@ export default {
 			});
 		}
 	},
+
+	beforeMount() {
+		if(this.now >= new Date('2019-11-28 20:00:00') && this.now < new Date('2019-12-02 00:00:00')) {
+			this.isBlackFriday = true;
+			this.isPromo = 9.01;
+		}
+	},
+	updated() {
+		if(this.now >= new Date('2019-11-28 20:00:00') && this.now < new Date('2019-12-02 00:00:00')) {
+			this.isBlackFriday = true;
+			this.isPromo = 9.01;
+		}
+	}
 };

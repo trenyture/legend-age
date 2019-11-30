@@ -25,6 +25,7 @@ Vue.mixin({
 			stripePublicKey : config.stripePublicKey,
 			paypalPublicKey : config.paypalPublicKey,
 			isPromo         : 4.01,
+			isBlackFriday   : false,
 		}
 	},
 });

@@ -1,7 +1,7 @@
 <template>
 	<main class="contact-container">
 		<h2>Contact</h2>
-		<p class="explication">Vous avez <span>une question</span> ou peut être <span>une remarque</span>? N'hésitez pas à nous envoyer un message avec le formulaire suivant, nous y répondrons dans les plus brefs délais.</p>
+		<p class="explication">Vous avez <span>une question</span> ou peut être <span>une remarque</span> ? N'hésitez pas à nous envoyer un message avec le formulaire suivant, nous y répondrons dans les plus brefs délais.</p>
 		<Form
 			action="/contact"
 			method="POST"

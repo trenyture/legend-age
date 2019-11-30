@@ -18,7 +18,8 @@ export default({
 	 * On construits nos headers et notre URL
 	 * @type {Object}
 	 */
-	let headers = {};
+	let headers = {
+	};
 	let newUrl = url;
 	if(toApi) {
 		newUrl = config.apiUrl + (url.length > 0 && url[0] == '/' ? url : '/'+url);
@@ -28,6 +29,10 @@ export default({
 	}
 
 	method = method.toUpperCase();
+
+	if(method === "PUT") {
+		header['Content-Type'] = 'application/x-www-form-urlencoded';
+	}
 
 	let obj = {
 		mode: 'cors',

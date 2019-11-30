@@ -1,24 +1,71 @@
 .product-container {
 	article {
 		display: flex;
-		align-items: flex-start;
+		align-items: flex-end;
 		@media all and (max-width: #{$tablet - 1px}) {
 			flex-wrap: wrap;
 		}
+		@media all and (min-width: $tablet) {
+			margin-bottom: 3rem;
+		}
 
-		img {
-			height: auto;
+		.carousel-container {
+			overflow: hidden;
+			position: relative;
+			height: 22rem;
 			flex: 0 0 100%;
-			max-width: 100%;
-			max-height: 20rem;
-			object-fit: contain;
 
 			@media all and (min-width: $tablet) {
-				flex: 0 0 40%;
-				max-height: none;
+				flex: 0 0 38%;
+				height: 40rem;
 				max-width: 40%;
+				margin-right: 2%;
+				position: relative;
+				top: 1.8rem;
+			}
+
+			.carousel {
+				display: flex;
+				flex-direction: row;
+				transition: transform 0.5s ease;
+				height: calc(100% - 2.5rem);
+				position: relative;
+
+				img {
+					width: 100%;
+					height: 100%;
+					object-fit: contain;
+					object-position: bottom;
+				}
+			}
+			.dots {
+				position: absolute;
+				bottom: 0;
+				left:0;
+				display: flex;
+				justify-content: center;
+				width: 100%;
+
+				li {
+					width: 1.5rem;
+					height: 1.5rem;
+					border-radius: 2rem;
+					border: .1rem solid $gray;
+					opacity: 0.5;
+					margin: 0 .2rem;
+					transition: all .3s ease;
+
+					&:hover {
+						opacity: 1;
+					}
+
+					&.actived {
+						background-color: $gray;
+					}
+				}
 			}
 		}
+
 
 		& > div {
 			width: 100%;
@@ -151,16 +198,6 @@
 		}
 	}
 
-	#avant-apres {
-		display: block;
-		width: 100%;
-		height: auto;
-		img {
-			width: 100%;
-			height: auto;
-		}
-	}
-
 	section {
 		margin-bottom: 3rem;
 
@@ -196,26 +233,11 @@
 						flex: 0 0 calc(50% - 2rem);
 					}
 
-					&:not(#ingredients) {
-						color: $white;
-						text-shadow: .1rem .1rem .3rem $black;
-					}
-
-					&#ingredients {
-						@media all and (max-width: $tablet - 1px) {
-							height: auto;
-							padding: 0;
-						}
-						justify-content: center;
-						h4 {
-							color: $lightOrange;
-						}
-					}
-
-					h4 {
+					h3 {
 						font-size: 2rem;
 						font-style: italic;
 						margin-bottom: 1rem;
+						color: $white;
 					}
 
 					strong {
@@ -230,6 +252,22 @@
 						width: 100%;
 						object-fit: cover;
 						object-position: top center;
+					}
+
+					&:not(#ingredients) {
+						color: $white;
+						text-shadow: .1rem .1rem .3rem $black;
+					}
+
+					&#ingredients {
+						@media all and (max-width: $tablet - 1px) {
+							height: auto;
+							padding: 0;
+						}
+						justify-content: center;
+						h3 {
+							color: $lightOrange;
+						}
 					}
 				}
 			}

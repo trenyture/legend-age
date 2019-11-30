@@ -1,4 +1,17 @@
 .root-container {
+	.logos {
+		width: 100%;
+		text-align: center;
+
+		img {
+
+			max-height: 5rem;
+			max-width: 20rem;
+			margin: .5rem;
+			display: inline-block;
+			vertical-align: middle;
+		}
+	}
 	video {
 		width: 100%;
 	}
@@ -17,14 +30,15 @@
 		}
 
 		h2 {
+		
 			position: absolute;
 			top: 0; left: -5rem;
 			transform: translateY(-50%);
 			background-color: $white;
 			padding-right: .5rem;
 			display: inline-block;
-			font-size: 4rem;
-			font-family: 'Butler', Times, sans-serif;
+			font-size: 3rem;
+			font-weight: bold;
 		}
 
 		img {
@@ -41,6 +55,17 @@
 		p{
 			text-align: justify;
 			margin: 1rem 0;
+		}
+	}
+
+	#avant-apres {
+		display: block;
+		width: 100%;
+		height: auto;
+		margin-top: 5rem;
+		img {
+			width: 100%;
+			height: auto;
 		}
 	}
 }

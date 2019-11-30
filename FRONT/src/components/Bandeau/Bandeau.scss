@@ -15,11 +15,11 @@
 	width: 100%;
 	height: 100%;
 	width: 100%;
-	height: calc(100vh - 12rem);
+	height: calc(100vh - 11rem);
 	position: relative;
 
 	@media all and (min-width: $tablet) {
-		height: calc(100vh - 13.5rem);
+		height: calc(100vh - 14rem);
 	}
 
 	img {
@@ -43,18 +43,20 @@
 
 		@media all and (min-width: $tablet) {
 			position: absolute;
-			top: 50%;
-			left: calc(50% - 3rem);
-			padding: 0 5rem 0 3rem;
+			top: 15vh;
+			padding: 0 2rem 0 5rem;
 			font-size: 1.4rem;
 			width: 50%;
 			left: 50%;
-			transform: translate(0, -150%);
-			width: calc(50% + 3rem);
 			max-width: 45rem;
+			box-sizing: border-box;
 		}
 
-		strong {
+		@media all and (min-width: $desktop) {
+			padding-left: 10rem;
+		}
+
+		h2 {
 			color:$black;
 			font-weight: bold;
 			display: block;
@@ -74,7 +76,7 @@
 	.scroll {
 		font-size: 3rem;
 		position: absolute;
-		bottom: 3rem;
+		bottom: 1rem;
 		left: 0;
 		width: 100%;
 		text-align: center;
@@ -84,5 +86,10 @@
 		-moz-animation: bounce 2s infinite;
 		-webkit-animation: bounce 2s infinite;
 		animation: bounce 2s infinite;
+
+		@media all and (min-width: $tablet) {
+			bottom: 3rem;
+		}
+
 	}
 }

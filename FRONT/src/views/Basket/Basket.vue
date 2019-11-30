@@ -40,10 +40,12 @@
 						</tr>
 						<tr>
 							<td>Livraison<br><small style="font-size: 0.8em;">Envoi suivi sous papier bulle</small></td>
-							<td><s>2.16 €</s><br>Offert !</td>
+							<td v-if="isBlackFriday">2.50 €</td>
+							<td v-else><s>2.50 €</s><br>Offert !</td>
 						</tr>
 						<tr v-if="isPromo">
-							<td>Promotion de Noël</td>
+							<td v-if="isBlackFriday">Black Friday</td>
+							<td v-else>Promotion de Noël</td>
 							<td>- {{ promoPrice.toFixed(2) }} €</td>
 						</tr>
 						<tr>

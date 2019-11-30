@@ -49,6 +49,14 @@
 						<td><?php echo number_format(($cmdLine["ordered_quantity"] * $price), 2, ',', ' '); ?> €</td>
 					</tr>
 				<?php endforeach ?>
+				<?php if (ISBLACKFRIDAY): ?>
+					<tr>
+						<td>Envoi suivi sous papier bulle</td>
+						<td><?php echo number_format((2.50 / 1.2), 2, ',', ' ') ?> €</td>
+						<td><?php echo number_format((2.50 / 1.2), 2, ',', ' ') ?> €</td>
+						<td>2,16 €</td>
+					</tr>
+				<?php endif ?>
 			</tbody>
 		</table>
 	<?php endif ?>

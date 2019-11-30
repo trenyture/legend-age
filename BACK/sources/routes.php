@@ -25,6 +25,13 @@
 		Router::put('/{commandId}', 'CommandController@update')->where(['commandId' => '[0-9]+']);
 		Router::delete('/{commandId}', 'CommandController@delete')->where(['commandId' => '[0-9]+']);
 	});
+	
+	Router::group(['prefix' => '/comment'], function () {
+		Router::get('/{commentId?}', 'CommentController@retrieve')->where(['commentId' => '[0-9]+']);
+		Router::post('/', 'CommentController@insert');
+		Router::put('/{commentId}', 'CommentController@update')->where(['commentId' => '[0-9]+']);
+		Router::delete('/{commentId}', 'CommentController@delete')->where(['commentId' => '[0-9]+']);
+	});
 
 	Router::group(['prefix' => '/order'], function () {
 		Router::post('/', 'OrderController@create');

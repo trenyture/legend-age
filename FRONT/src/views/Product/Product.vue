@@ -1,7 +1,16 @@
 <template>
 	<main class="product-container">
 		<article>
-			<img alt="Produit - Legend Age" src="/assets/images/product.png">
+			<div class="carousel-container">
+				<div class="carousel" :style="`transform: translate3d(-${activeSlide * 100}%, 0, 0);`">
+					<img alt="Produit - Legend Age" src="/assets/images/product.png">
+					<img alt="Avant Après - Legend Age" src="/assets/images/av_ap_portrait.jpg">
+				</div>
+				<ul class="dots">
+					<li :class="{'actived' : activeSlide == 0}" @click="activeSlide = 0"></li>
+					<li :class="{'actived' : activeSlide == 1}" @click="activeSlide = 1"></li>
+				</ul>
+			</div>
 			<div>
 				<h2>Soin des lèvres</h2>
 				<blockquote>Un baume à lèvre, mille couleurs !</blockquote>
@@ -20,13 +29,16 @@
 							<template v-if="isPromo !== null">
 								<span id="normal-price">{{ normalPrice }} €</span>
 								<span>{{ finalPrice }} €</span>
-								<span id="promo">Promotion de Noël</span>
+								<span v-if="isBlackFriday" id="promo">Black Friday</span>
+								<span v-else id="promo">Promotion de Noël</span>
 							</template>
 							<template v-else>
 								<span>{{ normalPrice }} €</span>
 							</template>
 							<!-- Prix toutes taxes comprises (TTC) -->
-							<br>Livraison offerte
+							<template v-if="!isBlackFriday">
+								<br>Livraison offerte
+							</template>
 						</p>
 						<Input
 							type="number"
@@ -56,31 +68,26 @@
 				</div>
 			</div>
 		</article>
-		<picture id="avant-apres">
-			<source srcset="/assets/images/avant-apres.png" type="image/png" media="(min-width: 600px)">
-			<img alt="Avant Après - Legend Age" src="/assets/images/avant-apres-mobile.png">
-		</picture>
 		<section id="composition">
-			<h3>Composition</h3>
 			<ul>
+				<li id="ingredients">
+					<h3>Ingrédients</h3>
+					<p><strong>Cire d’abeille, Vitamine E, Huile de noyaux de cerises</strong>, extrait de fraise de bois, Huile de ricin, Beurre de cacao, Lanoline, Alcool stéarylique, Cire de candelilla, Huile d’olive, Mica, Dioxyde de titane, Acide citrique, Methylparaben, Tartrazine.</p>
+				</li>
 				<li>
 					<img src="/assets/images/cire-abeille.png" alt="Cire d'abeille - Legend Age">
-					<h4>Cire d’abeille</h4>
+					<h3>Cire d’abeille</h3>
 					<p>Hydratante, nourrissante, apaisante et cicatrisante.</p>
 				</li>
 				<li>
 					<img src="/assets/images/huile-cerise.png" alt="Huile de noyaux de cerises - Legend Age">
-					<h4>Huile de noyaux de cerises</h4>
+					<h3>Huile de noyaux de cerises</h3>
 					<p>Huile cosmétique anti-rides par excellence. Elle prévient le vieillissement cutané.</p>
 				</li>
 				<li>
 					<img src="/assets/images/vitamine-e.png" alt="Vitamine E - Legend Age">
-					<h4>Vitamine E</h4>
+					<h3>Vitamine E</h3>
 					<p>Protège des radicaux libres, hydratante et antioxydante.</p>
-				</li>
-				<li id="ingredients">
-					<h4>Ingrédients</h4>
-					<p><strong>Cire d’abeille, Vitamine E, Huile de noyaux de cerises</strong>, extrait de fraise de bois, Huile de ricin, Beurre de cacao, Lanoline, Alcool stéarylique, Cire de candelilla, Huile d’olive, Mica, Dioxyde de titane, Acide citrique, Methylparaben, Tartrazine.</p>
 				</li>
 			</ul>
 		</section>
@@ -112,13 +119,12 @@
 		<section id="conseil">
 			<h3>Conseils d'utilisations</h3>
 			<ul>
-				<li>Appliquer sur les lèvres après nettoyage, minimum 4 fois par jours, après chaque repas et avant le couché.</li>
-				<li>Sortir seulement 1cm de baume, pour ne pas fragiliser le baume.</li>
-				<li>Si souhaiter avoir une couleur plus vive, appliquer plusieurs couches.</li>
-				<li>Si le soin à lèvres devient mou à cause de la chaleur, laisser le baume au réfrigérateur pendant 5mins avant l’application.</li>
-				<li>Tenir à l'écart de la lumière directe du soleil, à l’abri de la lumière, dans un endroit sec et frais.</li>
+				<li>Pour une hydratation efficace, appliquer sur les lèvres, après chaque repas et avant le coucher.</li>
+				<li>Sortir le baume d’1 cm maximum pour ne pas le fragiliser.</li>
+				<li>Pour une couleur plus vive, appliquer plusieurs couches.</li>
+				<li>Si le baume devient mou à cause de la chaleur, le laisser au réfrigérateur pendant 5 minutes avant l’application.</li>
+				<li>A conserver de préférence à l’abri de la lumière, dans un endroit sec et frais.</li>
 				<li>Cesser immédiatement d'utiliser le produit et consulter un dermatologue en présence de rougeurs ou en cas d'inconfort.</li>
-				<li>Mettre le baume debout, logo vers le haut.</li>
 			</ul>
 		</section>
 		<Modal

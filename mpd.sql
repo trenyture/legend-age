@@ -171,6 +171,21 @@ CREATE TABLE IF NOT EXISTS at_command_user(
 		REFERENCES user(id)
 );
 
+DROP TABLE IF EXISTS comment;
+CREATE TABLE IF NOT EXISTS comment(
+	id INT UNSIGNED AUTO_INCREMENT NOT NULL,
+	firstname VARCHAR(128) NOT NULL,
+	lastname VARCHAR(128) NOT NULL,
+	message TEXT NOT NULL,
+	created_date TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
+	validated_date TIMESTAMP NULL,
+	archived_date TIMESTAMP NULL,
+	PRIMARY KEY (id),
+	INDEX created_date_idx (created_date),
+	INDEX validated_date_idx (validated_date),
+	INDEX archived_date_idx (archived_date)
+);
+
 
 /*
  * INSERTIONS

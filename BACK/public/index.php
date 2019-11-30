@@ -26,7 +26,18 @@
 		define('PAYPAL_PRIVATE_KEY', $config['paypalPrivateKey']);
 		define('PAYPAL_CLIENT_ID', $config['paypalClientId']);
 		define('FRONT_URL', $config['frontUrl']);
-		define('PROMO', 4.01);
+
+		$isBlackFriday = false;
+		$promo = 4.01;
+		$now = strtotime(date('Y-m-d H:i:s'));
+		if($now >= strtotime('2019-11-28 20:00:00') && $now < strtotime('2019-12-02 00:00:00')) {
+			$isBlackFriday = true;
+			$promo = 9.01;
+		}
+
+
+		define('PROMO', $promo);
+		define('ISBLACKFRIDAY', $isBlackFriday);
 
 		/* On inclut l'autoloader de nos dépendances, classes et controller */
 		require_once __DIR__.'/../autoloader.php';
