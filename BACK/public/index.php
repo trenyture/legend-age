@@ -1,7 +1,7 @@
 <?php
 	header("Access-Control-Allow-Origin: *");
-	header('Access-Control-Allow-Methods: GET, POST, PUT, POST, HEAD, OPTIONS');
-	
+	header('Access-Control-Allow-Methods: GET, POST, PUT, POST, HEAD, OPTIONS, DELETE');
+
 	try {
 		define('ROOT', dirname(dirname(__FILE__)));
 		/*ON CHARGE NOTRE CONFIGURATION*/

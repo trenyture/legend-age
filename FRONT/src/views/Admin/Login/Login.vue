@@ -2,11 +2,11 @@
 	<div class="login">
 		<Form
 			id="login"
-			action="/authenticate"
+			action="/login"
 			method="POST"
-			@formSent="loginFormSent"
+			@formSent="$emit('formSent', $event)"
 		>
-			<h2>Vous avez déjà un compte ?</h2>
+			<h2>Connexion</h2>
 			<Input
 				type="email"
 				label="Votre email"
@@ -28,7 +28,7 @@
 			</div>
 		</Form>
 
-		<Form
+		<!-- <Form
 			id="new-user"
 			action="/user"
 			method="POST"
@@ -57,7 +57,7 @@
 				label="Votre date de naissance"
 				name="birth-date"
 			/>
-			<!-- <Input
+			<Input
 				type="password"
 				label="Votre mot de passe"
 				name="password"
@@ -74,7 +74,7 @@
 				@change="passCheck = $event"
 			>
 				<template v-if="!samePasswords">Les mots de passe ne correspondent pas</template>
-			</Input> -->
+			</Input>
 			<div class="buttons">
 				<Button
 					type="submit"
@@ -111,7 +111,7 @@
 					>Envoyer</Button>
 				</div>
 			</Form>
-		</Modal>
+		</Modal> -->
 	</div>
 </template>
 

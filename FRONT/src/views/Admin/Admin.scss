@@ -1,0 +1,45 @@
+.admin-container {
+	table {
+		td{
+			&.buttons {
+				.button {
+					margin-right: .5rem;
+					padding: 1rem;
+				}
+			}
+
+			&.state {
+				span {
+					padding: .5rem 1rem;
+					background-color: $black;
+					color: $white;
+					border-radius: 5rem;
+
+					&.approved {
+						background-color: $orange;
+					}
+				}
+			}
+		}
+	}
+
+	.modal {
+		h2 {
+			font-size: 2rem;
+		}
+		label.label {
+			display: block;
+			width: 100%;
+			color: #777777;
+			font-style: italic;
+		}
+		.buttons {
+			margin-top: 2rem;
+			text-align: right;
+
+			.button {
+				margin-left: 1rem;
+			}
+		}
+	}
+}

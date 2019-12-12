@@ -29,6 +29,7 @@ class CommentManager extends Manager {
 				id,
 				firstname,
 				lastname,
+				notation,
 				message,
 				created_date,
 				validated_date,
@@ -37,6 +38,7 @@ class CommentManager extends Manager {
 				:id,
 				:firstname,
 				:lastname,
+				:notation,
 				:message,
 				:createdDate,
 				:validatedDate,
@@ -44,6 +46,7 @@ class CommentManager extends Manager {
 			) ON DUPLICATE KEY UPDATE
 				firstname      = VALUES( firstname ),
 				lastname       = VALUES( lastname ),
+				notation       = VALUES( notation ),
 				message        = VALUES( message ),
 				created_date   = VALUES( created_date ),
 				validated_date = VALUES( validated_date ),
@@ -54,6 +57,7 @@ class CommentManager extends Manager {
 		$q->bindValue(":id", $comment->getId());
 		$q->bindValue(":firstname", $comment->getFirstname());
 		$q->bindValue(":lastname", $comment->getLastname());
+		$q->bindValue(":notation", $comment->getNotation());
 		$q->bindValue(":message", $comment->getMessage());
 		$q->bindValue(":createdDate", $comment->getCreatedDate());
 		$q->bindValue(":validatedDate", $comment->getValidatedDate());

@@ -5,8 +5,8 @@ class CommentController {
 	public function retrieve($commentId = null) {
 		$commentManager = new CommentManager();
 
-		$validated = isset($_GET['validated']) ? $_GET['validated'] : true;
-		$archived = isset($_GET['archived'])   ? $_GET['archived'] : false;
+		$validated = isset($_GET['validated']) ? (strtolower($_GET['validated']) === 'null' ? null : $_GET['validated']) : true;
+		$archived = isset($_GET['archived'])   ? (strtolower($_GET['archived']) === 'null' ? null : $_GET['archived']) : false;
 
 		echo json_encode($commentManager->get($commentId, $validated, $archived));
 		die();
@@ -17,13 +17,11 @@ class CommentController {
 		$commentManager = new CommentManager();
 
 		$comment = new Comment([
-			"id"            => $_POST['id'],
 			"firstname"     => $_POST['firstname'],
 			"lastname"      => $_POST['lastname'],
+			"notation"      => $_POST['notation'],
 			"message"       => $_POST['message'],
-			"createdDate"   => $_POST['created_date'],
-			"validatedDate" => $_POST['validated_date'],
-			"archivedDate"  => $_POST['archived_date']
+			"createdDate"   => date('Y-m-d h:i:s'),
 		]);
 
 		$commentId = $commentManager->set($comment);
@@ -31,11 +29,9 @@ class CommentController {
 		die();
 	}
 
-	public function update($commandId) {
+	public function update($commentId) {
 		/* Les données PUT arrivent du flux */
-		$_PUT = parse_str(file_get_contents("php://input"));
-		echo json_encode($_PUT);
-		die();
+		$_PUT = json_decode(file_get_contents('php://input'), true);
 		/**
 		 * On va récupérer les anciennes données
 		 */
@@ -48,12 +44,13 @@ class CommentController {
 
 		$comment = new Comment([
 			"id"            => $oldComment['id'],
-			"firstname"     => isset($_POST['firstname']) ? $_POST['firstname'] : $oldComment['firstname'],
-			"lastname"      => isset($_POST['lastname']) ? $_POST['lastname'] : $oldComment['lastname'],
-			"message"       => isset($_POST['message']) ? $_POST['message'] : $oldComment['message'],
+			"firstname"     => isset($_PUT['firstname']) ? $_PUT['firstname'] : $oldComment['firstname'],
+			"lastname"      => isset($_PUT['lastname']) ? $_PUT['lastname'] : $oldComment['lastname'],
+			"notation"      => isset($_PUT['notation']) ? $_PUT['notation'] : $oldComment['notation'],
+			"message"       => isset($_PUT['message']) ? $_PUT['message'] : $oldComment['message'],
 			"createdDate"   => $oldComment['created_date'],
-			"validatedDate" => isset($_POST['validated_date']) ? $_POST['validated_date'] : $oldComment['validated_date'],
-			"archivedDate"  => isset($_POST['archived_date']) ? $_POST['archived_date'] : $oldComment['archived_date']
+			"validatedDate" => isset($_PUT['validated_date']) ? $_PUT['validated_date'] : $oldComment['validated_date'],
+			"archivedDate"  => isset($_PUT['archived_date']) ? $_PUT['archived_date'] : $oldComment['archived_date']
 		]);
 
 		$commentId = $commentManager->set($comment);

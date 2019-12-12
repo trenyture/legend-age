@@ -6,6 +6,7 @@ class Comment extends Model{
 	private $firstname     = null;
 	private $lastname      = null;
 	private $message       = null;
+	private $notation      = null;
 	private $createdDate   = null;
 	private $validatedDate = null;
 	private $archivedDate  = null;
@@ -21,6 +22,9 @@ class Comment extends Model{
 	}
 	public function getLastname() {
 		return $this->lastname;
+	}
+	public function getNotation() {
+		return $this->notation;
 	}
 	public function getMessage() {
 		return $this->message;
@@ -47,6 +51,9 @@ class Comment extends Model{
 	public function setLastname($lastname) {
 		$this->lastname = $lastname;
 	}
+	public function setNotation($notation) {
+		$this->notation = $notation;
+	}
 	public function setMessage($message) {
 		$this->message = $message;
 	}
@@ -58,8 +65,5 @@ class Comment extends Model{
 	}
 	public function setArchivedDate($archivedDate) {
 		$this->archivedDate = $archivedDate;
-	}
-	public function setId($id) {
-		$this->id = $id;
 	}
 }

@@ -1,0 +1,46 @@
+.notation {
+	position: relative;
+	display: inline-block;
+	margin: 0 -.25rem;
+
+	ul {
+		padding: 0;
+		margin:0;
+		display: flex;
+
+		li {
+			margin: 0 .25rem;
+
+			&:before {
+				// font-family: 'Linearicons-Free';
+				font-size: 2.5rem;
+			}
+		}
+
+		&.background {
+			position: relative;
+			z-index: 1;
+
+			li {
+				&:before {
+					content: '☆';
+					color: $gray;
+				}
+			}
+		}
+
+		&.front {
+			position: absolute;
+			top: 0; left: 0;
+			z-index: 5;
+			overflow: hidden;
+
+			li {
+				&:before {
+					content: '★';
+					color: $orange;
+				}
+			}
+		}
+	}
+}

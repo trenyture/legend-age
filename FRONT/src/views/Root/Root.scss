@@ -12,9 +12,6 @@
 			vertical-align: middle;
 		}
 	}
-	video {
-		width: 100%;
-	}
 	.product {
 		position: relative;
 		border: .1rem solid $orange;
@@ -29,17 +26,7 @@
 			padding: 3rem 3rem 3rem 10rem; 
 		}
 
-		h2 {
 		
-			position: absolute;
-			top: 0; left: -5rem;
-			transform: translateY(-50%);
-			background-color: $white;
-			padding-right: .5rem;
-			display: inline-block;
-			font-size: 3rem;
-			font-weight: bold;
-		}
 
 		img {
 			position: absolute;
@@ -52,10 +39,7 @@
 			}
 		}
 
-		p{
-			text-align: justify;
-			margin: 1rem 0;
-		}
+		
 	}
 
 	#avant-apres {
@@ -67,5 +51,44 @@
 			width: 100%;
 			height: auto;
 		}
+	}
+
+
+	h2 {
+		font-size: 3rem;
+		font-weight: bold;
+		text-align: center;
+		margin: 2rem 0;
+	}
+
+	div#video {
+		display: flex;
+		align-items: flex-start;
+
+		& > div,
+		& > video {
+			flex: 0 0 48%;
+			width: 48%;
+			box-sizing: border-box;
+
+			p{
+				margin-bottom: .5rem;
+
+				strong {
+					font-weight: bold;
+				}
+			}
+		}
+
+		& > div {
+			flex: 0 0 52%;
+			width: 52%;
+			padding-right: 1rem;
+		}
+	}
+
+	#flyer {
+		width: 100%;
+		height: auto;
 	}
 }

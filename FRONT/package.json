@@ -9,6 +9,7 @@
   "dependencies": {
     "autosize": "^4.0.2",
     "core-js": "^2.6.5",
+    "moment": "^2.24.0",
     "sweetalert2": "^8.18.4",
     "toastr": "^2.1.4",
     "vue": "^2.6.10",

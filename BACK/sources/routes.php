@@ -50,13 +50,15 @@
 	/*Please!*/
 
 	Router::error(function(Request $request, \Exception $exception) {
-		http_response_code($exception->getCode());
-		$resp = ["details" => [$exception->getMessage()]];
-		if(ENV != "prod") {
-			$resp["stack"] = $exception->getTraceAsString();
+		if(strtoupper($_SERVER['REQUEST_METHOD']) !== "OPTIONS") {
+			http_response_code($exception->getCode());
+			$resp = ["details" => [$exception->getMessage()]];
+			if(ENV != "prod") {
+				$resp["stack"] = $exception->getTraceAsString();
+			}
+			echo json_encode($resp);
+			die();
 		}
-		echo json_encode($resp);
-		die();
 	});
 
 ?>

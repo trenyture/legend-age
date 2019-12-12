@@ -31,7 +31,7 @@ export default({
 	method = method.toUpperCase();
 
 	if(method === "PUT") {
-		header['Content-Type'] = 'application/x-www-form-urlencoded';
+		headers['Content-Type'] = 'application/x-www-form-urlencoded';
 	}
 
 	let obj = {
@@ -41,7 +41,13 @@ export default({
 	};
 
 	if(method !== "GET" && data !== null) {
-		obj.body = data;
+		obj.body = data instanceof FormData ? data : JSON.stringify(data);
+	}
+
+	if(method === "PUT" && obj.body) {
+		var object = {};
+		data.forEach((value, key) => {object[key] = value});
+		obj.body = JSON.stringify(object);
 	}
 
 	/**

@@ -4,7 +4,8 @@ function returnChildrenInputs(children) {
 	//Pour chaque enfant trouvé
 	for(var i = 0, len = children.length; i < len; i++){
 		//Si c'est un input et qu'il n'est pas disabled on le garde en mémoire 
-		if(children[i].canSend && !children[i].disabled) {
+		// console.log(typeof children[i].canSend !== "undefined" && !children[i].disabled);
+		if(typeof children[i].canSend !== "undefined" && !children[i].disabled) {
 			inputs.push(children[i]);
 		}
 		//Sinon on va voir si parmi les enfants il y a d'autres inputs

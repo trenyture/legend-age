@@ -2,7 +2,7 @@
 
 class UserManager extends Manager {
 
-	public function get($id = null, $email = null) {
+	public function get($id = null, $email = null, $auth = false) {
 		$sql = "
 			SELECT
 				user.id,
@@ -13,11 +13,16 @@ class UserManager extends Manager {
 				user.activation_key,
 				user.created_date,
 				user.archived_date,
-				user.newsletter,
+				user.newsletter" . ($auth === true ? ",
+				user.is_admin,
+				password.hash" : "") ."
 			FROM user
+			LEFT JOIN password
+				ON password.fk_user = user.id
+				AND password.archived_date IS NULL
 			WHERE 1
 			".(!is_null($id) ? "AND user.id = :id" : "")."
-			".(!is_null($email) ? "AND user.email = :email" : "")."
+			".( !is_null($email) ? "AND user.email = :email" : "")."
 		";
 		$q = $this->db->prepare($sql);
 		if(!is_null($id))    $q->bindValue(':id', $id);

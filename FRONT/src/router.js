@@ -1,9 +1,10 @@
-import Vue from 'vue'
+import Vue    from 'vue'
 import Router from 'vue-router'
+import store  from './store'
 
 Vue.use(Router)
 
-export default new Router({
+let router = new Router({
 	mode: 'history',
 	routes: [
 		{
@@ -47,14 +48,6 @@ export default new Router({
 			}
 		},
 		{
-			path: '/account',
-			name: 'account',
-			component: resolve => require(['./views/Account/Account.vue'], resolve),
-			meta: {
-				pageTitle: 'Mon compte',
-			}
-		},
-		{
 			path: '/contact',
 			name: 'contact',
 			component: resolve => require(['./views/Contact/Contact.vue'], resolve),
@@ -70,6 +63,22 @@ export default new Router({
 				pageTitle: 'Conditions générales de vente',
 			}
 		},
+		{
+			path: '/avis',
+			name: 'notation',
+			component: resolve => require(['./views/Avis/Avis.vue'], resolve),
+			meta: {
+				pageTitle: 'Laissez-nous un avis',
+			}
+		},
+		{
+			path: '/admin',
+			name: 'admin',
+			component: resolve => require(['./views/Admin/Admin.vue'], resolve),
+			meta: {
+				pageTitle: 'Administration',
+			}
+		},
 		/**************   ENFIN ON CRÉER LA PAGE D'ERREUR   **************/
 		{
 			path: '/error',
@@ -83,3 +92,5 @@ export default new Router({
 		},
 	],
 });
+
+export default router;

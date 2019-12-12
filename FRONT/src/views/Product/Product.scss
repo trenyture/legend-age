@@ -54,13 +54,15 @@
 					opacity: 0.5;
 					margin: 0 .2rem;
 					transition: all .3s ease;
+					cursor: pointer;
 
 					&:hover {
 						opacity: 1;
 					}
 
 					&.actived {
-						background-color: $gray;
+						opacity: 1;
+						background-color: $black;
 					}
 				}
 			}
@@ -319,6 +321,29 @@
 				li{
 					list-style: disc;
 					margin-bottom: .5rem;
+				}
+			}
+		}
+
+		&#avis {
+			text-align: center;
+			& > ul {
+				& > li {
+					position: relative;
+					margin: 2rem 0;
+
+					strong {
+						font-weight: bold;
+					}
+
+					.notation {
+						margin-right: .5rem;
+					}
+
+					p {
+						font-size: 2rem;
+						font-style: italic;
+					}
 				}
 			}
 		}

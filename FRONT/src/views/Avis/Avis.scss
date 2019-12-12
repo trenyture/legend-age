@@ -1,0 +1,22 @@
+.notation-container {
+	h2 {
+		font-size: 3rem;
+		margin-bottom: 2rem;
+	}
+	.two-cols {
+		display: flex;
+		margin: 0 -1rem;
+
+		.input-form {
+			margin: 1rem;
+		}
+	}
+
+	.buttons {
+		text-align: right;
+
+		& > .button {
+			margin-left: 1rem;
+		}
+	}
+}

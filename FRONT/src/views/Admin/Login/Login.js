@@ -28,9 +28,6 @@ export default {
 	watch: {
 	},
 	methods: {
-		loginFormSent(r) {
-			console.log(r);
-		},
 		signInFormSent(r) {
 			this.$alert.swal({
 				type: 'success',

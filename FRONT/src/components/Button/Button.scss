@@ -2,7 +2,7 @@
 	text-decoration: none;
 	background: transparent;
 	cursor: pointer;
-	border: none;
+	border: .1rem solid;
 	display: inline-block;
 	text-align: center;
 	white-space: nowrap;
@@ -26,6 +26,7 @@
 	@each $key, $value in $colors {
 		&.button-#{$key} {
 			background-color: $value;
+			border-color: $value;
 			@if $key == "white" {
 				color: $black;
 			} @else {
@@ -34,17 +35,20 @@
 
 			&:hover {
 				background-color: #{lighten($value, 15%)};
+				border-color: #{lighten($value, 15%)};
 
 				&:active {
 					background-color: #{darken($value, 15%)};
+					border-color: #{darken($value, 15%)};
 				}
 			}
 		}
 		&.button-outline-#{$key} {
-			border: .1rem solid;
 			color: $value;
+			border-color: $value;
 			@if $key == "white" {
 				color: $black;
+				border-color: $black;
 			}
 
 			&:hover {
@@ -66,6 +70,18 @@
 					background-color: #{darken($value, 15%)};
 				}
 			}
+		}
+	}
+}
+
+
+.swal2-actions {
+	.button {
+		padding: 1rem 2rem;
+		margin-left: 1rem;
+
+		&:nth-of-type(1) {
+			margin-left: 0;
 		}
 	}
 }

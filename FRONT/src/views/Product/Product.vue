@@ -2,13 +2,15 @@
 	<main class="product-container">
 		<article>
 			<div class="carousel-container">
-				<div class="carousel" :style="`transform: translate3d(-${activeSlide * 100}%, 0, 0);`">
+				<div class="carousel" :style="`transform: translate3d(-${activeSlide * 100 + activeSlide * 1}%, 0, 0);`">
 					<img alt="Produit - Legend Age" src="/assets/images/product.png">
 					<img alt="Avant Après - Legend Age" src="/assets/images/av_ap_portrait.jpg">
+					<img alt="Baume - Legend Age" src="/assets/images/baume.jpg">
 				</div>
 				<ul class="dots">
 					<li :class="{'actived' : activeSlide == 0}" @click="activeSlide = 0"></li>
 					<li :class="{'actived' : activeSlide == 1}" @click="activeSlide = 1"></li>
+					<li :class="{'actived' : activeSlide == 2}" @click="activeSlide = 2"></li>
 				</ul>
 			</div>
 			<div>
@@ -21,6 +23,10 @@
 						<p><strong><i>Excellente tenue !</i></strong></p>
 						<p><strong>Poids</strong> : 3.8 grammes</p>
 					</div>
+					<Notation
+						v-if="moyenne != null"
+						:notation="parseFloat(moyenne)"
+					/>
 					<Form
 						:preventSend="true"
 						@formSent="buyProduct"
@@ -125,6 +131,16 @@
 				<li>Si le baume devient mou à cause de la chaleur, le laisser au réfrigérateur pendant 5 minutes avant l’application.</li>
 				<li>A conserver de préférence à l’abri de la lumière, dans un endroit sec et frais.</li>
 				<li>Cesser immédiatement d'utiliser le produit et consulter un dermatologue en présence de rougeurs ou en cas d'inconfort.</li>
+			</ul>
+		</section>
+		<section id="avis" v-if="randomAvis && randomAvis.length > 0">
+			<h3>Avis</h3>
+			<ul>
+				<li v-for="avis in randomAvis" :key="`avis-${avis.id}`">
+					<Notation :notation="parseInt(avis.notation)" />
+					<p>{{avis.message}}</p>
+					<small>par <strong>{{ avis.firstname }} {{ avis.lastname }}</strong>, le {{ printDate(avis.created_date) }}</small>
+				</li>
 			</ul>
 		</section>
 		<Modal

@@ -12,15 +12,27 @@ Vue.use(Vuex)
 export default new Vuex.Store({
 	plugins: [vuexLocalStorage.plugin],
 	state: {
+		isLoggedIn: {
+			value: false,
+			expires: null,
+		},
 		basket : [],
 		contactFormSent: {
 			value: false,
 			expires: null,
 		},
+		superAdmin: false,
 	},
 	getters: {
+		isSuperAdmin(state) {
+			return state.superAdmin;
+		},
 		getBasket(state) {
 			return state.basket;
+		},
+		isLoggedIn(state) {
+			let d = new Date();
+			return (state.isLoggedIn.expires && d.getTime() < state.isLoggedIn.expires) ? state.isLoggedIn.value : false;
 		},
 		contactFormSent(state) {
 			let d = new Date();
@@ -31,11 +43,23 @@ export default new Vuex.Store({
 		addBasketLine(state, basketLine) {
 			state.basket.push(basketLine);
 		},
+		setSuperAdmin(state, user) {
+			state.superAdmin = user && user.is_admin ? true : false;
+		},
 		deleteBasketLine(state, index) {
 			state.basket.splice(index, 1);
 		},
 		deleteAllBasketLine(state) {
 			state.basket = [];
+		},
+		isLoggedIn(state, value) {
+			console.log(value);
+			let d = new Date();
+			d.setHours(d.getHours() + 3);
+			state.isLoggedIn = {
+				value: value,
+				expires: d.getTime(),
+			};
 		},
 		contactFormSent(state, value) {
 			let d = new Date();
@@ -53,6 +77,12 @@ export default new Vuex.Store({
 				resolve();
 			});
 		},
+		setSuperAdmin(context, payload) {
+			return new Promise((resolve, reject) => {
+				context.commit('setSuperAdmin', payload);
+				resolve();
+			});
+		},
 		deleteBasketLine(context, payload) {
 			return new Promise((resolve, reject) => {
 				context.commit('deleteBasketLine', payload);
@@ -62,6 +92,12 @@ export default new Vuex.Store({
 		deleteAllBasketLine(context) {
 			return new Promise((resolve, reject) => {
 				context.commit('deleteAllBasketLine');
+				resolve();
+			});
+		},
+		isLoggedIn(context, payload) {
+			return new Promise((resolve, reject) => {
+				context.commit('isLoggedIn', payload);
 				resolve();
 			});
 		},

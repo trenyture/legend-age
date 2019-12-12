@@ -26,6 +26,36 @@ html {
 		}
 	}
 
+	table {
+		width: 100%;
+		max-width: 100%;
+		
+		td, th {
+			padding: .75rem;
+			vertical-align: top;
+			border-top: 1px solid #dee2e6;
+			vertical-align: middle;
+		}
+
+		thead {
+			th {
+				font-weight: bold;
+				font-style: italic;
+				text-align: left;
+				border-top: none;
+			}
+		}
+
+		tbody {
+			tr{
+				&:nth-of-type(2n+1) {
+					background: rgba(0,0,0,.05);
+				}
+			}
+		}
+
+	}
+
 	.basket-page {
 		@media all and (min-width: $desktop) {
 			background: transparent url(/assets/images/bandeau.png) no-repeat;
