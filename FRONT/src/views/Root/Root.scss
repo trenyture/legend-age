@@ -62,14 +62,20 @@
 	}
 
 	div#video {
-		display: flex;
-		align-items: flex-start;
+		@media all and (min-width: $tablet) {
+			display: flex;
+			align-items: flex-start;
+		}
 
 		& > div,
 		& > video {
-			flex: 0 0 48%;
-			width: 48%;
-			box-sizing: border-box;
+			height: auto;
+			width: 100%;
+			@media all and (min-width: $tablet) {
+				flex: 0 0 48%;
+				width: 48%;
+				box-sizing: border-box;
+			}
 
 			p{
 				margin-bottom: .5rem;
@@ -81,9 +87,11 @@
 		}
 
 		& > div {
-			flex: 0 0 52%;
-			width: 52%;
-			padding-right: 1rem;
+			@media all and (min-width: $tablet) {
+				flex: 0 0 52%;
+				width: 52%;
+				padding-right: 1rem;
+			}
 		}
 	}
 
