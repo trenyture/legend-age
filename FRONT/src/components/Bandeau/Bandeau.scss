@@ -34,6 +34,22 @@
 		}
 	}
 
+	video {
+		width: 90%;
+		margin-left: 5%;
+		height: auto;
+		cursor: pointer;
+
+		@media all and (min-width: $desktop) {
+			position: absolute;
+			top: 50%;
+			width: 50%;
+			left: 50%;
+			max-width: 35rem;
+			transform: translate(10%, -120%);
+		}
+	}
+
 	.blockquote {
 		text-align: justify;
 		color:$gray;
@@ -43,11 +59,11 @@
 
 		@media all and (min-width: $tablet) {
 			position: absolute;
-			top: 15vh;
+			top: 8vh;
 			padding: 0 2rem 0 5rem;
 			font-size: 1.4rem;
 			width: 50%;
-			left: 50%;
+			left: 48%;
 			max-width: 45rem;
 			box-sizing: border-box;
 		}

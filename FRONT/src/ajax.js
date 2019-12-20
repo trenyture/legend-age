@@ -41,7 +41,7 @@ export default({
 	};
 
 	if(method !== "GET" && data !== null) {
-		obj.body = data instanceof FormData ? data : JSON.stringify(data);
+		obj.body = data;
 	}
 
 	if(method === "PUT" && obj.body) {

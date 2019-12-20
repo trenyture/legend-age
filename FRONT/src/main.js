@@ -1,15 +1,20 @@
 import Vue        from 'vue'
 import { Plugin } from 'vue-fragment'
+import VueGtag    from "vue-gtag"
 import App        from './components/App/App.vue'
 import config     from './config'
 import router     from './router'
 import store      from './store'
-import alert      from './alert';
-import ajax       from './ajax';
-import error      from './error';
+import alert      from './alert'
+import ajax       from './ajax'
+import error      from './error'
 
 Vue.config.productionTip = false
 Vue.use(Plugin)
+
+Vue.use(VueGtag, {
+	config: { id: "UA-154673627-1" }
+}, router);
 
 Vue.prototype.$alert = alert;
 Vue.prototype.$ajax  = ajax;

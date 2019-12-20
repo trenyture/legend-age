@@ -61,36 +61,12 @@
 		margin: 2rem 0;
 	}
 
-	div#video {
-		@media all and (min-width: $tablet) {
-			display: flex;
-			align-items: flex-start;
-		}
-
-		& > div,
-		& > video {
-			height: auto;
-			width: 100%;
-			@media all and (min-width: $tablet) {
-				flex: 0 0 48%;
-				width: 48%;
-				box-sizing: border-box;
-			}
-
-			p{
-				margin-bottom: .5rem;
-
-				strong {
-					font-weight: bold;
-				}
-			}
-		}
-
-		& > div {
-			@media all and (min-width: $tablet) {
-				flex: 0 0 52%;
-				width: 52%;
-				padding-right: 1rem;
+	blockquote {
+		p {
+			margin: .75rem 0;
+			text-align: justify;
+			strong {
+				font-weight: bold;
 			}
 		}
 	}

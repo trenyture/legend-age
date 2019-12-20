@@ -20,6 +20,6 @@ export default {
 				}
 				window.scrollTo(0, start);
 			}, 1);
-		}
+		},
 	},
 };

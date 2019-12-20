@@ -42,6 +42,8 @@ class CommentController {
 		}
 		$oldComment = $oldComment[0];
 
+
+
 		$comment = new Comment([
 			"id"            => $oldComment['id'],
 			"firstname"     => isset($_PUT['firstname']) ? $_PUT['firstname'] : $oldComment['firstname'],
