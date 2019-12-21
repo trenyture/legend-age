@@ -85,7 +85,7 @@
 					></Input>
 					<label class="label">Note :</label>
 					<Notation
-						:notation="form.notation"
+						:notation="parseInt(form.notation)"
 					/>
 					<Input
 						type="hidden"

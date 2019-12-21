@@ -46,7 +46,12 @@ export default({
 
 	if(method === "PUT" && obj.body) {
 		var object = {};
-		data.forEach((value, key) => {object[key] = value});
+		if(data instanceof Array || data instanceof FormData) {
+			data.forEach((value, key) => {object[key] = value});
+		}
+		else {
+			Object.keys(data).forEach(key => {object[key] = data[key]})
+		}
 		obj.body = JSON.stringify(object);
 	}
 

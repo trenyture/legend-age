@@ -15,6 +15,14 @@
 			</div>
 			<div>
 				<h2>Soin des lèvres</h2>
+				<div
+					class="notation-container"
+					v-if="moyenne != null"
+				>
+					<Notation
+						:notation="parseFloat(moyenne)"
+					/> &nbsp;<a href="#avis">({{avis.length}} avi{{avis.length > 1 ? "s" : ""}})</a>
+				</div>
 				<blockquote>Un baume à lèvre, mille couleurs !</blockquote>
 				<div class="content-datas">
 					<div class="infos">
@@ -23,10 +31,6 @@
 						<p><strong><i>Excellente tenue !</i></strong></p>
 						<p><strong>Poids</strong> : 3.8 grammes</p>
 					</div>
-					<Notation
-						v-if="moyenne != null"
-						:notation="parseFloat(moyenne)"
-					/>
 					<Form
 						:preventSend="true"
 						@formSent="buyProduct"

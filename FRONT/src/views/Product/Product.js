@@ -32,7 +32,6 @@ export default {
 		},
 		randomAvis() {
 			if(this.avis === null || this.avis.length === 0) return null;
-			console.log(this.avis);
 			let avis = this.avis
 				.map((a) => ({sort: Math.random(), value: a}))
 				.sort((a, b) => a.sort - b.sort)
