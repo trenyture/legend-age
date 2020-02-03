@@ -42,11 +42,13 @@ class PaymentController {
 		}
 
 		if(ISBLACKFRIDAY) {
-			$commandLines[]['quantity'] = 1;
-			$commandLines[]['name'] = "Livraison";
-			$commandLines[]['currency'] = "eur";
-			$commandLines[]['description'] = "Envoi suivi sous papier bulle";
-			$commandLines[]['amount'] = 2.50;
+			$i = count($commandLines);
+			$commandLines[$i] = [];
+			$commandLines[$i]['quantity'] = 1;
+			$commandLines[$i]['name'] = "Livraison";
+			$commandLines[$i]['currency'] = "eur";
+			$commandLines[$i]['description'] = "Envoi suivi sous papier bulle";
+			$commandLines[$i]['amount'] = 250;
 		}
 
 		try {

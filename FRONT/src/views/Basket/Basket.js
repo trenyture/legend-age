@@ -52,13 +52,13 @@ export default {
 		},
 	},
 	beforeMount() {
-		if(this.now >= new Date('2019-11-28 20:00:00') && this.now < new Date('2019-12-02 00:00:00')) {
+		if(this.now >= new Date('2020-01-08 00:00:00') && this.now < new Date('2020-02-02 00:00:00')) {
 			this.isBlackFriday = true;
 			this.isPromo = 9.01;
 		}
 	},
 	updated() {
-		if(this.now >= new Date('2019-11-28 20:00:00') && this.now < new Date('2019-12-02 00:00:00')) {
+		if(this.now >= new Date('2020-01-08 00:00:00') && this.now < new Date('2020-02-02 00:00:00')) {
 			this.isBlackFriday = true;
 			this.isPromo = 9.01;
 		}

@@ -39,8 +39,7 @@
 							<template v-if="isPromo !== null">
 								<span id="normal-price">{{ normalPrice }} €</span>
 								<span>{{ finalPrice }} €</span>
-								<span v-if="isBlackFriday" id="promo">Black Friday</span>
-								<span v-else id="promo">Promotion de Noël</span>
+								<span v-if="isBlackFriday" id="promo">Soldes d'hiver</span>
 							</template>
 							<template v-else>
 								<span>{{ normalPrice }} €</span>
@@ -139,13 +138,18 @@
 		</section>
 		<section id="avis" v-if="randomAvis && randomAvis.length > 0">
 			<h3>Avis</h3>
-			<ul>
-				<li v-for="avis in randomAvis" :key="`avis-${avis.id}`">
-					<Notation :notation="parseInt(avis.notation)" />
-					<p>{{avis.message}}</p>
-					<small>par <strong>{{ avis.firstname }} {{ avis.lastname }}</strong>, le {{ printDate(avis.created_date) }}</small>
-				</li>
-			</ul>
+			<div class="carousel-container">
+				<ul class="carousel" :style="`transform: translate3d(-${activeAvis * 100}%, 0, 0);`">
+					<li v-for="avis in randomAvis" :key="`avis-${avis.id}`">
+						<Notation :notation="parseInt(avis.notation)" />
+						<p>{{avis.message}}</p>
+						<small>par <strong>{{ avis.firstname }} {{ avis.lastname }}</strong>, le {{ printDate(avis.created_date) }}</small>
+					</li>
+				</ul>
+				<ul class="dots">
+					<li v-for="(avis, idx) in randomAvis" :class="{'actived' : activeAvis == idx}" @click="activeAvis = idx" :key="`avis-${avis.id}`"></li>
+				</ul>
+			</div>
 		</section>
 		<Modal
 			id="added-modal"

@@ -44,8 +44,8 @@
 							<td v-else><s>2.50 €</s><br>Offert !</td>
 						</tr>
 						<tr v-if="isPromo">
-							<td v-if="isBlackFriday">Black Friday</td>
-							<td v-else>Promotion de Noël</td>
+							<td v-if="isBlackFriday">Soldes d'hiver</td>
+							<td v-else>Promotion</td>
 							<td>- {{ promoPrice.toFixed(2) }} €</td>
 						</tr>
 						<tr>

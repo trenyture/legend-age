@@ -343,24 +343,71 @@
 
 		&#avis {
 			text-align: center;
-			& > ul {
-				& > li {
+			div.carousel-container {
+				overflow: hidden;
+				position: relative;
+
+				ul.carousel {
+					display: flex;
+					flex-direction: row;
+					transition: transform 0.5s ease;
+					transform: translate3d(0%, 0px, 0px);
 					position: relative;
-					margin: 2rem 0;
 
-					strong {
-						font-weight: bold;
-					}
+					& > li {
+						position: relative;
+						margin: 2rem 0 3rem 0;
+						padding: 0 1rem;
+						flex: 0 0 100%;
+						width: 100%;
+						height: 100%;
+						object-fit: contain;
+						object-position: bottom;
+						box-sizing: border-box;
 
-					.notation {
-						margin-right: .5rem;
-					}
+						strong {
+							font-weight: bold;
+						}
 
-					p {
-						font-size: 2rem;
-						font-style: italic;
+						.notation {
+							margin-right: .5rem;
+						}
+
+						p {
+							font-size: 2rem;
+							font-style: italic;
+						}
 					}
 				}
+
+				.dots {
+				position: absolute;
+				bottom: 0;
+				left:0;
+				display: flex;
+				justify-content: center;
+				width: 100%;
+
+				li {
+					width: 1.5rem;
+					height: 1.5rem;
+					border-radius: 2rem;
+					border: .1rem solid $gray;
+					opacity: 0.5;
+					margin: 0 .2rem;
+					transition: all .3s ease;
+					cursor: pointer;
+
+					&:hover {
+						opacity: 1;
+					}
+
+					&.actived {
+						opacity: 1;
+						background-color: $black;
+					}
+				}
+			}
 			}
 		}
 	}

@@ -12,6 +12,7 @@ export default {
 			byFour: false,
 			modalOpened: false,
 			activeSlide: 0,
+			activeAvis: 0,
 			avis: null,
 
 			now: new Date(),
@@ -32,11 +33,10 @@ export default {
 		},
 		randomAvis() {
 			if(this.avis === null || this.avis.length === 0) return null;
-			let avis = this.avis
+			return this.avis
 				.map((a) => ({sort: Math.random(), value: a}))
 				.sort((a, b) => a.sort - b.sort)
 				.map((a) => a.value);
-			return avis.length > 3 ? avis.slice(0, 3) : avis;
 		},
 		moyenne() {
 			if(this.avis === null || this.avis.length === 0) return null;
@@ -73,7 +73,7 @@ export default {
 	},
 
 	beforeMount() {
-		if(this.now >= new Date('2019-11-28 20:00:00') && this.now < new Date('2019-12-02 00:00:00')) {
+		if(this.now >= new Date('2020-01-08 00:00:00') && this.now < new Date('2020-02-02 00:00:00')) {
 			this.isBlackFriday = true;
 			this.isPromo = 9.01;
 		}
@@ -82,7 +82,7 @@ export default {
 		this.loadAvis();
 	},
 	updated() {
-		if(this.now >= new Date('2019-11-28 20:00:00') && this.now < new Date('2019-12-02 00:00:00')) {
+		if(this.now >= new Date('2020-01-08 00:00:00') && this.now < new Date('2020-02-02 00:00:00')) {
 			this.isBlackFriday = true;
 			this.isPromo = 9.01;
 		}
