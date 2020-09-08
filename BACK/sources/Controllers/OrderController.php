@@ -35,9 +35,9 @@ class OrderController {
 				$item['currency'] = "eur";
 				$item['description'] = $_POST['ordered_quantity'][$i] .
 					($_POST['fk_product'][$i] == 2
-						? ' lot'.($_POST['ordered_quantity'][$i] > 1 ? 's' : '').' de 4 exemplaires'
+						? ' offre'.($_POST['ordered_quantity'][$i] > 1 ? 's' : '').' promotionnelle de 2 exemplaires'
 						: ' exemplaire'.($_POST['ordered_quantity'][$i] > 1 ? 's' : '')). ' du beaume magique Legend Age' ;
-				$amount = $_POST['ordered_quantity'][$i] * ($_POST['fk_product'][$i] == 2 ? 99.00 : (!is_null(PROMO) ? 29.00 - PROMO : 29.00));
+				$amount = $_POST['ordered_quantity'][$i] * ($_POST['fk_product'][$i] == 2 ? 35.00 : (!is_null(PROMO) ? 29.00 - PROMO : 29.00));
 				$totalPriceWithTax += $amount;
 				$totalPriceBeforeTax += $amount / 1.2;
 				$taxAmount += $amount * 0.2;

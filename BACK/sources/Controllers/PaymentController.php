@@ -24,7 +24,7 @@ class PaymentController {
 					($_POST['fk_product'][$i] == 2
 						? ' lot'.($_POST['ordered_quantity'][$i] > 1 ? 's' : '').' de 4 exemplaires'
 						: ' exemplaire'.($_POST['ordered_quantity'][$i] > 1 ? 's' : '')). ' du beaume Legend Age' ;
-				$unitPrice = $_POST['fk_product'][$i] == 2 ? 99.00 : 29.00;
+				$unitPrice = $_POST['fk_product'][$i] == 2 ? 35.00 : 29.00;
 				if(!is_null(PROMO) && $_POST['fk_product'][$i] == 1) {
 					$unitPrice = $unitPrice - PROMO;
 				}
@@ -156,7 +156,7 @@ class PaymentController {
 				$item['ordered_quantity'] = $_POST['ordered_quantity'][$i];
 				$item['fk_product'] = $_POST['fk_product'][$i];
 				array_push($order["commandLines"], $item);
-				$order["total_price_with_tax"] += $_POST['ordered_quantity'][$i] * ($_POST['fk_product'][$i] == 2 ? 99.00 : (!is_null(PROMO) ? 29.00 - PROMO : 29.00));
+				$order["total_price_with_tax"] += $_POST['ordered_quantity'][$i] * ($_POST['fk_product'][$i] == 2 ? 35.00 : (!is_null(PROMO) ? 29.00 - PROMO : 29.00));
 			}
 		}
 		if(ISBLACKFRIDAY) {

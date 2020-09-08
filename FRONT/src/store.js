@@ -53,7 +53,6 @@ export default new Vuex.Store({
 			state.basket = [];
 		},
 		isLoggedIn(state, value) {
-			console.log(value);
 			let d = new Date();
 			d.setHours(d.getHours() + 3);
 			state.isLoggedIn = {

@@ -17,7 +17,7 @@ export default {
 		}),
 		tvaPrice() {
 			return this.basketLines.reduce((r,e) => {
-				return r + e.quantity * (0.2 * (e.byFour == true ? 99 : 29));
+				return r + e.quantity * (0.2 * (e.byFour == true ? 35 : 29));
 			}, 0);
 		},
 		promoPrice() {
@@ -27,7 +27,7 @@ export default {
 		},
 		totalPrice() {
 			let tt = this.basketLines.reduce((r,e) => {
-				return r + e.quantity * (e.byFour == true ? 99 : (this.isPromo ? 29 - this.isPromo : 29));
+				return r + e.quantity * (e.byFour == true ? 35 : (this.isPromo ? 29 - this.isPromo : 29));
 			}, 0);
 			if(this.isBlackFriday) {
 				tt += 2.5;

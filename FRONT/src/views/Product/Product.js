@@ -21,14 +21,14 @@ export default {
 	},
 	computed: {
 		finalPrice() {
-			let unitPrice = this.byFour == true ? 99 : 29;
+			let unitPrice = this.byFour == true ? 35 : 29;
 			if(this.isPromo) {
 				unitPrice = unitPrice - this.isPromo
 			}
 			return parseFloat(this.quantity * unitPrice).toFixed(2);
 		},
 		normalPrice() {
-			let unitPrice = this.byFour == true ? 99 : 29;
+			let unitPrice = this.byFour == true ? 35 : 29;
 			return parseFloat(this.quantity * unitPrice).toFixed(2);
 		},
 		randomAvis() {

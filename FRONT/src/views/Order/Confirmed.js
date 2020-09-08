@@ -26,7 +26,7 @@ export default {
 		});
 
 		this.totalPrice = this.basketLines.reduce((r,e) => {
-			return r + e.quantity * (e.byFour == true ? 99 : (29 - (this.isPromo || 0)));
+			return r + e.quantity * (e.byFour == true ? 35 : (29 - (this.isPromo || 0)));
 		}, 0);
 
 		if(this.isBlackFriday) {

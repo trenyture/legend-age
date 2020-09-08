@@ -1,5 +1,8 @@
 <template>
 	<div id="app" :class="$router.currentRoute.name + '-page'" >
+		<div id="bandeau-promo" v-if="['root', 'product'].includes($route.name)">
+			<img src="/assets/images/bandeau-promo.png" @click="buyPromo">
+		</div>
 		<Header />
 		<Bandeau v-if="$router.currentRoute.name === 'root'" />
 		<router-view id="app-content" />
