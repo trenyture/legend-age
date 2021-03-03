@@ -27,7 +27,7 @@
 		define('EMAIL_ACCOUNT', $config['email']);
 		define('EMAIL_PASSWD', $config['email_passwd']);
 		define('ENV', $config['env']);
-		define('PROMO', 4.01);
+		define('PROMO', strtotime(date('Y-m-d H:i:s')) >= strtotime('2021-03-03 00:00:00') ? 9.01 : 4.01);
 
 	} catch (Exception $e) {
 		var_dump($e);

@@ -20,7 +20,7 @@ export default {
 			let tt = this.basketLines.reduce((r,e) => {
 				return r + e.quantity * (e.byFour == true ? 35 : (29 - (this.isPromo || 0)));
 			}, 0);
-			if(this.isBlackFriday) {
+			if(true || this.isBlackFriday) {
 				tt += 2.5;
 			}
 			return tt;
@@ -49,7 +49,7 @@ export default {
 		},
 	},
 	beforeMount() {
-		if(this.now >= new Date('2020-01-08 00:00:00') && this.now < new Date('2020-02-02 00:00:00')) {
+		if(this.now >= new Date('2021-03-03 00:00:00')) {
 			this.isBlackFriday = true;
 			this.isPromo = 9.01;
 		}
@@ -76,7 +76,7 @@ export default {
 		}
 	},
 	updated() {
-		if(this.now >= new Date('2020-01-08 00:00:00') && this.now < new Date('2020-02-02 00:00:00')) {
+		if(this.now >= new Date('2021-03-03 00:00:00')) {
 			this.isBlackFriday = true;
 			this.isPromo = 9.01;
 		}

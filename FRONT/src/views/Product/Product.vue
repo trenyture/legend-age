@@ -39,7 +39,7 @@
 							<template v-if="isPromo !== null">
 								<span id="normal-price">{{ normalPrice }} €</span>
 								<span>{{ finalPrice }} €</span>
-								<span v-if="isBlackFriday" id="promo">Soldes d'hiver</span>
+								<!-- <span v-if="isBlackFriday" id="promo">Soldes d'hiver</span> -->
 							</template>
 							<template v-else>
 								<span>{{ normalPrice }} €</span>

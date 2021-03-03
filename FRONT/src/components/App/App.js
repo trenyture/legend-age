@@ -45,4 +45,16 @@ export default {
 			});
 		},
 	},
+	beforeMount() {
+		if(this.now >= new Date('2021-03-03 00:00:00')) {
+			this.isBlackFriday = true;
+			this.isPromo = 9.01;
+		}
+	},
+	updated() {
+		if(this.now >= new Date('2021-03-03 00:00:00')) {
+			this.isBlackFriday = true;
+			this.isPromo = 9.01;
+		}
+	}
 };

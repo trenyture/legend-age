@@ -30,7 +30,7 @@
 		$isBlackFriday = false;
 		$promo = 4.01;
 		$now = strtotime(date('Y-m-d H:i:s'));
-		if($now >= strtotime('2020-01-08 00:00:00') && $now < strtotime('2020-02-02 00:00:00')) {
+		if($now >= strtotime('2021-03-03 00:00:00')) {
 			$isBlackFriday = true;
 			$promo = 9.01;
 		}

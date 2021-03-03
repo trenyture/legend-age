@@ -1,6 +1,6 @@
 <template>
 	<div id="app" :class="$router.currentRoute.name + '-page'" >
-		<div id="bandeau-promo" v-if="['root', 'product'].includes($route.name)">
+		<div id="bandeau-promo" v-if="!isBlackFriday && ['root', 'product'].includes($route.name)">
 			<img src="/assets/images/bandeau-promo.png" @click="buyPromo">
 		</div>
 		<Header />
